@@ -1,0 +1,15 @@
+:PROPERTIES:
+:header-args: :results output
+:END:
+#+TITLE: git
+
+Git is one of the most common (D)VCS solutions used.
+
+* Installation
+
+#+begin_src shell
+  git --version
+#+end_src
+
+#+RESULTS:
+: git version 2.50.1 (Apple Git-155)

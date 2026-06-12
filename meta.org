@@ -2,7 +2,7 @@
 
 A notebook for this project itself.
 
-* GitHub Setup
+* [[file:github.org][GitHub]] Setup
 
 Obey GH instructions.
 
