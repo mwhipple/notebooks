@@ -31,3 +31,26 @@ handling of autoloaded functions.
 
 #+end_example
 
+*** describe-package
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-package)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-package is an autoloaded interactive byte-code-function in
+‘package.el’.
+
+It is bound to C-h P, <f1> P and <help> P.
+It can also be invoked from the menu: Help → Describe → Describe
+Package...
+
+(describe-package PACKAGE)
+
+Display the full documentation of PACKAGE (a symbol).
+
+  Probably introduced at or before Emacs version 24.1.
+
+#+end_example
+
