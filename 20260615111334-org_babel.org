@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       04B03591-50E7-41E2-A2A5-0C2893FAD39C
+:END:
+#+title: org-babel
+
+* Practices
+
+** Packaging Up Behaviors
+:PROPERTIES:
+:ID:       DF79A72C-570A-49C8-A566-D494C59F732C
+:END:
+A major driver fro using org-babel is that it keeps the machinery
+exposed and allows working with some sizeable chunks. As part of this
+there will be a balance between approaches like copypasta and more
+in-built functionality.
+
+The rule of thumb is likely to keep things either very dumb and simple
+(and rely on copypasta) or have them clearly defined as built in to
+the engine. The undesriable middle ground is where functionality is
+both not clearly defined as something that is provided, nor is it
+clearly visible.

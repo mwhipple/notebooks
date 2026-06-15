@@ -1,0 +1,36 @@
+:PROPERTIES:
+:ID:       3DA5F51A-929C-4548-BF2C-9B0579059C1F
+:END:
+#+title: ai-models
+
+Selection of AI models should be driven by quantifiable metrics.
+
+With local inference particularly during devleopment, one of the
+biggest considerations is performance, and therefore I'll default to a
+model that I have locally that seems to provide the lowest latency,
+and will iterate from there.
+
+Iteration will involve both different models, different variants of
+the models, and possible optimizations applied to the models. This
+should all be driven by having a decent harness.
+
+** gpt-oss
+:PROPERTIES:
+:ID:       D6EB63CC-2B15-45DC-8C49-33C0DB4DA1C5
+:END:
+
+~gpt-oss~ is my default as I coincidentally downloaded it initially in
+support of some project or other and it seems to have decent
+performance. It seems likely to get displaced as the default over
+time.
+
+** qwen3
+:PROPERTIES:
+:ID:       265230C1-96C3-4C5B-8CE3-050F471FCFF2
+:END:
+
+~qwen3~ is anecdotally more optimized for most of the purposes I'd be
+looking for. In practice it does seem to be far better at producing
+the desired results but the default overhead is /much/ higher. At the
+moment I'm therefore likely to do rough passess with ~gpt-oss~ and
+then bring in ~qwen3~ after things are somewhat built.
