@@ -20,7 +20,101 @@ Creating under ~/tmp~ seems like a reasonable practice by default.
 
 This invokes the host python.
 
-#+begin_src shell :var host_py="python" :var venv="/tmp/test"
+#+begin_src shell :var host_py="python3" :var venv="/tmp/test"
   ${host_py} -m venv ${venv}
 #+end_src
 
+#+RESULTS:
+
+#+begin_src shell :var venv="/tmp/test" :results output
+  tree ${venv}
+#+end_src
+
+** Installing dependencies (w/ pip)
+
+Dependencies can be installed within the venv by invoking ~pip~ with
+the venv python.
+
+#+begin_src shell :var venv_py="/tmp/test/bin/python" :results output
+  ${venv_py} -m pip install tiktoken
+#+end_src
+
+#+RESULTS:
+: Requirement already satisfied: tiktoken in /private/tmp/test/lib/python3.14/site-packages (0.13.0)
+: Requirement already satisfied: regex in /private/tmp/test/lib/python3.14/site-packages (from tiktoken) (2026.5.9)
+: Requirement already satisfied: requests in /private/tmp/test/lib/python3.14/site-packages (from tiktoken) (2.34.2)
+: Requirement already satisfied: charset_normalizer<4,>=2 in /private/tmp/test/lib/python3.14/site-packages (from requests->tiktoken) (3.4.7)
+: Requirement already satisfied: idna<4,>=2.5 in /private/tmp/test/lib/python3.14/site-packages (from requests->tiktoken) (3.18)
+: Requirement already satisfied: urllib3<3,>=1.26 in /private/tmp/test/lib/python3.14/site-packages (from requests->tiktoken) (2.7.0)
+: Requirement already satisfied: certifi>=2023.5.7 in /private/tmp/test/lib/python3.14/site-packages (from requests->tiktoken) (2026.5.20)
+
+** Conventions
+
+*** Current Guidance
+
+This currently is a bit stuck in the middle of [[id:DF79A72C-570A-49C8-A566-D494C59F732C][Packaging Up Behaviors]], so the idea for now
+would be to typically just provide all of the header args.
+
+The function defined here can be used to produce the values which can be invoked to insert
+the appropriate value.
+
+#+begin_src emacs-lisp
+  (defun mw/pyvenv-header-args (host_py venv)
+    "Produce a value for header args with the provided host_py and venv variabels.
+    (insert (string-join
+      (list
+       (format ":var host_py=\"%s\"" host_py)
+       (format ":var venv=\"%s\"" venv)
+       (format ":venv_py=\"%s/bin/python\"" venv))
+      " ")))
+#+end_src
+
+*** Sample
+:PROPERTIES:
+:header-args: :var host_py="python3" :var venv=(format "%s" venv) :var venv_py=(format "%s/bin/python" venv)
+:END:
+
+This setup can be facilitated through the defining some common
+variables on a file/subtree level...which are attached to this
+~Sample~ heading as an example.
+
+This will rely on file local variables defined typically in the first line.
+
+#+begin_src shell :results output
+  echo host_py: ${host_py}
+  echo venv: ${venv}
+  echo venv_py: ${venv_py}
+#+end_src
+
+#+RESULTS:
+: host_py: python3
+: venv: /tmp/top
+: venv_py: /tmp/top/bin/python
+
+**** Render the Property
+
+#+begin_src emacs-lisp
+  (org-entry-get (point) "header-args")
+#+end_src
+
+#+RESULTS:
+
+*** Try Function
+
+
+**** Nested
+:PROPERTIES:
+:header-args: (mw/pyvenv-header-args "py3" "test")
+:END:
+
+
+#+begin_src shell
+  echo host_py: ${host_py}
+  echo venv: ${venv}
+  echo venv_py: ${venv_py}
+#+end_src
+
+#+RESULTS:
+| host_py: |
+| venv:    |
+| venv_py: |
