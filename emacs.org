@@ -1,0 +1,33 @@
+#+TITLE: emacs
+
+* Help
+
+** Describe Things
+
+*** describe-function
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-function)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-function is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h f, <f1> f and <help> f.
+It can also be invoked from the menu: Help → Describe → Describe
+Function...
+
+(describe-function FUNCTION)
+
+Display the full documentation of FUNCTION (a symbol).
+When called from Lisp, FUNCTION may also be a function object.
+
+See the ‘help-enable-symbol-autoload’ variable for special
+handling of autoloaded functions.
+
+  Probably introduced at or before Emacs version 22.1.
+
+#+end_example
+
