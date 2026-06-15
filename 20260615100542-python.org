@@ -8,6 +8,9 @@ development.  It and JavaScript seem to be the major contenders for
 high-level work including working with AI.
 
 * Setting up a Virtual Environment
+:PROPERTIES:
+:ID:       A3C4A953-79CA-4160-AB26-A6EDCCD8AC09
+:END:
 
 Python can manage local environments with dependencies using its
 built-in ~venv~ functionality. Within a notebook this will be
@@ -20,6 +23,7 @@ Creating under ~/tmp~ seems like a reasonable practice by default.
 
 This invokes the host python.
 
+#+name: create-venv
 #+begin_src shell :var host_py="python3" :var venv="/tmp/test"
   ${host_py} -m venv ${venv}
 #+end_src
@@ -65,7 +69,8 @@ the appropriate value.
       (list
        (format ":var host_py=\"%s\"" host_py)
        (format ":var venv=\"%s\"" venv)
-       (format ":venv_py=\"%s/bin/python\"" venv))
+       (format ":var venv_py=\"%s/bin/python\"" venv))
+       (format ":python \"%s\"" host_py)
       " ")))
 #+end_src
 
@@ -106,7 +111,6 @@ This will rely on file local variables defined typically in the first line.
 :PROPERTIES:
 :header-args: (mw/pyvenv-header-args "py3" "test")
 :END:
-
 
 #+begin_src shell
   echo host_py: ${host_py}
