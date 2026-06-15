@@ -122,3 +122,44 @@ This will rely on file local variables defined typically in the first line.
 | host_py: |
 | venv:    |
 | venv_py: |
+
+* Help
+
+** Help
+
+#+begin_src shell :results output
+  python3 -m pydoc help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Help on _Helper in module _sitebuiltins object:
+
+help = class _Helper(builtins.object)
+ |  Define the builtin 'help'.
+ |
+ |  This is a wrapper around pydoc.help that provides a helpful message
+ |  when 'help' is typed at the Python interactive prompt.
+ |
+ |  Calling help() at the Python prompt starts an interactive help session.
+ |  Calling help(thing) prints help for the python object 'thing'.
+ |
+ |  Methods defined here:
+ |
+ |  __call__(self, *args, **kwds)
+ |      Call self as a function.
+ |
+ |  __repr__(self)
+ |      Return repr(self).
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables
+ |
+ |  __weakref__
+ |      list of weak references to the object
+
+#+end_example
+

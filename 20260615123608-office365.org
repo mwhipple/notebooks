@@ -10,6 +10,19 @@ While I've warmed up to Microsoft over the years I still remain pretty
 unlikely to adopt Office 365 of my own free will...but them's the
 breaks. I've setup a personal free account to work with this notebook.
 
+I'm expecting to use o365.
+
+https://github.com/O365/python-o365
+https://o365.github.io/python-o365/latest/index.html
+
+I signed up for outlook...but I don't want to pay for Office 365.
+
+I'm also having a bunch of errors on the site itself which does not inspire confidence.
+
+Creating an azure account...
+
+Configuring an azure account unlocks the Entra ID management screen.
+
 * [[id:A3C4A953-79CA-4160-AB26-A6EDCCD8AC09][Setup the Environment]]
 
 #+begin_src shell :session venv-setup :results output
