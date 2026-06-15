@@ -150,3 +150,28 @@ O365.utils.utils
 O365.utils.windows_tz - Mapping from iana timezones to windows timezones and vice versa
 [?2004hecho 'ob_comint_async_shell_end_97a1a6b9-e078-4f97-be1e-a5ad4f66d9be'[?2004l
 #+end_example
+
+* Setup Credentials
+
+- Login to Entra https://entra.microsoft.com/#home
+- This requires a directory managed account (which can be done by setting up Azure)
+- Add Mail.Read to start
+
+** Load Credentials
+
+I'll store the credentials in a local ~my.secrets.ini~ file.
+
+*** Load Credentials Values
+
+#+begin_src python :tangle /tmp/o365/auth.py
+  import configparser
+  config = configparser.ConfigParser()
+  config.read('my.secrets.ini')
+
+  from O365 import Account
+  auth_config = config['auth']
+  tenant_id=auth_config['tenant_id']
+  client_id=auth_config['client_id']
+  client_secret=auth_config['client_secret_value']
+  credentials = (client_id, client_secret)
+#+end_src

@@ -163,3 +163,98 @@ help = class _Helper(builtins.object)
 
 #+end_example
 
+** List Available Modules
+
+#+begin_src shell :results output
+  python3 -c "help('modules')"
+#+end_src
+
+#+RESULTS:
+#+begin_example
+
+Please wait a moment while I gather a list of all available modules...
+
+__future__          _stat               faulthandler        reprlib
+__hello__           _statistics         fcntl               resource
+__phello__          _string             filecmp             rlcompleter
+_abc                _strptime           fileinput           runpy
+_aix_support        _struct             fnmatch             sched
+_android_support    _suggestions        fractions           secrets
+_apple_support      _symtable           ftplib              select
+_ast                _sysconfig          functools           selectors
+_ast_unparse        _sysconfigdata__darwin_darwin gc                  shelve
+_asyncio            _testbuffer         genericpath         shlex
+_bisect             _testcapi           getopt              shutil
+_blake2             _testclinic         getpass             signal
+_bz2                _testclinic_limited gettext             site
+_codecs             _testimportmultiple glob                sitecustomize
+_codecs_cn          _testinternalcapi   graphlib            smtplib
+_codecs_hk          _testlimitedcapi    grp                 socket
+_codecs_iso2022     _testmultiphase     gzip                socketserver
+_codecs_jp          _testsinglephase    hashlib             sqlite3
+_codecs_kr          _thread             heapq               sre_compile
+_codecs_tw          _threading_local    hmac                sre_constants
+_collections        _tokenize           html                sre_parse
+_collections_abc    _tracemalloc        http                ssl
+_colorize           _types              idlelib             stat
+_compat_pickle      _typing             imaplib             statistics
+_contextvars        _uuid               importlib           string
+_csv                _warnings           inspect             stringprep
+_ctypes             _weakref            io                  struct
+_ctypes_test        _weakrefset         ipaddress           subprocess
+_curses             _xxtestfuzz         itertools           svn
+_curses_panel       _zoneinfo           json                symtable
+_datetime           _zstd               keyword             sys
+_dbm                abc                 libsvn              sysconfig
+_decimal            annotationlib       linecache           syslog
+_elementtree        antigravity         locale              tabnanny
+_functools          argparse            logging             tarfile
+_hashlib            array               lzma                tempfile
+_heapq              ast                 mailbox             termios
+_hmac               asyncio             marshal             test
+_imp                atexit              math                textwrap
+_interpchannels     base64              mimetypes           this
+_interpqueues       bdb                 mmap                threading
+_interpreters       binascii            modulefinder        time
+_io                 bisect              multiprocessing     timeit
+_ios_support        botan3              ndiff               tkinter
+_json               builtins            netrc               token
+_locale             bz2                 ntpath              tokenize
+_lsprof             cProfile            nturl2path          tomllib
+_lzma               calendar            numbers             trace
+_markupbase         certifi             opcode              traceback
+_md5                cmath               operator            tracemalloc
+_multibytecodec     cmd                 optparse            tty
+_multiprocessing    code                os                  turtle
+_opcode             codecs              packaging           turtledemo
+_opcode_metadata    codeop              pathlib             types
+_operator           collections         pdb                 typing
+_osx_support        colorsys            pickle              unicodedata
+_pickle             compileall          pickletools         unittest
+_posixshmem         compression         pip                 urllib
+_posixsubprocess    concurrent          pkgutil             uuid
+_py_abc             configparser        platform            venv
+_py_warnings        contextlib          plistlib            warnings
+_pydatetime         contextvars         poplib              wave
+_pydecimal          copy                posix               weakref
+_pyio               copyreg             posixpath           webbrowser
+_pylong             csv                 pprint              wheel
+_pyrepl             ctypes              profile             wsgiref
+_queue              curses              pstats              xml
+_random             dataclasses         pty                 xmlrpc
+_remote_debugging   datetime            pwd                 xxlimited
+_scproxy            dbm                 py_compile          xxlimited_35
+_sha1               decimal             pyclbr              xxsubtype
+_sha2               difflib             pydoc               zipapp
+_sha3               dis                 pydoc_data          zipfile
+_signal             doctest             pyexpat             zipimport
+_sitebuiltins       email               queue               zlib
+_socket             encodings           quopri              zoneinfo
+_sqlite3            ensurepip           random              
+_sre                enum                re                  
+_ssl                errno               readline            
+
+Enter any module name to get more help.  Or, type "modules spam" to search
+for modules whose name or summary contain the string "spam".
+
+#+end_example
