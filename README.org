@@ -1,2 +1,3 @@
 #+TITLE: notebooks
-#+TITLE: notebooks
+
+See the [[file:20260615093159-meta.org::+title: meta][meta]] notebook for some setup information.
