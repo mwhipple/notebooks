@@ -1,0 +1,139 @@
+:PROPERTIES:
+:ID:       ED17C5B4-4002-4CC0-9FD0-4A72FD845229
+:header-args: :results output :session o365 :async :var host_py="python3" :var venv="/tmp/o365" :var venv_py="/tmp/o365/bin/python" :python "/tmp/o365/bin/python"
+:END:
+#+title: office365
+
+Office 365 is Microsoft's office suite...
+
+While I've warmed up to Microsoft over the years I still remain pretty
+unlikely to adopt Office 365 of my own free will...but them's the
+breaks. I've setup a personal free account to work with this notebook.
+
+* [[id:A3C4A953-79CA-4160-AB26-A6EDCCD8AC09][Setup the Environment]]
+
+#+begin_src shell :session venv-setup :results output
+  ${host_py} -m venv ${venv}
+an  ${venv_py} -m pip install o365
+#+end_src
+
+#+RESULTS:
+#+begin_example
+host_py='python3'
+venv='/tmp/o365'
+venv_py='/tmp/o365/bin/python'
+${host_py} -m venv ${venv}
+${venv_py} -m pip install o365
+Collecting o365
+  Downloading o365-2.1.9-py3-none-any.whl.metadata (3.6 kB)
+WARNING: Cache entry deserialization failed, entry ignored
+Collecting beautifulsoup4>=4.12.3 (from o365)
+  Downloading beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting msal>=1.31.1 (from o365)
+  Downloading msal-1.37.0-py3-none-any.whl.metadata (11 kB)
+WARNING: Cache entry deserialization failed, entry ignored
+Collecting python-dateutil>=2.9.0.post0 (from o365)
+  Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting requests>=2.32.3 (from o365)
+  Using cached requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting tzdata>=2024.2 (from o365)
+  Downloading tzdata-2026.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting tzlocal>=5.2 (from o365)
+  Downloading tzlocal-5.4-py3-none-any.whl.metadata (7.7 kB)
+WARNING: Cache entry deserialization failed, entry ignored
+Collecting soupsieve>=1.6.1 (from beautifulsoup4>=4.12.3->o365)
+  Using cached soupsieve-2.8.4-py3-none-any.whl.metadata (4.6 kB)
+Collecting typing-extensions>=4.0.0 (from beautifulsoup4>=4.12.3->o365)
+  Using cached typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting PyJWT<3,>=1.0.0 (from PyJWT[crypto]<3,>=1.0.0->msal>=1.31.1->o365)
+  Using cached pyjwt-2.13.0-py3-none-any.whl.metadata (3.4 kB)
+Collecting cryptography<51,>=2.5 (from msal>=1.31.1->o365)
+  Using cached cryptography-49.0.0-cp311-abi3-macosx_11_0_arm64.whl.metadata (4.3 kB)
+Collecting cffi>=2.0.0 (from cryptography<51,>=2.5->msal>=1.31.1->o365)
+  Using cached cffi-2.0.0-cp314-cp314-macosx_11_0_arm64.whl.metadata (2.6 kB)
+Collecting charset_normalizer<4,>=2 (from requests>=2.32.3->o365)
+  Using cached charset_normalizer-3.4.7-cp314-cp314-macosx_10_15_universal2.whl.metadata (40 kB)
+Collecting idna<4,>=2.5 (from requests>=2.32.3->o365)
+  Using cached idna-3.18-py3-none-any.whl.metadata (6.1 kB)
+Collecting urllib3<3,>=1.26 (from requests>=2.32.3->o365)
+  Using cached urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting certifi>=2023.5.7 (from requests>=2.32.3->o365)
+  Using cached certifi-2026.5.20-py3-none-any.whl.metadata (2.5 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography<51,>=2.5->msal>=1.31.1->o365)
+  Using cached pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+WARNING: Cache entry deserialization failed, entry ignored
+Collecting six>=1.5 (from python-dateutil>=2.9.0.post0->o365)
+  Using cached six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading o365-2.1.9-py3-none-any.whl (160 kB)
+Downloading beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Downloading msal-1.37.0-py3-none-any.whl (123 kB)
+Using cached cryptography-49.0.0-cp311-abi3-macosx_11_0_arm64.whl (4.0 MB)
+Using cached pyjwt-2.13.0-py3-none-any.whl (31 kB)
+Using cached requests-2.34.2-py3-none-any.whl (73 kB)
+Using cached charset_normalizer-3.4.7-cp314-cp314-macosx_10_15_universal2.whl (309 kB)
+Using cached idna-3.18-py3-none-any.whl (65 kB)
+Using cached urllib3-2.7.0-py3-none-any.whl (131 kB)
+Using cached certifi-2026.5.20-py3-none-any.whl (134 kB)
+Using cached cffi-2.0.0-cp314-cp314-macosx_11_0_arm64.whl (181 kB)
+Using cached python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Using cached six-1.17.0-py2.py3-none-any.whl (11 kB)
+Using cached soupsieve-2.8.4-py3-none-any.whl (37 kB)
+Using cached typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+Downloading tzdata-2026.2-py2.py3-none-any.whl (349 kB)
+Downloading tzlocal-5.4-py3-none-any.whl (28 kB)
+Using cached pycparser-3.0-py3-none-any.whl (48 kB)
+Installing collected packages: urllib3, tzlocal, tzdata, typing-extensions, soupsieve, six, PyJWT, pycparser, idna, charset_normalizer, certifi, requests, python-dateutil, cffi, beautifulsoup4, cryptography, msal, o365
+
+
+Successfully installed PyJWT-2.13.0 beautifulsoup4-4.15.0 certifi-2026.5.20 cffi-2.0.0 charset_normalizer-3.4.7 cryptography-49.0.0 idna-3.18 msal-1.37.0 o365-2.1.9 pycparser-3.0 python-dateutil-2.9.0.post0 requests-2.34.2 six-1.17.0 soupsieve-2.8.4 typing-extensions-4.15.0 tzdata-2026.2 tzlocal-5.4 urllib3-2.7.0
+
+[notice] A new release of pip is available: 26.1.1 -> 26.1.2
+[notice] To update, run: /private/tmp/o365/bin/python -m pip install --upgrade pip
+[?2004hecho 'ob_comint_async_shell_end_0bd9768d-f7e2-4018-b9f9-b4e23418ebdc'[?2004l
+#+end_example
+
+** Modules
+
+#+begin_src shell
+  ${venv_py} -c "help('modules o365')"
+#+end_src
+
+#+RESULTS:
+#+begin_example
+host_py='python3'
+venv='/tmp/o365'
+venv_py='/tmp/o365/bin/python'
+${venv_py} -c "help('modules o365')"
+
+Here is a list of modules whose name or summary contains 'o365'.
+If there are any, enter a module name to get more help.
+
+O365 - A simple python library to interact with Microsoft Graph and other MS api
+O365.account 
+O365.address_book 
+O365.calendar 
+O365.category 
+O365.connection 
+O365.directory 
+O365.drive 
+O365.excel - 2019-04-15
+O365.groups 
+O365.mailbox 
+O365.message 
+O365.planner 
+O365.sharepoint 
+O365.subscriptions 
+O365.tasks - Methods for accessing MS Tasks/Todos via the MS Graph api.
+O365.teams 
+O365.utils 
+O365.utils.attachment 
+O365.utils.casing 
+O365.utils.consent 
+O365.utils.decorators 
+O365.utils.query 
+O365.utils.range 
+O365.utils.token 
+O365.utils.utils 
+O365.utils.windows_tz - Mapping from iana timezones to windows timezones and vice versa
+[?2004hecho 'ob_comint_async_shell_end_97a1a6b9-e078-4f97-be1e-a5ad4f66d9be'[?2004l
+#+end_example
