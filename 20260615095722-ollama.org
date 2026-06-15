@@ -54,3 +54,20 @@ Flags:
 
 Use "ollama [command] --help" for more information about a command.
 #+end_example
+
+* List
+
+Ollama supports listing installed models - support for querying
+available models should be built out using something like curl.
+
+This list therefore reflects what I currently have on one my workstations.
+
+#+begin_src shell
+  ollama list
+#+end_src
+
+#+RESULTS:
+: NAME                       ID              SIZE      MODIFIED    
+: nomic-embed-text:latest    0a109f422b47    274 MB    2 weeks ago    
+: qwen3:latest               500a1f067a9f    5.2 GB    2 weeks ago    
+: gpt-oss:latest             17052f91a42e    13 GB     4 weeks ago    
