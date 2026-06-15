@@ -1,3 +1,11 @@
 #+TITLE: notebooks
 
 See the [[file:20260615093159-meta.org::+title: meta][meta]] notebook for some setup information.
+
+This repository is currently intended to be accessed through emacs.
+
+The source files should remain legible, but GitHub tends to elide the
+outputs when rendering the org files (which can be addressed by
+viewing the source), and the links will all seem broken.
+
+At some point I'll likely set something up to weave a rendered site.

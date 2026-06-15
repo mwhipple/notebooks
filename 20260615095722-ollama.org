@@ -1,0 +1,16 @@
+:PROPERTIES:
+:ID:       D87B9E33-CA56-4301-A59A-6FC951966D08
+:header-args: :results output
+:END:
+#+title: ollama
+
+Ollama provides support for running some models (LLM/foundational) locally.
+
+* Installation
+
+#+begin_src shell
+  ollama --version
+#+end_src
+
+#+RESULTS:
+: ollama version is 0.24.0
