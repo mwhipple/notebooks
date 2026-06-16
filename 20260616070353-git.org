@@ -1,9 +1,10 @@
 :PROPERTIES:
+:ID:       F3E6007F-409B-47C4-8881-48BCAE48F81B
 :header-args: :results output
 :END:
-#+TITLE: git
+#+title: git
 
-Git is one of the most common (D)VCS solutions used.
+Git is one of the most common (D)VCS solutions.
 
 * Installation
 
@@ -73,8 +74,6 @@ See 'git help git' for an overview of the system.
 * Add
 
 ** Help
-
-
 
 #+begin_src shell
   git add --help
@@ -477,4 +476,4 @@ GGIITT
 Git 2.50.1.428.g0e8243            2025-07-22                        GIT-ADD(1)
 #+end_example
 
-*** TODO This output presents issues with escape sequences...to be fixed nextish.
+

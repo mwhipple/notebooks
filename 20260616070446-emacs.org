@@ -1,4 +1,7 @@
-#+TITLE: emacs
+:PROPERTIES:
+:ID:       436EB0B7-811E-4828-BBF7-4126517DD7C6
+:END:
+#+title: emacs
 
 * Help
 
@@ -54,7 +57,35 @@ Display the full documentation of PACKAGE (a symbol).
 
 #+end_example
 
+*** describe-variable
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-variable)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-variable is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h v, <f1> v and <help> v.
+It can also be invoked from the menu: Help → Describe → Describe
+Variable...
+
+(describe-variable VARIABLE &optional BUFFER FRAME)
+
+Display the full documentation of VARIABLE (a symbol).
+Returns the documentation as a string, also.
+If VARIABLE has a buffer-local value in BUFFER or FRAME
+(default to the current buffer and current frame),
+it is displayed along with the global value.
+
+  Probably introduced at or before Emacs version 27.1.
+
+#+end_example
+
 * Point
+
 
 ** point-min
 

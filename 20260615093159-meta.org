@@ -48,8 +48,7 @@ to populate the appropriate directory at the time of tangling.
 #+end_src
 
 #+RESULTS:
-: ~/.emacs.d/org-roam.db
-
+: /Users/mwhipple/memex/notebooks/org-roam.db
 
 * One-Time
 
