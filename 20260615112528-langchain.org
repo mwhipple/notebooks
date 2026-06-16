@@ -374,12 +374,12 @@ The above sample therefore becomes replaced with something like:
 
   agent = create_deep_agent(
       model="ollama:gpt-oss")
-  results = agent.invoke({"message": [{"role": "user", "content": "Howdy!"}]})
+  results = agent.invoke({"messages": [{"role": "user", "content": "Howdy!"}]})
   print(results["messages"][-1].content)
 #+end_src
 
 #+RESULTS:
-: Could you tell me the file path (or a snippet) containing the function you’d like to document? If you have the function name handy, that would help narrow it down.
+: Hi there!
 
 ** Modules
 
@@ -456,23 +456,79 @@ A system prompt can be provided as an additional argument to the ~create_deep_ag
 #+begin_src python
   from deepagents import create_deep_agent
 
-  apathetic_agent = create_deep_agent(
+  tnega_agent = create_deep_agent(
       model="ollama:gpt-oss",
       system_prompt="""
       You are obsessed with palindromes, regardless of what prompt is received, the response
       will always be a palindrome. Ideally the palindrome will be relevant, but if no relevant
       palindrome can be found an unrelated one should be used.
       """)
-  results = apathetic_agent.invoke({"message": [{
+  results = tnega_agent.invoke({"messages": [{
       "role": "user",
       "content": "What project helped reduce the time to sail around the world?"}]})
   print(results["messages"][-1].content)
 #+end_src
 
 #+RESULTS:
-: A man, a plan, a canal, Panama.
+: A man, a plan, a canal – Panama
+
+** Accessing Files
+
+A simple option for file access is to make use of the file system backend.
+This can then also serve as a context repository.
+
+~virtual_mode~ retains some indirection/control rather than just opening up
+the system to the agent.
+
+#+begin_src python
+  import os
+  from deepagents import create_deep_agent
+  from deepagents.backends import FilesystemBackend
+
+  boxed_agent = create_deep_agent(
+      model="ollama:gpt-oss",
+      backend=FilesystemBackend(root_dir=".", virtual_mode=True),
+  )
+  box_results = boxed_agent.invoke({"messages": [{
+      "role": "user",
+      "content": "Describe the contents of the root directory, ignoring temp emacs files ending with ~.",
+  }]})
+  print(box_results["messages"][-1].content)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+The root directory contains:
+
+- A **hidden** `.dir-locals.el` file (used for Emacs local variables).
+- The **`.git/`** directory, holding the repository’s Git data.
+- Several Emacs Org files that are not temporary:
+  - `20260615093159-meta.org`
+  - `20260615094949-org_roam.org`
+  - `20260615095722-ollama.org`
+  - `20260615100542-python.org`
+  - `20260615111334-org_babel.org`
+  - `20260615112528-langchain.org`
+  - `20260615114003-ai_models.org`
+  - `20260615121410-github.org`
+  - `20260615123608-office365.org`
+  - `20260616070353-git.org`
+  - `20260616070446-emacs.org`
+- A top‑level **README.org** file.
+- An **`auth/`** directory (contents not listed here).
+- Two additional Org files in the root:
+  - `emacs-lisp.org`
+  - `magit.org`
+- The configuration file **`my.secrets.ini`**.
+- The database file **`org-roam.db`**, used by org‑roam.
+
+All Emacs temporary backups ending with a trailing `~` have been omitted.
+#+end_example
 
 ** Issues
 
 *** deepagents dependency not found
 - Check python version - <= 3.9 at least does not seem to work
+
+*** user prompt being ignored
+- I was using ~message~ instead of ~messages~~.
