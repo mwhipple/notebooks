@@ -174,3 +174,19 @@ Flags:
       --token          Read token from standard input
   -w, --web            Authenticate using web browser
 #+end_example
+
+**** Token Login
+
+I'll be looking to make use of the API token flow...first to store the credentials somewhere usable.
+
+An API token can be created through the account settings in the Web UI.
+
+All of the values can be thrown into environment variables and then just used by the shell.
+
+#+begin_src shell
+  echo ${ATLASSIAN_TOKEN} | acli jira auth login --site ${ATLASSIAN_SITE} --email ${ATLASSIAN_EMAIL} --token
+#+end_src
+
+#+RESULTS:
+: [?25l[?2004h⣽ Authenticating...[D⣻ Authenticating...[D⢿ Authenticating...[D⡿ Authenticating...[D⣟ Authenticating...[D⣯ Authenticating...[D⣷ Authenticating...[D[2K[?2004l[?25h[?1002l[?1003l[?1006l✓ Authentication successful
+:   Welcome, Matt Whipple
