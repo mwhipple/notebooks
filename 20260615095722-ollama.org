@@ -74,3 +74,5 @@ This list therefore reflects what I currently have on one my workstations.
 
 - [[id:D6EB63CC-2B15-45DC-8C49-33C0DB4DA1C5][gpt-oss]]
 - [[id:265230C1-96C3-4C5B-8CE3-050F471FCFF2][qwen3]]
+
+gemma4 seems to be a more promising default than gpt-oss...

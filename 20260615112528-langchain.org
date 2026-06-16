@@ -529,6 +529,9 @@ All Emacs temporary backups ending with a trailing `~` have been omitted.
 
 *** deepagents dependency not found
 - Check python version - <= 3.9 at least does not seem to work
-
 *** user prompt being ignored
 - I was using ~message~ instead of ~messages~~.
+*** error parsing tool call
+- When accessing the filesystem an error is thrown and the raw call
+  looks like a poorly quoted mix of JSON and python (pySON?).
+  This may be a model issue? It manifested with some version of gpt-oss.
