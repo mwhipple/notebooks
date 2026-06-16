@@ -10,6 +10,45 @@ While I've warmed up to Microsoft over the years I still remain pretty
 unlikely to adopt Office 365 of my own free will...but them's the
 breaks. I've setup a personal free account to work with this notebook.
 
+* O365
+
+Following search threads initially led me to the
+https://github.com/O365/python-o365 library.
+
+After kicking the tires a bit, I ended up moving off of it.  The
+authentication wasn't quickly working (likely due to the many knobs
+available on both ends), and when I started to dig through the code I
+was left with concerns...some of which I also somewhat expected based
+on the vibe of the code documentation (that seems unfair of me, but
+the vibe was confirmed).
+
+Overall the project doesn't align with my tastes...for something like
+this I'd be particularly looking for some lightweight modeling on top
+of fairly exposed API details, but the project instead felt like a
+typical mass of relatively bloated and tangled OOP code - fairly poor
+separation of concerns and even though it is focused on a single
+platform (Office 365) it has the heft and indirection of something
+striving to offer some kind of generalized functionality. If the code
+had just worked I wouldn't have been bothered, but since it didn't
+the details are not only contrary to my taste, but also got in the way
+of jumping in to making things work.
+
+* MSGraph SDK
+
+I subsequently chased down the SDK offered by Microsoft:
+https://github.com/microsoftgraph/msgraph-sdk-python.
+
+This is potentially slightly more hidden given that it is oriented
+towards the Graph API rather than the services that run on top of
+that. The code is seemingly designed similarly where most of the code
+seems to be generated off of the API definition.
+
+This is at least more closely aligned with the rest of the ecosystem
+and so far the code seems what would be expected from that type of
+generation configuration. While I'm sticking with python to start
+(since I'll be using python for other things and its a good scripting
+option), this should also allow for easier jumping to other runtimes
+if warranted.
 I'm expecting to use o365.
 
 https://github.com/O365/python-o365
