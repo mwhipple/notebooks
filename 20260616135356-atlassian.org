@@ -1,0 +1,49 @@
+:PROPERTIES:
+:ID:       FC988BB7-0319-4E5A-BE2A-7A9BEDF6F0F5
+:END:
+#+title: atlassian
+
+Atlassian products seemingly remain pretty dominant.
+
+I've never been particularly impressed...the solutions have always
+seemed fairly meh. My impression is that Atlassian largely retains a
+stranglehold due to the support for the products have for some
+specific enterprise needs like controls (i.e., groups like IT keeping
+a tight grip on the keys), which can also introduce further tension
+with utility.
+
+I've worked with Atlassian products in many orgs with different
+configurations, but have yet to see one where there's evident value -
+instead they all seem to drift towards a state where there's a very
+regular need to chase down people with the appropriate
+access/expertise and information like reporting data that is
+ostensibly within the products still ends up getting tracked
+elsewhere.
+
+These therefore fall into the bucket of things that I wouldn't tend to
+use personally (where for similar needs I tend to use things like
+GitLab), but set myself up so I can develop some processes.
+
+Atlassian provides ~acli~ as an interface for their services.
+
+
+* Installation
+
+https://developer.atlassian.com/cloud/acli/guides/install-acli/
+
+** Homebrew
+
+#+begin_src shell :session brew :async :results output
+  brew trust --formula atlassian/acli/acli
+  brew tap atlassian/homebrew-acli
+  brew install acli
+#+end_src
+
+** Verification
+
+#+begin_src shell
+  acli --version
+#+end_src
+
+#+RESULTS:
+: acli version 1.3.19-stable
