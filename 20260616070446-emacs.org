@@ -34,6 +34,42 @@ handling of autoloaded functions.
 
 #+end_example
 
+*** describe-mode
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-mode is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h m, <f1> m and <help> m.
+It can also be invoked from the menu: Help → Describe → Describe
+Buffer Modes
+
+(describe-mode &optional BUFFER)
+
+Display documentation of current major mode and minor modes.
+A brief summary of the minor modes comes first, followed by the
+major mode description.  This is followed by detailed
+descriptions of the minor modes, each on a separate page.
+
+For this to work correctly for a minor mode, the mode’s indicator
+variable (listed in ‘minor-mode-alist’) must also be a function
+whose documentation describes the minor mode.
+
+If called from Lisp with a non-nil BUFFER argument, display
+documentation for the major and minor modes of that buffer.
+
+When ‘describe-mode-outline’ is non-nil, Outline minor mode
+is enabled in the Help buffer.
+
+  Probably introduced at or before Emacs version 29.1.
+
+#+end_example
+
 *** describe-package
 
 #+begin_src emacs-lisp
