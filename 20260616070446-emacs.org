@@ -172,3 +172,29 @@ BODY is executed just like ‘progn’.
     ‘byte-compile-save-current-buffer’.  See the manual for details.
 
 #+end_example
+
+* Clearing out definitions
+
+** makunbound
+
+#+begin_src emacs-lisp
+  (describe-function #'makunbound)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+makunbound is a primitive-function in ‘C source code’.
+
+(makunbound SYMBOL)
+
+Empty out the value cell of SYMBOL, making it void as a variable.
+Return SYMBOL.
+
+If a variable is void, trying to evaluate the variable signals a
+‘void-variable’ error, instead of returning a value.  For more
+details, see Info node ‘(elisp) Void Variables’.
+
+See also ‘fmakunbound’.
+
+#+end_example
+

@@ -49,6 +49,11 @@ generation configuration. While I'm sticking with python to start
 (since I'll be using python for other things and its a good scripting
 option), this should also allow for easier jumping to other runtimes
 if warranted.
+
+* Outlook?
+
+This page does mention mail as another API.
+https://learn.microsoft.com/en-us/entra/identity-platform/scopes-oidc
 I'm expecting to use o365.
 
 https://github.com/O365/python-o365

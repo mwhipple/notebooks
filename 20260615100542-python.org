@@ -66,14 +66,15 @@ the appropriate value.
 
 #+begin_src emacs-lisp
   (defun mw/pyvenv-header-args (host_py venv)
-    "Produce a value for header args with the provided host_py and venv variabels.
-    (insert (string-join
-      (list
-       (format ":var host_py=\"%s\"" host_py)
-       (format ":var venv=\"%s\"" venv)
-       (format ":var venv_py=\"%s/bin/python\"" venv))
-       (format ":python \"%s\"" host_py)
-      " ")))
+    "Produce a value for header args with the provided host_py and venv variabels."
+    (let (venv-py (format "%s/bin/python" venv))
+      (insert (string-join
+  	     (list
+  	      (format ":var host_py=\"%s\"" host_py)
+  	      (format ":var venv=\"%s\"" venv)
+  	      (format ":var venv_py=\"%s\"" venv-py)
+  	      (format ":python \"%s\"" venv-py)
+  	      " ")))))
 #+end_src
 
 *** Sample
