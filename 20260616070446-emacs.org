@@ -254,3 +254,26 @@ See also ‘fmakunbound’.
 
 #+end_example
 
+** fmakunbound
+
+#+begin_src emacs-lisp
+  (describe-function #'fmakunbound)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+fmakunbound is a primitive-function in ‘C source code’.
+
+(fmakunbound SYMBOL)
+
+Make SYMBOL’s function definition be nil.
+Return SYMBOL.
+
+If a function definition is nil, trying to call a function by
+that name will cause a ‘void-function’ error.  For more details, see
+Info node ‘(elisp) Function Cells’.
+
+See also ‘makunbound’.
+
+#+end_example
+
