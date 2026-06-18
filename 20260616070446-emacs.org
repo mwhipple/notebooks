@@ -353,3 +353,17 @@ If NOSAVE is non-nil, the package is not removed from
 
 #+end_example
 
+** package-get-descriptor
+
+#+begin_src emacs-lisp
+  (describe-function #'package-get-descriptor)
+#+end_src
+
+#+RESULTS:
+: package-get-descriptor is a byte-code-function in ‘package.el’.
+: 
+: (package-get-descriptor PKG-NAME)
+: 
+: Return the ‘package-desc’ of PKG-NAME.
+: 
+
