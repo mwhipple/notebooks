@@ -299,3 +299,34 @@ Files in subdirectories of DIRECTORY are processed also.
 
 #+end_example
 
+* Packages
+
+** package-delete
+
+#+begin_src emacs-lisp
+  (describe-function #'package-delete)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+package-delete is an interactive byte-code-function in ‘package.el’.
+
+(package-delete PKG-DESC &optional FORCE NOSAVE)
+
+Delete package PKG-DESC.
+
+Argument PKG-DESC is the full description of the package, for example as
+obtained by ‘package-get-descriptor’.  Interactively, prompt the user
+for the package name and version.
+
+When package is used elsewhere as dependency of another package,
+refuse deleting it and return an error.
+If prefix argument FORCE is non-nil, package will be deleted even
+if it is used elsewhere.
+If NOSAVE is non-nil, the package is not removed from
+‘package-selected-packages’.
+
+  Probably introduced at or before Emacs version 25.1.
+
+#+end_example
+
