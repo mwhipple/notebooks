@@ -390,3 +390,36 @@ short description.
 
 #+end_example
 
+** package-upgrade-all
+
+#+begin_src emacs-lisp
+  (describe-function #'package-upgrade-all)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+package-upgrade-all is an autoloaded interactive byte-code-function in
+‘package.el’.
+
+(package-upgrade-all &optional QUERY)
+
+Refresh package list and upgrade all packages.
+If QUERY, ask the user before upgrading packages.  When called
+interactively, QUERY is always true.
+
+Currently, packages which are part of the Emacs distribution are
+not upgraded by this command.  To enable upgrading such a package
+using this command, first upgrade the package to a newer version
+from ELPA by either using ‘M-x package-upgrade’ or
+‘i’ after ‘M-x list-packages’.
+
+  Probably introduced at or before Emacs version 29.1.
+
+#+end_example
+
+#+begin_src emacs-lisp
+  (package-upgrade-all)
+#+end_src
+
+#+RESULTS:
+| transient | prop-menu | llama | idris-mode | emacsql | cond-let |
