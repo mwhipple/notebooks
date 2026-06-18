@@ -1,0 +1,20 @@
+:PROPERTIES:
+:ID:       58037216-DD41-4C5F-AE7C-7A621EF9D319
+:END:
+#+title: lists
+
+Lists are one of the most fundamental compound data types in
+programming languages.
+
+This treatment will draw primarily from the Abstract Data Type concept
+of Aho, Hopcroft, and Ullman.
+
+These represent a sequence of elements, with guarantees around
+ordering, and without inherent uniqueness guarantees.
+
+The element types may be heterogeneous, or may be constrained
+depending on things like language (and approaches such as unions and
+sum types provide typed heterogeneity anyway).
+
+The underlying storage can be virtually anything, though variations of
+arrays and linked lists are probably most common.

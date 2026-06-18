@@ -1,0 +1,11 @@
+:PROPERTIES:
+:ID:       222093AC-E4FC-4E90-B124-ADFFC31F6314
+:END:
+#+title: emacs-lisp
+
+* [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
+
+#+begin_src emacs-lisp
+  (shortdoc "list")
+#+end_src
+
