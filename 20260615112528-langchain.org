@@ -480,6 +480,10 @@ This can then also serve as a context repository.
 ~virtual_mode~ retains some indirection/control rather than just opening up
 the system to the agent.
 
+This is probably not an approach that should typically be used, other
+than when starting out in very narrow cases; more flexible and
+controlled composition should likely be preferred.
+
 #+begin_src python
   import os
   from deepagents import create_deep_agent

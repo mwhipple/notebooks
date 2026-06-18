@@ -367,3 +367,26 @@ If NOSAVE is non-nil, the package is not removed from
 : Return the ‘package-desc’ of PKG-NAME.
 : 
 
+** package-list-packages
+
+#+begin_src emacs-lisp
+  (describe-function #'package-list-packages)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+package-list-packages is an alias for ‘list-packages’ in ‘package.el’.
+
+It can be invoked from the menu: Options → Manage Emacs Packages
+
+(package-list-packages &optional NO-FETCH)
+
+Display a list of packages.
+This first fetches the updated list of packages before
+displaying, unless a prefix argument NO-FETCH is specified.
+The list is displayed in a buffer named ‘*Packages*’, and
+includes the package’s version, availability status, and a
+short description.
+
+#+end_example
+
