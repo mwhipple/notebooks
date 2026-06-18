@@ -120,6 +120,26 @@ it is displayed along with the global value.
 
 #+end_example
 
+
+** Discover Things
+
+*** shortdoc
+
+#+begin_src emacs-lisp
+  (describe-function #'shortdoc)
+#+end_src
+
+#+RESULTS:
+: shortdoc is an alias for ‘shortdoc-display-group’ in ‘shortdoc.el’.
+: 
+: (shortdoc GROUP &optional FUNCTION SAME-WINDOW)
+: 
+: Pop to a buffer with short documentation summary for functions in GROUP.
+: Interactively, prompt for GROUP.
+: If FUNCTION is non-nil, place point on the entry for FUNCTION (if any).
+: If SAME-WINDOW, don’t pop to a new window.
+: 
+
 * Point
 
 ** point
