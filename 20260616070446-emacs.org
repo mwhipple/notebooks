@@ -140,6 +140,29 @@ it is displayed along with the global value.
 : If SAME-WINDOW, don’t pop to a new window.
 : 
 
+* Environment Info
+
+** user-emacs-directory
+
+#+begin_src emacs-lisp
+  (describe-variable 'user-emacs-directory)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+user-emacs-directory is a variable defined in ‘subr.el’.
+
+Its value is "~/.emacs.d/"
+
+Directory beneath which additional per-user Emacs-specific files are placed.
+Various programs in Emacs store information in this directory.
+Note that this should end with a directory separator.
+See also ‘locate-user-emacs-file’.
+
+  Probably introduced at or before Emacs version 23.1.
+
+#+end_example
+
 * Point
 
 ** point
