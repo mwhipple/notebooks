@@ -9,3 +9,10 @@
   (shortdoc "list")
 #+end_src
 
+#+RESULTS:
+
+* [[id:910846DE-0B6A-4CE4-A32E-3DE30642F744][alists]]
+
+#+begin_src emacs-lisp
+  (shortdoc "alist")
+#+end_src

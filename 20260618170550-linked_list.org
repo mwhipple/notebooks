@@ -1,0 +1,27 @@
+:PROPERTIES:
+:ID:       3B936526-69D4-4C9D-AE47-D76AA3997388
+:END:
+#+title: linked-list
+
+Linked lists are concrete data structures which represent [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]] as
+a series of elements which have pointers/references to each other.
+
+These offer an advantage in simplify memory allocation concerns (as
+each element can be allocated individually). Additional and removal of
+elements from the list at any location within the list should remain
+on the order of O(1), but traversal of the list requires resolution of
+the references and therefore will require more operations and
+indirections.
+
+These may be singly (unidirectional) or doubly (bidirectional) linked,
+and can further be extended with approaches such as skip lists which
+can help address the aforementioned number of operation concern.
+
+* Noteworthy Implementations
+
+A noteworthy C implementation is that used (or at least was used)
+within the linux kernel. This models a doubly linked list _solely_ as
+the pointers to the next and previous elements, and makes use of
+~offsetof~ to jump back to the start of the structure. This pattern
+likely has a name of its own...it's certainly one I've stolen and will
+extract to its own node if I do anything relevant in these notebooks.
