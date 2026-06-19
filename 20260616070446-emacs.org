@@ -232,6 +232,263 @@ This is 1, unless narrowing (a buffer restriction) is in effect.
 : 1
 
 * Buffers
+
+#+begin_src emacs-lisp :results value
+  (save-excursion
+    (shortdoc 'buffer)
+    (buffer-substring-no-properties (point-min) (point-max)))
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Buffer Basics
+
+(current-buffer)
+  Return the current buffer as a Lisp object.
+  (current-buffer)
+    e.g. ⇒ #<buffer shortdoc.el>
+
+
+(bufferp object)
+  Return t if OBJECT is an editor buffer.
+  (bufferp 23)
+    ⇒ nil
+
+
+(buffer-live-p object)
+  Return t if OBJECT is a buffer which has not been killed.
+  (buffer-live-p some-buffer)
+    e.g. ⇒ t
+
+
+(buffer-modified-p &optional buffer)
+  Return non-nil if BUFFER was modified since its file was last read or saved.
+  (buffer-modified-p (current-buffer))
+    ⇒ t
+
+
+(buffer-name &optional buffer)
+  Return the name of BUFFER, as a string.
+  (buffer-name)
+    ⇒ "*Shortdoc buffer*"
+
+
+(window-buffer &optional window)
+  Return the buffer displayed in window WINDOW.
+  (window-buffer)
+    ⇒ #<buffer 20260616070446-emacs.org>
+
+Selecting Buffers
+
+(get-buffer-create buffer-or-name &optional inhibit-buffer-hooks)
+  Return the buffer specified by BUFFER-OR-NAME, creating a new one if needed.
+  (get-buffer-create "*foo*")
+    e.g. ⇒ #<buffer *foo*>
+
+
+(pop-to-buffer buffer-or-name &optional action norecord)
+  Display buffer specified by BUFFER-OR-NAME and select its window.
+  (pop-to-buffer "*foo*")
+    e.g. ⇒ #<buffer *foo*>
+
+
+(with-current-buffer buffer-or-name &rest body)
+  Execute the forms in BODY with BUFFER-OR-NAME temporarily current.
+  (with-current-buffer buffer (buffer-size))
+    → [it depends]
+
+Points and Positions
+
+(point)
+  Return value of point, as an integer.
+  (point)
+    ⇒ 1441
+
+
+(point-min)
+  Return the minimum permissible value of point in the current buffer.
+  (point-min)
+    ⇒ 1
+
+
+(point-max)
+  Return the maximum permissible value of point in the current buffer.
+  (point-max)
+    ⇒ 1658
+
+
+(pos-bol &optional n)
+  Return the position of the first character on the current line.
+  (pos-bol)
+    ⇒ 1753
+
+
+(pos-eol &optional n)
+  Return the position of the last character on the current line.
+  (pos-eol)
+    ⇒ 1871
+
+
+(bolp)
+  Return t if point is at the beginning of a line.
+  (bolp)
+    ⇒ nil
+
+
+(eolp)
+  Return t if point is at the end of a line.
+  (eolp)
+    ⇒ t
+
+
+(line-beginning-position &optional n)
+  Return the position of the first character in the current line/field.
+  (line-beginning-position)
+    ⇒ 2166
+
+
+(line-end-position &optional n)
+  Return the position of the last character in the current line/field.
+  (line-end-position)
+    ⇒ 2310
+
+
+(buffer-size &optional buffer)
+  Return the number of characters in the current buffer.
+  (buffer-size)
+    ⇒ 2421
+
+
+(bobp)
+  Return t if point is at the beginning of the buffer.
+  (bobp)
+    ⇒ nil
+
+
+(eobp)
+  Return t if point is at the end of the buffer.
+  (eobp)
+    ⇒ t
+
+Moving Around
+
+(goto-char position)
+  Set point to POSITION, a number or marker.
+  (goto-char (point-max))
+    e.g. ⇒ 342
+
+
+(search-forward string &optional bound noerror count)
+  Search forward from point for STRING.
+  (search-forward "some-string" nil t)
+    e.g. ⇒ 245
+
+
+(re-search-forward regexp &optional bound noerror count)
+  Search forward from point for regular expression REGEXP.
+  (re-search-forward "some-s.*g" nil t)
+    e.g. ⇒ 245
+
+
+(forward-line &optional n)
+  Move N lines forward (backward if N is negative).
+  (forward-line 1)
+    e.g. ⇒ 0
+  (forward-line -2)
+    e.g. ⇒ 0
+
+Strings from Buffers
+
+(buffer-string)
+  Return the contents of the current buffer as a string.
+  (buffer-string)
+    → [it depends]
+
+
+(buffer-substring start end)
+  Return the contents of part of the current buffer as a string.
+  (buffer-substring (point-min) (+ (point-min) 10))
+    ⇒ #("Buffer Bas" 0 10 (face shortdoc-heading shortdoc-section t outline-level 1))
+
+
+(buffer-substring-no-properties start end)
+  Return the characters of part of the buffer, without the text properties.
+  (buffer-substring-no-properties (point-min) (+ (point-min) 10))
+    ⇒ "Buffer Bas"
+
+
+(following-char)
+  Return the character following point, as a number.
+  (following-char)
+    e.g. ⇒ 67
+
+
+(preceding-char)
+  Return the character preceding point, as a number.
+  (preceding-char)
+    e.g. ⇒ 38
+
+
+(char-after &optional pos)
+  Return character in current buffer at position POS.
+  (char-after 45)
+    ⇒ 32
+
+
+(char-before &optional pos)
+  Return character in current buffer preceding position POS.
+  (char-before 13)
+    ⇒ 99
+
+
+(get-byte &optional position string)
+  Return a byte value of a character at point.
+  (get-byte 45)
+    e.g. ⇒ #xff
+
+Altering Buffers
+
+(delete-region start end)
+  Delete the text between START and END.
+  (delete-region (point-min) (point-max))
+
+
+(erase-buffer)
+  Delete the entire contents of the current buffer.
+  (erase-buffer)
+
+
+(delete-line)
+  Delete the current line.
+  (delete-line)
+
+
+(insert &rest args)
+  Insert the arguments, either strings or characters, at point.
+  (insert "This string will be inserted in the buffer\n")
+
+
+(subst-char-in-region start end fromchar tochar &optional noundo)
+  From START to END, replace FROMCHAR with TOCHAR each time it occurs.
+  (subst-char-in-region (point-min) (point-max) ?+ ?-)
+
+
+(replace-string-in-region string replacement &optional start end)
+  Replace STRING with REPLACEMENT in the region from START to END.
+  (replace-string-in-region "foo" "bar")
+
+Locking
+
+(lock-buffer &optional file)
+  Lock FILE, if current buffer is modified.
+  (lock-buffer "/tmp/foo")
+
+
+(unlock-buffer)
+  Unlock the file visited in the current buffer.
+  (unlock-buffer)
+#+end_example
+
 ** ->string
 
 [[id:F2F61FB6-88DE-4275-B318-3B42CA58D65D][cl-defmethod]]
@@ -241,6 +498,34 @@ This is 1, unless narrowing (a buffer restriction) is in effect.
     (with-current-buffer obj
       (buffer-string)))
 #+end_src
+
+** buffer-string
+
+#+begin_src emacs-lisp
+  (describe-function #'buffer-string)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+buffer-string is a primitive-function in ‘src/editfns.c’.
+
+(buffer-string)
+
+Declared type: (function nil string)
+
+Return the contents of the current buffer as a string.
+If narrowing is in effect, this function returns only the visible part
+of the buffer.
+
+This function copies the text properties of that part of the buffer
+into the result string; if you don’t want the text properties,
+use ‘buffer-substring-no-properties’ instead.
+
+  Other relevant functions are documented in the buffer group.
+  Probably introduced at or before Emacs version 20.1.
+  This function does not change global state, including the match data.
+
+#+end_example
 
 ** save-current-buffer
 
