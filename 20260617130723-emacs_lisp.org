@@ -65,3 +65,85 @@ DEFAULT-BODY, if present, is used as the body of a default method.
   Probably introduced at or before Emacs version 25.1.
 
 #+end_example
+
+** cl-defmethod
+:PROPERTIES:
+:ID:       F2F61FB6-88DE-4275-B318-3B42CA58D65D
+:END:
+
+#+begin_src emacs-lisp :results value
+  (describe-function #'cl-defmethod)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+cl-defmethod is a Lisp macro in ‘cl-generic.el’.
+
+(cl-defmethod NAME [EXTRA] [QUALIFIER] ARGS &rest [DOCSTRING] BODY)
+
+Define a new method for generic function NAME.
+This defines an implementation of NAME to use for invocations
+of specific types of arguments.
+
+ARGS is a list of dispatch arguments (see ‘cl-defun’), but where
+each variable element is either just a single variable name VAR,
+or a list on the form (VAR TYPE).
+
+For instance:
+
+  (cl-defmethod foo (bar (format-string string) &optional zot)
+    (format format-string bar))
+
+The dispatch arguments have to be among the mandatory arguments, and
+all methods of NAME have to use the same set of arguments for dispatch.
+Each dispatch argument and TYPE are specified in ARGS where the corresponding
+formal argument appears as (VAR TYPE) rather than just VAR.
+
+The optional EXTRA element, on the form ‘:extra STRING’, allows
+you to add more methods for the same specializers and qualifiers.
+These are distinguished by STRING.
+
+The optional argument QUALIFIER is a specifier that modifies how
+the method is combined with other methods, including:
+   :before  - Method will be called before the primary
+   :after   - Method will be called after the primary
+   :around  - Method will be called around everything else
+The absence of QUALIFIER means this is a "primary" method.
+The set of acceptable qualifiers and their meaning is defined
+(and can be extended) by the methods of ‘cl-generic-combine-methods’.
+
+ARGS can also include so-called context specializers, introduced by
+‘&context’ (which should appear right after the mandatory arguments,
+before any &optional or &rest).  They have the form (EXPR TYPE) where
+EXPR is an Elisp expression whose value should match TYPE for the
+method to be applicable.
+
+The set of acceptable TYPEs (also called "specializers") is defined
+(and can be extended) by the various methods of ‘cl-generic-generalizers’.
+
+	Currently supported forms for TYPE:
+
+Support for the catch-all t specializer which always matches.
+
+Support for (head VAL) specializers.
+These match if the argument is a cons cell whose car is ‘eql’ to VAL.
+
+Support for (eql VAL) specializers.
+These match if the argument is ‘eql’ to VAL.
+
+Support for dispatch on types.
+This currently works for built-in types and types built on top of records.
+
+Support for (derived-mode MODE) specializers.
+Used internally for the (major-mode MODE) context specializers.
+
+Support for dispatch on types defined by ‘oclosure-define’.
+
+Support for dispatch on types defined by EIEIO’s ‘defclass’.
+
+Support for (subclass CLASS) specializers.
+These match if the argument is the name of a subclass of CLASS.
+
+  Probably introduced at or before Emacs version 25.1.
+
+#+end_example
