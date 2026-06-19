@@ -15,7 +15,74 @@ drive the work of the agents.
 
 * Languages
 
+- [[id:222093AC-E4FC-4E90-B124-ADFFC31F6314][emacs-lisp]]
 - [[id:002B2928-C32F-49F3-B93F-CBEEE215A7D7][python]]
+
+* Arguments
+
+** ~:var~
+
+Set the named variable to the provided value.
+This seems to be supported by synthesizing relevant assignment statements.
+
+*** String Literal
+
+#+begin_src emacs-lisp :var foo="bar"
+  (format "foo=%s" foo)
+#+end_src
+
+#+RESULTS:
+: foo=bar
+
+*** Numeric Literal
+
+#+begin_src emacs-lisp :var foo=1
+  (+ foo 2)
+#+end_src
+
+#+RESULTS:
+: 3
+
+*** Expression
+
+#+begin_src emacs-lisp :var foo=(buffer-name)
+  foo
+#+end_src
+
+#+RESULTS:
+: 20260615111334-org_babel.org
+
+*** Named Block
+
+This can also make use of richer content like tables and lists.
+
+#+name: foo
+A line of text
+
+#+begin_src emacs-lisp :var foo=foo
+  foo
+#+end_src
+
+#+RESULTS:
+: A line of text
+
+*** Evaluated Block
+
+Also just throw in a demonstration of passing the values across languages.
+
+#+name: foo-block
+#+begin_src emacs-lisp
+  (concat "biz" "baz")
+#+end_src
+
+For this case parentheses can optionally be included after the block name.
+
+#+begin_src python :var foo=foo-block
+  return foo
+#+end_src
+
+#+RESULTS:
+: bizbaz
 
 * Configuration
 
