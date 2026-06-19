@@ -527,6 +527,29 @@ use ‘buffer-substring-no-properties’ instead.
 
 #+end_example
 
+** buffer-substring-no-properties
+
+#+begin_src emacs-lisp
+  (describe-function #'buffer-substring-no-properties)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+buffer-substring-no-properties is a primitive-function in
+‘src/editfns.c’.
+
+(buffer-substring-no-properties START END)
+
+Return the characters of part of the buffer, without the text properties.
+The two arguments START and END are character positions;
+they can be in either order.
+
+  Other relevant functions are documented in the buffer group.
+  Probably introduced at or before Emacs version 19.29.
+  This function does not change global state, including the match data.
+
+#+end_example
+
 ** save-current-buffer
 
 #+begin_src emacs-lisp
