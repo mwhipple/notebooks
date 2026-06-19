@@ -3,12 +3,55 @@
 :END:
 #+title: org-babel
 
+* Configuration
+
+** org-confirm-babel-evaluate
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-confirm-babel-evaluate)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-confirm-babel-evaluate is a variable defined in ‘ob-core.el’.
+
+Its value is nil
+Original value was t
+
+Confirm before evaluation.
+Require confirmation before interactively evaluating code
+blocks in Org buffers.  The default value of this variable is t,
+meaning confirmation is required for any code block evaluation.
+This variable can be set to nil to inhibit any future
+confirmation requests.  This variable can also be set to a
+function which takes two arguments the language of the code block
+and the body of the code block.  Such a function should then
+return a non-nil value if the user should be prompted for
+execution or nil if no prompt is required.
+
+Warning: Disabling confirmation may result in accidental
+evaluation of potentially harmful code.  It may be advisable
+remove code block execution from ‘C-c C-c’ as further protection
+against accidental code block evaluation.  The
+‘org-babel-no-eval-on-ctrl-c-ctrl-c’ variable can be used to
+remove code block execution from the ‘C-c C-c’ keybinding.
+
+  This variable is safe as a file local variable if its value
+  satisfies the predicate which is a compiled expression.
+  This variable was introduced, or its default value was changed, in
+  version 24.1 of Emacs.
+  You can customize this variable.
+
+#+end_example
+
+
 * Practices
 
 ** Packaging Up Behaviors
 :PROPERTIES:
 :ID:       DF79A72C-570A-49C8-A566-D494C59F732C
 :END:
+
 A major driver fro using org-babel is that it keeps the machinery
 exposed and allows working with some sizeable chunks. As part of this
 there will be a balance between approaches like copypasta and more
