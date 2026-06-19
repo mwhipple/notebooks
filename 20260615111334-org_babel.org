@@ -20,6 +20,31 @@ drive the work of the agents.
 
 * Arguments
 
+** ~:results~
+
+*** what is captured
+
+**** value
+
+The default, with some DWIM formatting.
+
+#+begin_src emacs-lisp :results value
+  (list 1 2 3)
+#+end_src
+
+#+RESULTS:
+| 1 | 2 | 3 |
+
+Some languages may require more help to actually return the value
+(either due to inherent behavior or being run within some type of wrapper.
+
+#+begin_src python :results value
+  return (1,2,3)
+#+end_src
+
+#+RESULTS:
+| 1 | 2 | 3 |
+
 ** ~:var~
 
 Set the named variable to the provided value.
