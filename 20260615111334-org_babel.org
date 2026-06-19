@@ -44,6 +44,35 @@ remove code block execution from the ‘C-c C-c’ keybinding.
 
 #+end_example
 
+YOLO
+
+#+begin_src emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+#+end_src
+
+** org-src-tab-acts-natively
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-src-tab-acts-natively)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-src-tab-acts-natively is a variable defined in ‘org-src.el’.
+
+Its value is t
+
+If non-nil, TAB uses the language’s major-mode binding in code blocks.
+
+  This variable was introduced, or its default value was changed, in
+  version 9.4 of the Org package that is part of Emacs 27.2.
+  You can customize this variable.
+
+#+end_example
+
+#+begin_src emacs-lisp
+  (setq org-src-tab-active-natively t)
+#+end_src
 
 * Practices
 
