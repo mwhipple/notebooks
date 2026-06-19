@@ -1,0 +1,51 @@
+:PROPERTIES:
+:ID:       3D591887-9B7F-4D41-A7D0-5230F06A4D51
+:END:
+#+title: plantuml
+
+PlantUML is a UML oriented diagram as code tool.
+
+Mermaid is probably more popular nowadays, and more flexible, but
+PlantUML supports some cases better, has more built-in support in
+[[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]], and avoids the [[id:F974B544-7B68-42E0-8978-DF4D1DECACA1][browser-sledgehammer]].
+
+* Installation
+
+plantuml is primarily distributed as a JAR, but also includes a
+directly executable wrapper.
+
+#+begin_src shell :results output
+  plantuml --version
+#+end_src
+
+#+RESULTS:
+#+begin_example
+PlantUML version 1.2026.6 / 6287b33 [2026-06-08 16:02:56 UTC]
+(GPL source distribution)
+
+Build Version: 1.2026.6
+Git Commit: 6287b33
+Compile Time: 2026-06-08 16:02:56 UTC
+
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+ 
+PLANTUML_LIMIT_SIZE: 4096
+
+GraphViz: dot - graphviz version 15.0.0 (20260523.1842)
+Installation seems OK. File generation OK
+#+end_example
+
+** [[id:516B3C9A-4288-4ACF-8DEE-3526DFD21083][macOS]]
+
+*** [[id:61678BF7-A363-45C2-A3E2-54A1EB15EF68][brew]]
+
+#+begin_src shell :async :session brew
+  brew install plantuml --yes
+#+end_src
+
+#+RESULTS:
+: 95f67eea-d4db-434b-9c59-6a62a7910798
