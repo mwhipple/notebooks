@@ -231,7 +231,18 @@ This is 1, unless narrowing (a buffer restriction) is in effect.
 #+RESULTS:
 : 1
 
-* Buffer Management
+* Buffers
+** ->string
+
+[[id:F2F61FB6-88DE-4275-B318-3B42CA58D65D][cl-defmethod]]
+
+#+begin_src emacs-lisp
+  (cl-defmethod ->string (ctx (obj buffer))
+    (with-current-buffer obj
+      (buffer-string)))
+#+end_src
+
+** save-current-buffer
 
 #+begin_src emacs-lisp
   (describe-function #'save-current-buffer)
@@ -249,6 +260,28 @@ BODY is executed just like ‘progn’.
   Probably introduced at or before Emacs version 20.1.
   This function has a ‘byte-compile’ property
     ‘byte-compile-save-current-buffer’.  See the manual for details.
+
+#+end_example
+
+** with-current-buffer
+
+#+begin_src emacs-lisp
+  (describe-function #'with-current-buffer)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+with-current-buffer is a Lisp macro in ‘subr.el’.
+
+(with-current-buffer BUFFER-OR-NAME &rest BODY)
+
+Execute the forms in BODY with BUFFER-OR-NAME temporarily current.
+BUFFER-OR-NAME must be a buffer or the name of an existing buffer.
+The value returned is the value of the last form in BODY.  See
+also ‘with-temp-buffer’.
+
+  Other relevant functions are documented in the buffer group.
+  Probably introduced at or before Emacs version 20.1.
 
 #+end_example
 
