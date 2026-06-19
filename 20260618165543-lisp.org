@@ -1,0 +1,31 @@
+:PROPERTIES:
+:ID:       09D1D0C7-B845-4C87-92D3-B4121CB364DE
+:END:
+#+title: lisp
+
+Lisps are a family of languages largely defined by the homoiconic use
+of modeling the code itself using [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]] which can be also processed as
+data. This invites preprocessing/macro facilities that make use of
+naturally producing code similar to other structures.
+
+Lisps primarily rely on built in support for cons cells which are
+dotted pairs of values, and where [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]] are represented as a
+[[id:3B936526-69D4-4C9D-AE47-D76AA3997388][linked-list]] of such pairs where the first element (the ~car~) is a
+value and the second (the ~cdr~) references the rest of the list. The
+last element in a proper list is an empty list, which may also be
+treated as the null value depending on the lisp implementation.
+
+* alists
+:PROPERTIES:
+:ID:       910846DE-0B6A-4CE4-A32E-3DE30642F744
+:END:
+
+alists/association lists are one of the simplest means to provide
+dictionary style behavior within a lisp, which is represented by a
+list of cons cells where the car is treated as the key and the cdr is
+the value.
+
+These typically /don't/ enforce unique keys and therefore will have
+defined behavior in terms of which matching key is returned. These
+will typically provide lookup times in proportion to the size of the
+list (and so should not be used where order of growth is a concern).

@@ -1,0 +1,23 @@
+:PROPERTIES:
+:ID:       516B3C9A-4288-4ACF-8DEE-3526DFD21083
+:END:
+#+title: macOS
+
+macOS is the standard operating system for Apple computers...which I
+tend to call OS X since I'm old. It tends to be just POSIX-y enough
+that most typical needs are met without issue, but then surprises
+creep in.
+
+Recently I've landed on the perspective that many of the differences
+are likely the result of the different profiles of system
+administrators...or the lack thereof for a typical macOS system. Much
+of the controls are therefore shifted to be more around applications
+rather than the system as a whole.
+
+macOS has been the OS I've used profesionally for the past 15+ years,
+and very recently I've also started to use it personally (after 25+
+years of primarily using GNU/Linux). I adopted it due to having the
+corresponding MacBook kicking around.
+
+Particularly given my tendency to use Linux systems: I tend to use
+software (FOSS) that is portable rather than anything Mac specific.

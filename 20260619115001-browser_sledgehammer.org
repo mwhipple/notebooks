@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       F974B544-7B68-42E0-8978-DF4D1DECACA1
+:END:
+#+title: browser-sledgehammer
+
+The browser sledgehammer is a term I just made up so I could point to
+it.
+
+Web browsers provide a convenient, low overhead way to deliver
+functionality to users (ignoring for a moment some underlying concerns
+related to moats and isolation) and are therefore often a core part of
+the engine that drives some tools.
+
+Unfortunately browsers are also complicated beasts that are primarily
+oriented for interactive use, so this can also introduce a massive
+dependency for functionality that could otherwise remain relatively
+simple. How this manifests for the Electron framework is touched on
+here in terms of bloat and supply chain risks:
+https://spectrum.ieee.org/lean-software-development
+
+Often this translates to the automation of such functionality
+requiring passing things through browser automation tooling, which is
+in the best case very heavy-handed, but can also introduce additional
+challenges if the automation would otherwise be running in an
+environment where such browsers and their pre-requisites would
+otherwise not be available (like many containerized build
+environments). This effectively translates to a range of
+costs due to some logic incidentally relying on browser provided
+functionality, which often translates to simple inputs that produce
+simple outputs but drag in that massive additional system to do so.

@@ -1,0 +1,19 @@
+:PROPERTIES:
+:ID:       61678BF7-A363-45C2-A3E2-54A1EB15EF68
+:END:
+#+title: brew
+
+Homebrew is a package manager for [[id:516B3C9A-4288-4ACF-8DEE-3526DFD21083][macOS]].
+
+At one point it seemed like brew and MacPorts were competing, but it
+feels like at this point brew won out for the macOS specific title.
+
+I use brew for many host specific installations...for anything that
+may be project specific I'd probably go with nix.
+
+#+begin_src shell
+  brew --version
+#+end_src
+
+#+RESULTS:
+: Homebrew 6.0.2
