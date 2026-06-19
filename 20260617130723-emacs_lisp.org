@@ -29,6 +29,14 @@ performance reasons - but I'll cross that bridge if/when I come to it.
 Emacs lisp also tends to understandably gravitate towards specialized
 functionality which I'm likely to drag it a bit outside of.
 
+These will typically include a [[id:3A3B17B9-0761-4DB1-A663-B12BC13155B4][context-argument]] to allow for a bit
+more future-proofed multimethod support.
+
+** cl-defgeneric
+:PROPERTIES:
+:ID:       654A5E2B-7B24-48CC-9B26-B15484B4F38C
+:END:
+
 #+begin_src emacs-lisp :results value
   (describe-function #'cl-defgeneric)
 #+end_src

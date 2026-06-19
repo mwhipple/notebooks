@@ -1,0 +1,14 @@
+:PROPERTIES:
+:ID:       3A3B17B9-0761-4DB1-A663-B12BC13155B4
+:END:
+#+title: context-argument
+
+A pattern which I make use of widely is the use of a somewhat
+expandable context argument. This is a particularly prominent practice
+in Go, but generally provides a particularly straightforward way to
+allow functions access to additional context as part of their explicit
+parameters.
+
+Common alternatives tend to rely on less explicit approaches (such as
+reaching into something like a static/global or presumed enclosing
+binding environment).
