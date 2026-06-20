@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       A45CC795-73D6-415C-833B-A22379FAB2A2
+:END:
+#+title: GenAI and Software Engineering
+
+Given the current landscape, it seems worth providing assessments of
+[[https://en.wikipedia.org/wiki/Generative_AI][generative AI]] since much of the content presented herein may seem to
+be anachronistic given the spread of such tools.  Professionally I
+started using GenAI in earnest in 2025 (primarily [[https://github.com/features/copilot/agents][agentic Copilot]]) and
+it has been fairly transformative for my day-to-day work. I tend to
+have a few balls in the air at any given time and the use of [[https://github.com/features/copilot][Copilot]]
+allows me to delegate that work to a combination of agents and other
+programmers. Much of the more toilsome work is effectively pushed to
+the background for me, allowing me to request and review such work as
+time allows (between meetings, etc.).
+
+There's a fair amount of chatter around the implications of GenAI on
+the field of software engineering as a whole. A significant thread which
+will underlie some of the other content on this site is that the field
+of software engineering has arguably suffered from significant
+inefficiency. Through that lens, GenAI can be seen to cut some of the
+associated fat. This effectively translates to the reality that knowing
+a programming language no longer translates to hireability. From my
+perspective (and many others) such skills are a small part of software
+engineering, but based on personal experience there are a fair amount of
+"coders" out there that seem to rely on their ability to wield
+specific tools rather than more essential skills.
+
+The above sentiment primarily focuses on AI absorbing the onerous taks
+of code production, but a more extreme model is where an entire
+solution is produced through vibe coding. While there is nothing to
+prevent vibe coding from being used very widely, it certainly seems
+unsafe to blindly rely upon it to produce anything of import. I'm
+certainly not about to suggest that the purported risks and hazards
+will consistently limit its use, but there should hopefully remain
+plenty of cases in which there is clear value and desire to have
+solutions that are more intentionally engineered. Similar to the code
+production perspective, many (most?) cases likely do not warrant such
+attention and may have a lot of bloat that is an artifact of a surge
+in reliance on computers without commensurate ease of use - and GenAI
+is a possible means to bridge that divide.
+
+What I see as some of the more fundamental aspects of software
+engineering that seem less likely to be disrupted in the near term are
+largely those that surround disciplines such as [[https://en.wikipedia.org/wiki/Requirements_engineering][requirements
+engineering]]. The actual production of software itself can be seen as
+somewhat secondary to activities such as working out precise
+behaviors, having robust approaches for verification and validation,
+and optimizing various qualities based on salient tradeoffs. Many of
+these seem likely to not only remain valid, but become increasingly
+important in a world where GenAI accelerates delivery, and therefore
+how far a system may move in a given direction and the consequences of
+such motion. While GenAI /can/ help reduce the costs of many types of
+change, some changes tend to be more difficult (e.g., those that
+impact users), and the provided acceleration may yield amplification
+of waste along with the need to work through such changes.
+
+In the mid-term it therefore seems wise to have software
+engineers/architects in the mix that are able to keep abreast of many
+of the core considerations for the solutions being developed -
+particularly given that it is likely to be far messier and higher risk
+to approach such issues through reverse engineering. In the longer
+term this may shift as AI becomes more trustworthy in being able to
+watch itself - in the current LLM-driven world AI can superficially
+help with certain aspects, but while it can provide useful
+explanations - making contextualized decisions is something that is
+likely best left to post-LLM AIs.
+
+GenAI seems to primarily be disturbing those more prescriptive aspects
+that seem to be consistently identified as relatively minor, but suck
+up too much attention. Concerns such as domain knowledge and modeling
+are anecdotally identified as those that are most in need of deeper
+attention, but we regularly instead devote our focus on technical
+details. The role of "software engineer" could certainly be replaced
+by new or existing alternatives such as "solution engineer" or
+"requirements engineer", but bringing engineering discipline into the
+development of solutions is something that is likely to remain
+necessary and (in my experience) tends to be underserved. That role
+seems likely to stick around for a bit, though it will likely require
+less heads and should be (thankfully) less siloed.

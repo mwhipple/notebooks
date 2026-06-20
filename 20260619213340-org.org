@@ -28,3 +28,238 @@ files in PROJECT.  With a non-nil optional argument ASYNC,
 publishing will be done asynchronously, in another process.
 
 #+end_example
+
+** org-publish-project-alist
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-publish-project-alist)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-publish-project-alist is a variable defined in ‘ox-publish.el’.
+
+Its value is nil
+
+Association list to control publishing behavior.
+
+Each element of the alist is a publishing project.  The car of
+each element is a string, uniquely identifying the project.  The
+cdr of each element is in one of the following forms:
+
+1. A well-formed property list with an even number of elements,
+   alternating keys and values, specifying parameters for the
+   publishing process.
+
+     (:property value :property value ... )
+
+2. A meta-project definition, specifying of a list of
+   sub-projects:
+
+     (:components ("project-1" "project-2" ...))
+
+When the CDR of an element of ‘org-publish-project-alist’ is in
+this second form, the elements of the list after ‘:components’
+are taken to be components of the project, which group together
+files requiring different publishing options.  When you publish
+such a project with ‘M-x org-publish’, the components all publish.
+
+When a property is given a value in ‘org-publish-project-alist’,
+its setting overrides the value of the corresponding user
+variable (if any) during publishing.  However, options set within
+a file override everything.
+
+Most properties are optional, but some should always be set:
+
+  ‘:base-directory’
+
+    Directory containing publishing source files.
+
+  ‘:base-extension’
+
+    Extension (without the dot!) of source files.  This can be
+    a regular expression.  If not given, "org" will be used as
+    default extension.  If it is ‘any’, include all the files,
+    even without extension.
+
+  ‘:publishing-directory’
+
+    Directory (possibly remote) where output files will be
+    published.
+
+If ‘:recursive’ is non-nil files in sub-directories of
+‘:base-directory’ are considered.
+
+The ‘:exclude’ property may be used to prevent certain files from
+being published.  Its value may be a string or regexp matching
+file names you don’t want to be published.
+
+The ‘:include’ property may be used to include extra files.  Its
+value may be a list of filenames to include.  The filenames are
+considered relative to the base directory.
+
+When both ‘:include’ and ‘:exclude’ properties are given values,
+the exclusion step happens first.
+
+One special property controls which backend function to use for
+publishing files in the project.  This can be used to extend the
+set of file types publishable by ‘org-publish’, as well as the
+set of output formats.
+
+  ‘:publishing-function’
+
+    Function to publish file.  Each backend may define its
+    own (i.e. ‘org-latex-publish-to-pdf’,
+    ‘org-html-publish-to-html’).  May be a list of functions, in
+    which case each function in the list is invoked in turn.
+
+Another property allows you to insert code that prepares
+a project for publishing.  For example, you could call GNU Make
+on a certain makefile, to ensure published files are built up to
+date.
+
+  ‘:preparation-function’
+
+    Function to be called before publishing this project.  This
+    may also be a list of functions.  Preparation functions are
+    called with the project properties list as their sole
+    argument.
+
+  ‘:completion-function’
+
+    Function to be called after publishing this project.  This
+    may also be a list of functions.  Completion functions are
+    called with the project properties list as their sole
+    argument.
+
+Some properties control details of the Org publishing process,
+and are equivalent to the corresponding user variables listed in
+the right column.  Backend specific properties may also be
+included.  See the backend documentation for more information.
+
+  :author                   variable ‘user-full-name’
+  :creator                  ‘org-export-creator-string’
+  :email                    ‘user-mail-address’
+  :exclude-tags             ‘org-export-exclude-tags’
+  :headline-levels          ‘org-export-headline-levels’
+  :language                 ‘org-export-default-language’
+  :preserve-breaks          ‘org-export-preserve-breaks’
+  :section-numbers          ‘org-export-with-section-numbers’
+  :select-tags              ‘org-export-select-tags’
+  :time-stamp-file          ‘org-export-timestamp-file’
+  :with-archived-trees      ‘org-export-with-archived-trees’
+  :with-author              ‘org-export-with-author’
+  :with-creator             ‘org-export-with-creator’
+  :with-date                ‘org-export-with-date’
+  :with-drawers             ‘org-export-with-drawers’
+  :with-email               ‘org-export-with-email’
+  :with-emphasize           ‘org-export-with-emphasize’
+  :with-entities            ‘org-export-with-entities’
+  :with-fixed-width         ‘org-export-with-fixed-width’
+  :with-footnotes           ‘org-export-with-footnotes’
+  :with-inlinetasks         ‘org-export-with-inlinetasks’
+  :with-latex               ‘org-export-with-latex’
+  :with-planning            ‘org-export-with-planning’
+  :with-priority            ‘org-export-with-priority’
+  :with-properties          ‘org-export-with-properties’
+  :with-smart-quotes        ‘org-export-with-smart-quotes’
+  :with-special-strings     ‘org-export-with-special-strings’
+  :with-statistics-cookies’ ‘org-export-with-statistics-cookies’
+  :with-sub-superscript     ‘org-export-with-sub-superscripts’
+  :with-toc                 ‘org-export-with-toc’
+  :with-tables              ‘org-export-with-tables’
+  :with-tags                ‘org-export-with-tags’
+  :with-tasks               ‘org-export-with-tasks’
+  :with-timestamps          ‘org-export-with-timestamps’
+  :with-title               ‘org-export-with-title’
+  :with-todo-keywords       ‘org-export-with-todo-keywords’
+
+The following properties may be used to control publishing of
+a site-map of files or summary page for a given project.
+
+  ‘:auto-sitemap’
+
+    Whether to publish a site-map during
+    ‘org-publish-current-project’ or ‘org-publish-all’.
+
+  ‘:sitemap-filename’
+
+    Filename for output of site-map.  Defaults to "sitemap.org".
+
+  ‘:sitemap-title’
+
+    Title of site-map page.  Defaults to name of file.
+
+  ‘:sitemap-style’
+
+    Can be ‘list’ (site-map is just an itemized list of the
+    titles of the files involved) or ‘tree’ (the directory
+    structure of the source files is reflected in the site-map).
+    Defaults to ‘tree’.
+
+  ‘:sitemap-format-entry’
+
+    Plugin function used to format entries in the site-map.  It
+    is called with three arguments: the file or directory name
+    relative to base directory, the site map style and the
+    current project.  It has to return a string.
+
+    Defaults to ‘org-publish-sitemap-default-entry’, which turns
+    file names into links and use document titles as
+    descriptions.  For specific formatting needs, one can use
+    ‘org-publish-find-date’, ‘org-publish-find-title’ and
+    ‘org-publish-find-property’, to retrieve additional
+    information about published documents.
+
+  ‘:sitemap-function’
+
+    Plugin function to use for generation of site-map.  It is
+    called with two arguments: the title of the site-map, as
+    a string, and a representation of the files involved in the
+    project, as returned by ‘org-list-to-lisp’.  The latter can
+    further be transformed using ‘org-list-to-generic’,
+    ‘org-list-to-subtree’ and alike.  It has to return a string.
+
+    Defaults to ‘org-publish-sitemap-default’, which generates
+    a plain list of links to all files in the project.
+
+If you create a site-map file, adjust the sorting like this:
+
+  ‘:sitemap-sort-folders’
+
+    Where folders should appear in the site-map.  Set this to
+    ‘first’ or ‘last’ to display folders first or last,
+    respectively.  When set to ‘ignore’ (default), folders are
+    ignored altogether.  Any other value will mix files and
+    folders.  This variable has no effect when site-map style is
+    ‘tree’.
+
+  ‘:sitemap-sort-files’
+
+    The site map is normally sorted alphabetically.  You can
+    change this behavior setting this to ‘anti-chronologically’,
+    ‘chronologically’, or nil.
+
+  ‘:sitemap-ignore-case’
+
+    Should sorting be case-sensitive?  Default nil.
+
+The following property control the creation of a concept index.
+
+  ‘:makeindex’
+
+    Create a concept index.  The file containing the index has to
+    be called "theindex.org".  If it doesn’t exist in the
+    project, it will be generated.  Contents of the index are
+    stored in the file "theindex.inc", which can be included in
+    "theindex.org".
+
+Other properties affecting publication.
+
+  ‘:body-only’
+
+    Set this to t to publish only the body of the documents.
+
+  You can customize this variable.
+
+#+end_example
