@@ -71,7 +71,7 @@ Configuring an azure account unlocks the Entra ID management screen.
 
 #+begin_src shell :session venv-setup :results output
   ${host_py} -m venv ${venv}
-an  ${venv_py} -m pip install o365
+  ${venv_py} -m pip install o365
 #+end_src
 
 #+RESULTS:
