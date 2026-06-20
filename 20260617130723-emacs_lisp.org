@@ -3,6 +3,139 @@
 :END:
 #+title: emacs-lisp
 
+* Help
+** Describe Things
+*** describe-function
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-function)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-function is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h f, <f1> f and <help> f.
+It can also be invoked from the menu: Help → Describe → Describe
+Function...
+
+(describe-function FUNCTION)
+
+Display the full documentation of FUNCTION (a symbol).
+When called from Lisp, FUNCTION may also be a function object.
+
+See the ‘help-enable-symbol-autoload’ variable for special
+handling of autoloaded functions.
+
+  Probably introduced at or before Emacs version 22.1.
+
+#+end_example
+
+*** describe-mode
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-mode is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h m, <f1> m and <help> m.
+It can also be invoked from the menu: Help → Describe → Describe
+Buffer Modes
+
+(describe-mode &optional BUFFER)
+
+Display documentation of current major mode and minor modes.
+A brief summary of the minor modes comes first, followed by the
+major mode description.  This is followed by detailed
+descriptions of the minor modes, each on a separate page.
+
+For this to work correctly for a minor mode, the mode’s indicator
+variable (listed in ‘minor-mode-alist’) must also be a function
+whose documentation describes the minor mode.
+
+If called from Lisp with a non-nil BUFFER argument, display
+documentation for the major and minor modes of that buffer.
+
+When ‘describe-mode-outline’ is non-nil, Outline minor mode
+is enabled in the Help buffer.
+
+  Probably introduced at or before Emacs version 29.1.
+
+#+end_example
+
+*** describe-package
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-package)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-package is an autoloaded interactive byte-code-function in
+‘package.el’.
+
+It is bound to C-h P, <f1> P and <help> P.
+It can also be invoked from the menu: Help → Describe → Describe
+Package...
+
+(describe-package PACKAGE)
+
+Display the full documentation of PACKAGE (a symbol).
+
+  Probably introduced at or before Emacs version 24.1.
+
+#+end_example
+
+*** describe-variable
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-variable)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-variable is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h v, <f1> v and <help> v.
+It can also be invoked from the menu: Help → Describe → Describe
+Variable...
+
+(describe-variable VARIABLE &optional BUFFER FRAME)
+
+Display the full documentation of VARIABLE (a symbol).
+Returns the documentation as a string, also.
+If VARIABLE has a buffer-local value in BUFFER or FRAME
+(default to the current buffer and current frame),
+it is displayed along with the global value.
+
+  Probably introduced at or before Emacs version 27.1.
+
+#+end_example
+
+** Discover Things
+*** shortdoc
+
+#+begin_src emacs-lisp
+  (describe-function #'shortdoc)
+#+end_src
+
+#+RESULTS:
+: shortdoc is an alias for ‘shortdoc-display-group’ in ‘shortdoc.el’.
+: 
+: (shortdoc GROUP &optional FUNCTION SAME-WINDOW)
+: 
+: Pop to a buffer with short documentation summary for functions in GROUP.
+: Interactively, prompt for GROUP.
+: If FUNCTION is non-nil, place point on the entry for FUNCTION (if any).
+: If SAME-WINDOW, don’t pop to a new window.
+: 
+
 * [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
 
 #+begin_src emacs-lisp

@@ -5,140 +5,70 @@
 
 * Help
 
-** Describe Things
+** man
 
-*** describe-function
+man should likely be extracted out of emacs.
+
+That will need some output tweaking to render properly in the notebooks.
 
 #+begin_src emacs-lisp
-  (describe-function #'describe-function)
+  (describe-function #'man)
 #+end_src
 
 #+RESULTS:
 #+begin_example
-describe-function is an autoloaded interactive byte-code-function in
-‘help-fns.el’.
+man is an autoloaded interactive byte-code-function in ‘man.el’.
 
-It is bound to C-h f, <f1> f and <help> f.
-It can also be invoked from the menu: Help → Describe → Describe
-Function...
+(man MAN-ARGS)
 
-(describe-function FUNCTION)
+Get a Un*x manual page and put it in a buffer.
+This command is the top-level command in the man package.
+It runs a Un*x command to retrieve and clean a manpage in the
+background and places the results in a ‘Man-mode’ browsing
+buffer.  The variable ‘Man-width’ defines the number of columns in
+formatted manual pages.  The buffer is displayed immediately.
+The variable ‘Man-notify-method’ defines how the buffer is displayed.
+If a buffer already exists for this man page, it will be displayed
+without running the man command.
 
-Display the full documentation of FUNCTION (a symbol).
-When called from Lisp, FUNCTION may also be a function object.
+For a manpage from a particular section, use either of the
+following.  "cat(1)" is how cross-references appear and is
+passed to man as "1 cat".
 
-See the ‘help-enable-symbol-autoload’ variable for special
-handling of autoloaded functions.
+    cat(1)
+    1 cat
 
-  Probably introduced at or before Emacs version 22.1.
+To see manpages from all sections related to a subject, use an
+"all pages" option (which might be "-a" if it’s not the
+default), then step through with ‘Man-next-manpage’ (M-n) etc.
+Add to ‘Man-switches’ to make this option permanent.
 
-#+end_example
+    -a chmod
 
-*** describe-mode
+An explicit filename can be given too.  Use -l if it might
+otherwise look like a page name.
 
-#+begin_src emacs-lisp
-  (describe-function #'describe-mode)
-#+end_src
+    /my/file/name.1.gz
+    -l somefile.1
 
-#+RESULTS:
-#+begin_example
-describe-mode is an autoloaded interactive byte-code-function in
-‘help-fns.el’.
+An "apropos" query with -k gives a buffer of matching page
+names or descriptions.  The pattern argument is usually an
+"grep -E" style regexp.
 
-It is bound to C-h m, <f1> m and <help> m.
-It can also be invoked from the menu: Help → Describe → Describe
-Buffer Modes
+    -k pattern
 
-(describe-mode &optional BUFFER)
+Note that in some cases you will need to use C-q to quote the
+SPC character in the above examples, because this command attempts
+to auto-complete your input based on the installed manual pages.
 
-Display documentation of current major mode and minor modes.
-A brief summary of the minor modes comes first, followed by the
-major mode description.  This is followed by detailed
-descriptions of the minor modes, each on a separate page.
+If ‘default-directory’ is remote, and ‘Man-support-remote-systems’
+is non-nil, this command formats the man page on the remote system.
+A prefix argument reverses the value of ‘Man-support-remote-systems’
+for the current invocation.
 
-For this to work correctly for a minor mode, the mode’s indicator
-variable (listed in ‘minor-mode-alist’) must also be a function
-whose documentation describes the minor mode.
-
-If called from Lisp with a non-nil BUFFER argument, display
-documentation for the major and minor modes of that buffer.
-
-When ‘describe-mode-outline’ is non-nil, Outline minor mode
-is enabled in the Help buffer.
-
-  Probably introduced at or before Emacs version 29.1.
+  Probably introduced at or before Emacs version 19.29.
 
 #+end_example
-
-*** describe-package
-
-#+begin_src emacs-lisp
-  (describe-function #'describe-package)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-describe-package is an autoloaded interactive byte-code-function in
-‘package.el’.
-
-It is bound to C-h P, <f1> P and <help> P.
-It can also be invoked from the menu: Help → Describe → Describe
-Package...
-
-(describe-package PACKAGE)
-
-Display the full documentation of PACKAGE (a symbol).
-
-  Probably introduced at or before Emacs version 24.1.
-
-#+end_example
-
-*** describe-variable
-
-#+begin_src emacs-lisp
-  (describe-function #'describe-variable)
-#+end_src
-
-#+RESULTS:
-#+begin_example
-describe-variable is an autoloaded interactive byte-code-function in
-‘help-fns.el’.
-
-It is bound to C-h v, <f1> v and <help> v.
-It can also be invoked from the menu: Help → Describe → Describe
-Variable...
-
-(describe-variable VARIABLE &optional BUFFER FRAME)
-
-Display the full documentation of VARIABLE (a symbol).
-Returns the documentation as a string, also.
-If VARIABLE has a buffer-local value in BUFFER or FRAME
-(default to the current buffer and current frame),
-it is displayed along with the global value.
-
-  Probably introduced at or before Emacs version 27.1.
-
-#+end_example
-
-
-** Discover Things
-
-*** shortdoc
-
-#+begin_src emacs-lisp
-  (describe-function #'shortdoc)
-#+end_src
-
-#+RESULTS:
-: shortdoc is an alias for ‘shortdoc-display-group’ in ‘shortdoc.el’.
-: 
-: (shortdoc GROUP &optional FUNCTION SAME-WINDOW)
-: 
-: Pop to a buffer with short documentation summary for functions in GROUP.
-: Interactively, prompt for GROUP.
-: If FUNCTION is non-nil, place point on the entry for FUNCTION (if any).
-: If SAME-WINDOW, don’t pop to a new window.
-: 
 
 * Environment Info
 
@@ -496,8 +426,11 @@ Locking
 #+begin_src emacs-lisp
   (cl-defmethod ->string (ctx (obj buffer))
     (with-current-buffer obj
-      (buffer-string)))
+      (buffer-substring-no-properties (point-min) (point-max))))
 #+end_src
+
+#+RESULTS:
+: ->string
 
 ** buffer-string
 
