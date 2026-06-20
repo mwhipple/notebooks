@@ -135,6 +135,36 @@ it is displayed along with the global value.
 : If FUNCTION is non-nil, place point on the entry for FUNCTION (if any).
 : If SAME-WINDOW, don’t pop to a new window.
 : 
+* stateyness
+** save-excursion
+
+#+begin_src emacs-lisp
+  (describe-function #'save-excursion)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+save-excursion is a special-form in ‘src/editfns.c’.
+
+(save-excursion &rest BODY)
+
+Save point, and current buffer; execute BODY; restore those things.
+Executes BODY just like ‘progn’.
+The values of point and the current buffer are restored
+even in case of abnormal exit (throw or error).
+
+If you only want to save the current buffer but not point,
+then just use ‘save-current-buffer’, or even ‘with-current-buffer’.
+
+Before Emacs 25.1, ‘save-excursion’ used to save the mark state.
+To save the mark state as well as point and the current buffer, use
+‘save-mark-and-excursion’.
+
+  Probably introduced at or before Emacs version 20.1.
+  This function has a ‘byte-compile’ property
+    ‘byte-compile-save-excursion’.  See the manual for details.
+
+#+end_example
 
 * [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
 
