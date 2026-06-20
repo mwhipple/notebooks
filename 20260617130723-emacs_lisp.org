@@ -150,15 +150,31 @@ it is displayed along with the global value.
   (shortdoc "alist")
 #+end_src
 
+#+RESULTS:
+
+** assoc
 
 #+begin_src emacs-lisp
+  (describe-function #'assoc)
 #+end_src
 
 #+RESULTS:
 #+begin_example
+assoc is a primitive-function in ‘C source code’.
 
+(assoc KEY ALIST &optional TESTFN)
 
+Return non-nil if KEY is equal to the car of an element of ALIST.
+The value is actually the first element of ALIST whose car equals KEY.
 
+Equality is defined by the function TESTFN, defaulting to ‘equal’.
+TESTFN is called with 2 arguments: a car of an alist element and KEY.
+
+  Other relevant functions are documented in the list and alist
+  groups.
+  Probably introduced at or before Emacs version 19.29.
+  This function has a byte-code optimizer ‘byte-optimize-assoc’.  See
+    the manual for details.
 
 #+end_example
 

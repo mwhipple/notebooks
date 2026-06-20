@@ -1,0 +1,80 @@
+:PROPERTIES:
+:ID:       D9194777-FAE7-441E-9309-850BE5AD8E63
+:END:
+#+title: Concept-First Programming Language
+
+I think many years ago I read a section in Programming Language
+Pragmatics (a book I don't currently have access to to confirm) to the
+effect that programming is a conversation between two people (the
+language designer and user) about what they want a computer to
+do. I've since also had thoughts about some of the prospective issues
+with programming languages and the amount of churn introduced by too
+much attention being paid to how things are expressed rather than what
+is being done, and for a while nursed an inchoate assertion that
+programming languages have been a source of stagnation and bloat in
+the industry. Though I have personally waded through a fair amount of
+resultant waste (e.g., teams spending months working on a language X
+wrapper for a tool written in language Y since they prefer language X
+when the wrapper provides no evident benefit over calling the language
+Y tool directly), I also appreciate the nuances of the problem.
+
+When thinking about it from a (novice) language design perspective, it
+feels as though a major contributing factor is the prevalance of the
+languages themselves and the resulting implications.
+
+#+begin_quote
+The limits of my language means the limits of my world.
+-- [[https://en.wikipedia.org/wiki/Ludwig_Wittgenstein][Ludwig Wittgenstein]]
+#+end_quote
+
+In terms of computational thinking, software is somewhat unbounded.
+
+#+begin_quote
+The programmer, like the poet, works only slightly removed from pure
+thought-stuff. He builds his castles in the air, from air, creating by
+exertion of the imagination. Few media of creation are so flexible, so
+easy to polish and rework, so readily capable of realizing grand
+conceptual structures. (This very tractability has its own problems.)
+-- Fred Brooks
+#+end_quote
+
+While language is a necessary evil of being able to communicate ideas,
+it would seem as though constraining it to that communication may help
+hedge those limitations that it may impose, and yet for most languages
+this does not seem to be the case.
+
+Drawing on the earlier description of programming being a
+conversation, there are at least two channels that are immediately
+subjected to the limitations of language - how can a programmer convey
+what they want to be done, and how can the computer translate that
+into something executable. The former is potentially more flexible and
+lends itself to different languages that provide different approaches
+and paradigms based on needs and tastes. The latter is likely the
+hairier one to work through given that it is where the "thought-stuff"
+gets broken down into the specifics of the machine that is
+available. There can theoretically be a pristine space in the middle
+in which the program itself is represented as more abstract concepts.
+
+More often languages seem to follow a more direct path where the input
+language is transformed into some form of machine friendly
+language. While many languages make use of intermediate forms and
+mechanisms such as virtual machines, the output still tends to be
+biased towards specific expectations of how it will be executed rather
+than what is conceptually desired. This is perfectly reasonable from a
+historical perspective both in terms of resource limitations and as an
+evolutionary path (and also accounting for lower-level systems
+programming where there is a desire to stay closer to the metal).
+
+Like most things, I'd imagine this overlaps with already existing
+efforts, but I'm going to work on implementing such a concept-first
+language. The language is tentatively called "i.e.", mostly since I
+wanted a short prefix, IE seems potentially up for grabs now that
+Internet Explorer is dead, and I like the retronym of "in
+essence". Initially this is likely to be very unininteresting and just
+resemble any of the countless examples of modeling a language in
+another language, but I'm also planning on pursuing compilation using
+the resulting model.
+
+The core focus to start will be on concept definition itself - details
+such as the language that is used and how the concepts are evaluated
+and ultimately compiled will be incrementally built on from there.
