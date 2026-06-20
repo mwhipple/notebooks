@@ -1,0 +1,67 @@
+#TITLE: Models Are Hypotheses
+
+#+begin_src quote
+  All models are wrong, but some are useful
+  -- George E. P. Box
+#+end_src
+
+A trap that I've encountered a few times when working through refining
+models with teams is that there is the expressed desire for a model to
+be "right". This typically implies that there is a desire for the
+model to attempt to reflect the real world in some way or other
+and as often as not introduces noise into the resulting solution
+(capturing those details that are /there/ but are not useful). I
+believe there's a good video from Eric Evans discussing the Mercator
+Projection which helps to reinforce the perspective that models should
+be fit for purpose.
+
+Models are inherently simplifications and continuing from the quote
+above and more formally analyzed by Godel and others they cannot be
+complete and consistent and therefore to some extent are
+"wrong". Through the prism of the scientific method, models represent
+hypotheses: the hypothesis that a given model delivers relatively
+optimal utlitity. This can then draw on other related language to
+provide a framework for empirical refinement and assessment of both
+models and the resulting solutions.
+
+* On the Outside
+
+Any given solution is expected to have desired effects on its
+environment. As touched on above, the derived model therefore
+reflects a hypothesis that those aspects that are significant to
+producing such effects are workably captured. The process of checking
+whether the model is providing the desired value is /validation/. How
+well it is doing so can be measured as /effectiveness/.
+
+The above should align with business strategy: those desired effects
+should map neatly onto value proposition and if following a
+disciplined approach to requirements engineering which stays clear of
+the four dark corners, this should be captured as user requirements or
+goals.
+
+* On the Inside
+
+The model defines the system's view of the world and it is therefore
+designed to act upon that model in defined ways. The process of making
+sure that the system is operating as desired in relation to the model
+is /verification/. How well it is doing so can be measured as
+/efficacy/.
+
+These aspects are more tactical in nature. If following disciplined
+requirements engineering these should be captured as system
+requirements or specifications (and ideally also left largely to the
+owning teams).
+
+* Use of the Above
+
+The above can help inform a framework for how to approach modeling and
+solution design as a whole. Beyond the aforementioned bottom-up
+problems of pursuing some kind of "correct" model, there can also be
+more pervasive issues resulting from a lack of delineation between
+these layers and therefore not having a means to assess the model
+separately from the implementation. Refining an implementation with an
+inefficient/useless model will leave users underserved, and conversely
+thinking of the implementation as the model is likely to introduce
+churn and the perspective that the strategy is commensurately unstable
+and seemingly unsound. Much of this is likely touched on in
+requirements engineering literature.
