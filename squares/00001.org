@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       8BF9E12C-2479-4980-9257-2B732A67A7AE
+:END:
+#+title: Square One
+
+This site will contain a series of "square" posts, where each such
+square will have bounds of 80 columns and 80 rows. This is somewhat of
+an arbitrary decision, but has been adopted since I otherwise have a
+tendency to get too verbose which leads to posts taking too long to
+write which in turn results in my regularly halting their creation.
+80 columns is a common (albeit old) line length convention for coding
+going back to [[https://en.wikipedia.org/wiki/Punched_card][punched cards]]. Beyond offering some symmetry, 80 lines
+seems like a reasonable length to both support regaular contribution,
+enstill some marginal editing discipline, and hopefully also provide a
+decent length for anyone else who may read the content.
+
+The content of this site will somewhat be a blog, where each entry is
+also subject to subsequent revision. Each square will be posted as a
+number with the expectation that at some point additional metadata and
+discoverability will be layered on top of that.  The technology used
+for the site itself will be incrementally developed (starting with ")
+/very/ basic tools). The content will be authored by me - at some
+point it is plausible that some AI will be introduced as an editor and
+provide feedback, but is expected to be left out of creating or
+modifying content directly. Initially I will ostensibly perform such
+revision myself...though in practice I tend to do so intermittently
+after the content is published so there is likely to be a fair amount
+of escaped sloppiness (on top of the baseline sloppiness stemming from
+my lack of writing experience).

@@ -1,0 +1,30 @@
+:PROPERTIES:
+:ID:       DD7D894A-4ADC-4808-B24A-C2143B507FEF
+:END:
+#+title: org
+
+* Weaving
+
+** org-publish
+
+#+begin_src emacs-lisp
+  (describe-function #'org-publish)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-publish is an autoloaded interactive byte-code-function in
+‘ox-publish.el’.
+
+(org-publish PROJECT &optional FORCE ASYNC)
+
+Publish PROJECT.
+
+PROJECT is either a project name, as a string, or a project
+alist (see ‘org-publish-project-alist’ variable).
+
+When optional argument FORCE is non-nil, force publishing all
+files in PROJECT.  With a non-nil optional argument ASYNC,
+publishing will be done asynchronously, in another process.
+
+#+end_example

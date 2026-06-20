@@ -54,6 +54,110 @@ if warranted.
 
 This page does mention mail as another API.
 https://learn.microsoft.com/en-us/entra/identity-platform/scopes-oidc
+** Installation
+
+#+begin_src shell :session venv-setup :results output
+  ${host_py} -m venv ${venv}
+  ${venv_py} -m pip install msgraph-sdk
+#+end_src
+
+#+RESULTS:
+#+begin_example
+host_py='python3'
+venv='/tmp/o365'
+venv_py='/tmp/o365/bin/python'
+${host_py} -m venv ${venv}
+${venv_py} -m pip install msgraph-sdk
+Requirement already satisfied: msgraph-sdk in /private/tmp/o365/lib/python3.14/site-packages (1.58.0)
+Requirement already satisfied: azure-identity>=1.12.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.25.3)
+Requirement already satisfied: microsoft-kiota-serialization-json<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
+Requirement already satisfied: microsoft-kiota-serialization-text<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
+Requirement already satisfied: microsoft-kiota-serialization-form<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
+Requirement already satisfied: microsoft-kiota-serialization-multipart<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
+Requirement already satisfied: msgraph_core>=1.3.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.4.0)
+Requirement already satisfied: microsoft-kiota-abstractions<1.11.0,>=1.10.3 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.10.3)
+Requirement already satisfied: opentelemetry-api>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.42.1)
+Requirement already satisfied: opentelemetry-sdk>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.42.1)
+Requirement already satisfied: std-uritemplate>=2.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (2.0.10)
+Requirement already satisfied: azure-core>=1.31.0 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (1.41.0)
+Requirement already satisfied: cryptography>=2.5 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (49.0.0)
+Requirement already satisfied: msal>=1.35.1 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (1.37.0)
+Requirement already satisfied: msal-extensions>=1.2.0 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (1.3.1)
+Requirement already satisfied: typing-extensions>=4.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (4.15.0)
+Requirement already satisfied: requests>=2.21.0 in /private/tmp/o365/lib/python3.14/site-packages (from azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2.34.2)
+Requirement already satisfied: cffi>=2.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from cryptography>=2.5->azure-identity>=1.12.0->msgraph-sdk) (2.0.0)
+Requirement already satisfied: pycparser in /private/tmp/o365/lib/python3.14/site-packages (from cffi>=2.0.0->cryptography>=2.5->azure-identity>=1.12.0->msgraph-sdk) (3.0)
+Requirement already satisfied: PyJWT<3,>=1.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from PyJWT[crypto]<3,>=1.0.0->msal>=1.35.1->azure-identity>=1.12.0->msgraph-sdk) (2.13.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (3.4.7)
+Requirement already satisfied: idna<4,>=2.5 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (3.18)
+Requirement already satisfied: urllib3<3,>=1.26 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2.7.0)
+Requirement already satisfied: certifi>=2023.5.7 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2026.5.20)
+Requirement already satisfied: microsoft-kiota-authentication-azure<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.10.3)
+Requirement already satisfied: microsoft-kiota-http<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.10.3)
+Requirement already satisfied: httpx>=0.23.0 in /private/tmp/o365/lib/python3.14/site-packages (from httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (0.28.1)
+Requirement already satisfied: aiohttp>=3.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (3.14.1)
+Requirement already satisfied: anyio in /private/tmp/o365/lib/python3.14/site-packages (from httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.13.0)
+Requirement already satisfied: httpcore==1.* in /private/tmp/o365/lib/python3.14/site-packages (from httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /private/tmp/o365/lib/python3.14/site-packages (from httpcore==1.*->httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (0.16.0)
+Requirement already satisfied: h2<5,>=3 in /private/tmp/o365/lib/python3.14/site-packages (from httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.3.0)
+Requirement already satisfied: hyperframe<7,>=6.1 in /private/tmp/o365/lib/python3.14/site-packages (from h2<5,>=3->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (6.1.0)
+Requirement already satisfied: hpack<5,>=4.1 in /private/tmp/o365/lib/python3.14/site-packages (from h2<5,>=3->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.1.0)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (2.6.2)
+Requirement already satisfied: aiosignal>=1.4.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (1.4.0)
+Requirement already satisfied: attrs>=17.3.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (26.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (1.8.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (6.7.1)
+Requirement already satisfied: propcache>=0.2.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (0.5.2)
+Requirement already satisfied: yarl<2.0,>=1.17.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (1.24.2)
+Requirement already satisfied: opentelemetry-semantic-conventions==0.63b1 in /private/tmp/o365/lib/python3.14/site-packages (from opentelemetry-sdk>=1.27.0->microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (0.63b1)
+
+[notice] A new release of pip is available: 26.1.1 -> 26.1.2
+[notice] To update, run: /private/tmp/o365/bin/python -m pip install --upgrade pip
+[?2004hecho 'ob_comint_async_shell_end_1c0a77fc-fdb5-46c3-876c-1965e7585e0a'[?2004l
+#+end_example
+
+#+begin_src python
+  help('modules msgraph')
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Here is a list of modules whose name or summary contains 'msgraph'.
+If there are any, enter a module name to get more help.
+
+msgraph - Python client for the Microsoft Graph API
+msgraph._version 
+msgraph.graph_request_adapter 
+msgraph.graph_service_client 
+msgraph_core - Core component of the Microsoft Graph Python SDK consisting of HTTP/Graph Client and a configurable middleware pipeline (Preview).
+msgraph_core._constants - Application constants. All defaults can be changed when initializing a client
+msgraph_core._enums 
+msgraph_core.authentication 
+msgraph_core.authentication.azure_identity_authentication_provider 
+msgraph_core.base_graph_request_adapter 
+msgraph_core.graph_client_factory 
+msgraph_core.middleware 
+msgraph_core.middleware.async_graph_transport 
+msgraph_core.middleware.options 
+msgraph_core.middleware.options.graph_telemetry_handler_option 
+msgraph_core.middleware.request_context 
+msgraph_core.middleware.telemetry 
+msgraph_core.models 
+msgraph_core.models.large_file_upload_session 
+msgraph_core.models.page_result - This module defines the PageResult class which represents a page of
+msgraph_core.models.upload_result 
+msgraph_core.requests 
+msgraph_core.requests.batch_request_builder 
+msgraph_core.requests.batch_request_content 
+msgraph_core.requests.batch_request_content_collection 
+msgraph_core.requests.batch_request_item 
+msgraph_core.requests.batch_response_content 
+msgraph_core.requests.batch_response_content_collection 
+msgraph_core.requests.batch_response_item 
+msgraph_core.tasks 
+msgraph_core.tasks.large_file_upload 
+msgraph_core.tasks.page_iterator - This module contains the PageIterator class which is used to
+#+end_example
 I'm expecting to use o365.
 
 https://github.com/O365/python-o365
