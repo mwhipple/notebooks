@@ -146,3 +146,32 @@ See also:
   java -jar plantuml.jar --help-more
   Documentation: https://plantuml.com
 #+end_example
+
+* Example
+
+#+name: sample
+#+begin_example
+@startuml
+Alice->Bob : Hello
+return ok
+@enduml
+#+end_example
+
+#+begin_src shell :stdin sample :session puml :async :results output
+  plantuml --utxt --pipe
+#+end_src
+
+#+RESULTS:
+#+begin_example
+     ┌─────┐          ┌───┐
+     │Alice│          │Bob│
+     └──┬──┘          └─┬─┘
+        │    Hello      │  
+        │──────────────>│  
+        │               │  
+        │      ok       │  
+        │<─ ─ ─ ─ ─ ─ ─ │  
+     ┌──┴──┐          ┌─┴─┐
+     │Alice│          │Bob│
+     └─────┘          └───┘
+#+end_example
