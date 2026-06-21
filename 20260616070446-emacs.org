@@ -504,6 +504,52 @@ BODY is executed just like ‘progn’.
 
 #+end_example
 
+** save-some-buffers
+
+#+begin_src emacs-lisp
+  (describe-function #'save-some-buffers)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+save-some-buffers is an interactive byte-code-function in ‘files.el’.
+
+It is bound to C-x s.
+
+(save-some-buffers &optional ARG PRED)
+
+Save some modified file-visiting buffers.  Asks user about each one.
+You can answer y or SPC to save, n or DEL not to save, C-r
+to look at the buffer in question with ‘view-buffer’ before
+deciding, d to view the differences using
+‘diff-buffer-with-file’, ! to save the buffer and all remaining
+buffers without any further querying, . to save only the
+current buffer and skip the remaining ones and q or RET to exit
+the function without saving any more buffers.  C-h displays a
+help message describing these options.
+
+This command first saves any buffers where ‘buffer-save-without-query’ is
+non-nil, without asking.
+
+Optional argument ARG (interactively, prefix argument) non-nil means save
+all with no questions.
+Optional second argument PRED determines which buffers are considered:
+If PRED is nil, all the file-visiting buffers are considered.
+If PRED is t, then certain non-file buffers will also be considered.
+If PRED is a function, it is called with no argument in each buffer and
+should return non-nil if that buffer should be considered.
+PRED defaults to the value of ‘save-some-buffers-default-predicate’.
+
+See ‘save-some-buffers-action-alist’ if you want to
+change the additional actions you can take on files.
+
+The functions in ‘save-some-buffers-functions’ will be called
+after saving the buffers.
+
+  Probably introduced at or before Emacs version 19.20.
+
+#+end_example
+
 ** with-current-buffer
 
 #+begin_src emacs-lisp
