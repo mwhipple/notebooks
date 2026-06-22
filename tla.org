@@ -71,14 +71,14 @@ Successfully installed setuptools-81.0.0
 
 #+begin_src shell
   . ${venv}/bin/activate
-  tlacli -h
+  tlacli --help
 #+end_src
 
 #+RESULTS:
 #+begin_example
 (tla) org_babel_sh_prompt> venv='/tmp/tla'
 (tla) org_babel_sh_prompt> . ${venv}/bin/activate
-(tla) org_babel_sh_prompt> tlacli -h
+(tla) org_babel_sh_prompt> tlacli --help
 /private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import resource_filename
 usage: tlacli [-h] {check,tlc,translate,pc,pluscal} ...
@@ -92,7 +92,7 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_e5deb463-3ce4-43cb-bcc1-bee7d8310305'[?2004l
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_ca41b204-160a-45ec-9ae4-4e7bd2bc5473'[?2004l
 #+end_example
 
 * Sample
@@ -125,18 +125,42 @@ end algorithm;*)
 These tools seem to have a fair amount of file conventions that
 inhibits use of things like stdin.
 
-* Check
+* translate
 
 #+begin_src shell
   . ${venv}/bin/activate
-  tlacli check -h
+  tlacli translate --help
 #+end_src
 
 #+RESULTS:
 #+begin_example
 (tla) org_babel_sh_prompt> venv='/tmp/tla'
 (tla) org_babel_sh_prompt> . ${venv}/bin/activate
-(tla) org_babel_sh_prompt> tlacli check -h
+(tla) org_babel_sh_prompt> tlacli translate --help
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+usage: tlacli translate [-h] Specfile
+
+positional arguments:
+  Specfile    The specfile.tla
+
+options:
+  -h, --help  show this help message and exit
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_250302b9-54c0-409a-9490-2b996fa09e89'[?2004l
+#+end_example
+
+* check
+
+#+begin_src shell
+  . ${venv}/bin/activate
+  tlacli check --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+(tla) org_babel_sh_prompt> venv='/tmp/tla'
+(tla) org_babel_sh_prompt> . ${venv}/bin/activate
+(tla) org_babel_sh_prompt> tlacli check --help
 /private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import resource_filename
 usage: tlacli check [-h] [--spec SPEC] [--cfg CFG] [--invariant [INVARIANT ...]] [--property [PROPERTY ...]]
