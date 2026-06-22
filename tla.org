@@ -149,7 +149,89 @@ options:
 (tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_250302b9-54c0-409a-9490-2b996fa09e89'[?2004l
 #+end_example
 
+** Example
+
+#+begin_src shell :stdin wire :dir venv
+  cat > wire.tla
+  . ${venv}/bin/activate
+  tlacli translate wire.tla
+  cat wire.tla
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+
+pcal.trans Version 1.9 of 10 July 2019
+Parsing completed.
+Translation completed.
+New file wire.tla written.
+
+---------- MODULE wire --------
+EXTENDS Integers
+(*--algorithm wire
+variables
+  people = {"alice", "bob"},
+  acc = [p \in people |-> 5],
+  sender = "alice",
+  receiver = "bob",
+  amount \in 1..6;
+
+define
+  NoOverdrafts == \A p \in people: acc[p] >= 0
+end define;
+
+begin
+  Withdraw:
+    acc[sender] := acc[sender] - amount;
+  Deposit:
+    acc[receiver] := acc[receiver] + amount;
+end algorithm;*)
+\* BEGIN TRANSLATION - the hash of the PCal code: PCal-b1c4bd6a54b09b98329a7acd38ea483e
+VARIABLES people, acc, sender, receiver, amount, pc
+
+(* define statement *)
+NoOverdrafts == \A p \in people: acc[p] >= 0
+
+
+vars == << people, acc, sender, receiver, amount, pc >>
+
+Init == (* Global variables *)
+        /\ people = {"alice", "bob"}
+        /\ acc = [p \in people |-> 5]
+        /\ sender = "alice"
+        /\ receiver = "bob"
+        /\ amount \in 1..6
+        /\ pc = "Withdraw"
+
+Withdraw == /\ pc = "Withdraw"
+            /\ acc' = [acc EXCEPT ![sender] = acc[sender] - amount]
+            /\ pc' = "Deposit"
+            /\ UNCHANGED << people, sender, receiver, amount >>
+
+Deposit == /\ pc = "Deposit"
+           /\ acc' = [acc EXCEPT ![receiver] = acc[receiver] + amount]
+           /\ pc' = "Done"
+           /\ UNCHANGED << people, sender, receiver, amount >>
+
+(* Allow infinite stuttering to prevent deadlock on termination. *)
+Terminating == pc = "Done" /\ UNCHANGED vars
+
+Next == Withdraw \/ Deposit
+           \/ Terminating
+
+Spec == Init /\ [][Next]_vars
+
+Termination == <>(pc = "Done")
+
+\* END TRANSLATION - the hash of the generated TLA code (remove to silence divergence warnings): TLA-f49700449c9bc05bd73fd91572d0e484
+===============================
+#+end_example
+
 * check
+
+** Help
 
 #+begin_src shell
   . ${venv}/bin/activate
@@ -195,5 +277,73 @@ tlc_args:
 
   --tlc-workers TLC_WORKERS
                         The number of worker threads to use (default is number of cpus)
-(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_33efd2ca-3609-40ec-80bd-b135add28430'[?2004l
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_4fa60f4f-dab9-453a-b319-a699235bcfc8'[?2004l
 #+end_example
+
+** Example
+
+#+begin_src shell :stdin wire :dir venv
+  cat > wire.tla
+  . ${venv}/bin/activate
+  tlacli translate wire
+  tlacli check --invariant NoOverdrafts -- wire.tla
+#+end_src
+
+#+RESULTS:
+#+begin_example
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+
+pcal.trans Version 1.9 of 10 July 2019
+Parsing completed.
+Translation completed.
+New file wire.tla written.
+
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+
+TLC2 Version 2.15 of Day Month 20?? (rev: d5b5a7f)
+Warning: Please run the Java VM which executes TLC with a throughput optimized garbage collector by passing the "-XX:+UseParallelGC" property.
+(Use the -nowarning option to disable this warning.)
+Running breadth-first search Model-Checking with fp 52 and seed 7145458449092254086 with 10 workers on 10 cores with 8192MB heap and 64MB offheap memory [pid: 21550] (Mac OS X 26.3.1 aarch64, Homebrew 21.0.11 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /Users/mwhipple/memex/wire.tla
+Parsing file /private/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/Integers.tla
+Parsing file /private/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module wire
+Starting... (2026-06-22 10:22:07)
+Computing initial states...
+Computed 2 initial states...
+Computed 4 initial states...
+Finished computing initial states: 6 distinct states generated at 2026-06-22 10:22:08.
+Error: Invariant NoOverdrafts is violated.
+Error: The behavior up to this point is:
+State 1: <Initial predicate>
+/\ people = {"alice", "bob"}
+/\ sender = "alice"
+/\ receiver = "bob"
+/\ acc = [alice |-> 5, bob |-> 5]
+/\ amount = 6
+/\ pc = "Withdraw"
+
+State 2: <Withdraw line 38, col 13 to line 41, col 63 of module wire>
+/\ people = {"alice", "bob"}
+/\ sender = "alice"
+/\ receiver = "bob"
+/\ acc = [alice |-> -1, bob |-> 5]
+/\ amount = 6
+/\ pc = "Deposit"
+
+22 states generated, 17 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 3.
+The average outdegree of the complete state graph is 1 (minimum is 0, the maximum 1 and the 95th percentile is 1).
+Finished in 00s at (2026-06-22 10:22:08)
+
+#+end_example
+
+* Rendering
+
+There seems to be some built-in DOT rendering somewhere upstream that
+should act as the starting point. This is likely another reason to
+pull in the CLI code for local extension.
