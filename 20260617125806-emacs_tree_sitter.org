@@ -1,0 +1,41 @@
+:PROPERTIES:
+:ID:       F103D183-FA21-4785-96BC-2A526F87E88F
+:END:
+#+title: emacs-tree-sitter
+
+* Grammar Installation
+
+#+begin_src emacs-lisp
+  (describe-function #'treesit-install-language-grammar)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+treesit-install-language-grammar is an autoloaded interactive
+byte-code-function in ‘treesit.el’.
+
+(treesit-install-language-grammar LANG &optional OUT-DIR)
+
+Build and install the tree-sitter language grammar library for LANG.
+
+Interactively, if ‘treesit-language-source-alist’ doesn’t already
+have data for building the grammar for LANG, prompt for its
+repository URL and the C/C++ compiler to use.  The recipe built
+by the prompts are saved for the current session if the
+installation is successful and the grammar is loadable.
+
+This command requires Git, a C compiler and (sometimes) a C++ compiler,
+and the linker to be installed and on PATH.  It also requires that the
+recipe for LANG exists in ‘treesit-language-source-alist’.
+
+See ‘exec-path’ for the current path where Emacs looks for
+executable programs, such as the C/C++ compiler and linker.
+
+Interactively, prompt for the directory in which to install the
+compiled grammar files.  Non-interactively, use OUT-DIR; if it’s
+nil, the grammar is installed to the standard location, the
+"tree-sitter" directory under ‘user-emacs-directory’.
+
+  Probably introduced at or before Emacs version 29.1.
+
+#+end_example
