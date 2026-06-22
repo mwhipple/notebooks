@@ -71,14 +71,14 @@ Successfully installed setuptools-81.0.0
 
 #+begin_src shell
   . ${venv}/bin/activate
-  tlacli --help
+  tlacli -h
 #+end_src
 
 #+RESULTS:
 #+begin_example
 (tla) org_babel_sh_prompt> venv='/tmp/tla'
 (tla) org_babel_sh_prompt> . ${venv}/bin/activate
-(tla) org_babel_sh_prompt> tlacli --help
+(tla) org_babel_sh_prompt> tlacli -h
 /private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
   from pkg_resources import resource_filename
 usage: tlacli [-h] {check,tlc,translate,pc,pluscal} ...
@@ -92,5 +92,84 @@ positional arguments:
 
 options:
   -h, --help            show this help message and exit
-(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_0d14cfbc-ca53-41eb-9351-36b4ebc617b8'[?2004l
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_e5deb463-3ce4-43cb-bcc1-bee7d8310305'[?2004l
+#+end_example
+
+* Sample
+
+#+name: wire
+#+begin_example
+---------- MODULE wire --------
+EXTENDS Integers
+(*--algorithm wire
+variables
+  people = {"alice", "bob"},
+  acc = [p \in people |-> 5],
+  sender = "alice",
+  receiver = "bob",
+  amount \in 1..6;
+
+define
+  NoOverdrafts == \A p \in people: acc[p] >= 0
+end define;
+
+begin
+  Withdraw:
+    acc[sender] := acc[sender] - amount;
+  Deposit:
+    acc[receiver] := acc[receiver] + amount;
+end algorithm;*)
+===============================
+#+end_example
+
+These tools seem to have a fair amount of file conventions that
+inhibits use of things like stdin.
+
+* Check
+
+#+begin_src shell
+  . ${venv}/bin/activate
+  tlacli check -h
+#+end_src
+
+#+RESULTS:
+#+begin_example
+(tla) org_babel_sh_prompt> venv='/tmp/tla'
+(tla) org_babel_sh_prompt> . ${venv}/bin/activate
+(tla) org_babel_sh_prompt> tlacli check -h
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+usage: tlacli check [-h] [--spec SPEC] [--cfg CFG] [--invariant [INVARIANT ...]] [--property [PROPERTY ...]]
+                    [--constant CONSTANT CONSTANT] [--model-values MODEL_VALUES [MODEL_VALUES ...]]
+                    [--cfg-out CFG_OUT] [--tlc-workers TLC_WORKERS]
+                    Specfile
+
+positional arguments:
+  Specfile              The specfile.tla
+
+options:
+  -h, --help            show this help message and exit
+  --cfg-out CFG_OUT     Where to save the cfg file, if you want to reuse it
+
+cfg_args:
+  Configuration values for the TLA+ spec
+
+  --spec, --specification SPEC
+                        The TLA+ specification operator, defaults to Spec
+  --cfg CFG             A template cfg for default values
+  --invariant [INVARIANT ...]
+                        Adds argument as model invariant, may be specified multiple times
+  --property [PROPERTY ...]
+                        Adds argument as model temporal property, may be specified multiple times
+  --constant CONSTANT CONSTANT
+                        {name} {value}
+  --model-values MODEL_VALUES [MODEL_VALUES ...]
+                        list of model values
+
+tlc_args:
+  Runtime values for the TLC model checker
+
+  --tlc-workers TLC_WORKERS
+                        The number of worker threads to use (default is number of cpus)
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_33efd2ca-3609-40ec-80bd-b135add28430'[?2004l
 #+end_example
