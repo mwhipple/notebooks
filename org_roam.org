@@ -35,3 +35,29 @@ All Org files, at any level of nesting, are considered part of the Org-roam.
   You can customize this variable.
 
 #+end_example
+
+* org-roam-node-find
+
+#+begin_src emacs-lisp
+  (describe-function #'org-roam-node-find)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-roam-node-find is an autoloaded interactive byte-code-function in
+‘org-roam-node.el’.
+
+It is bound to C-x C-z f.
+
+(org-roam-node-find &optional OTHER-WINDOW INITIAL-INPUT FILTER-FN
+PRED &key TEMPLATES)
+
+Find and open an Org-roam node by its title or alias.
+INITIAL-INPUT is the initial input for the prompt.
+FILTER-FN is a function to filter out nodes: it takes an ‘org-roam-node’,
+and when nil is returned the node will be filtered out.
+If OTHER-WINDOW, visit the NODE in another window.
+The TEMPLATES, if provided, override the list of capture templates (see
+‘org-roam-capture-’.)
+
+#+end_example
