@@ -461,7 +461,47 @@ will be overridden (which means this can't be treated as addition).
 #+RESULTS:
 : None
 
+**** render
+
+Render model as cfg file for tlc.
+
+Each property renderer should append lines to ~out~.
+
+#+begin_src python :noweb yes
+  def render(self) -> str:
+      out = []
+      <<cfg_render_properties>>
+      return "\n".join(out)
+
+#+end_src
+
+**** write
+
+Write rendered cfg to provided file.
+
+#+begin_src python
+  def write(self, file: str):
+      with open(file, 'w') as f:
+          f.write(self.render())
+#+end_src
+
 *** Properties
+
+**** specification
+
+The associated spec.
+
+***** Definition
+
+#+begin_src python :noweb-ref cfg_properties
+  specification: str = "Spec"
+#+end_src
+
+***** render
+
+#+begin_src python :noweb-ref cfg_render_properties
+  out.append(f"SPECIFICATION {self.specification}")
+#+end_src
 
 **** invariants
 
@@ -479,6 +519,12 @@ Define those invariants that will be verified.
   merged.invariants = self.invariants | other.invariants
 #+end_src
 
+***** render
+
+#+begin_src python :noweb-ref cfg_render_properties
+  out += [f"INVARIANT {i}" for i in sorted(self.invariants)]
+#+end_src
+
 **** properties
 
 Define temporaral properties.
@@ -494,4 +540,118 @@ Define temporaral properties.
 #+begin_src python :noweb-ref cfg_merge_properties
   merged.properties = self.properties | other.properties
 #+end_src
+
+***** render
+
+#+begin_src python :noweb-ref cfg_render_properties
+  out += [f"PROPERTY {p}" for p in sorted(self.properties)]
+#+end_src
+
+**** constants
+
+Haven't learned this yet.
+
+***** Definition
+
+#+begin_src python :noweb-ref cfg_properties
+  constants: t.Dict[str, str] = field(default_factory=dict)
+#+end_src
+
+***** merge
+
+Newer versions of python support pipe dict merging.
+
+#+begin_src python :noweb-ref cfg_merge_properties
+  merged.constants = self.constants | other.constants
+#+end_src
+
+***** render
+
+Upstream constants come after model values but I'll optimistically
+think it's insignificant. Otherwise the definitions could simply be
+reordered (but the requirement should be more clearly captured).
+
+#+begin_src python :noweb-ref cfg_render_properties
+  if self.constants:
+      out.append(r"CONSTANTS \* regular assignments")
+      out.extend([f"  {c} = {v}" for c,v in self.constants.items()])
+#+end_src
+
+**** model_values
+
+Han't learned this yet neither.
+
+***** Definition
+
+#+begin_src python :noweb-ref cfg_properties
+  model_values: ss = field(default_factory=set)
+#+end_src
+
+***** merge
+
+#+begin_src python :noweb-ref cfg_merge_properties
+  merged.model_values = self.model_values | other.model_values
+#+end_src
+
+#+RESULTS:
+: 38dc8482-e8e7-4bbb-920f-0aff12fe2404
+
+***** render
+
+#+begin_src python :noweb-ref cfg_render_properties
+  if self.model_values:
+      out.append("\nCONSTANTS \\* model values")
+      out.extend([f"  {m} = {m}" for m in sorted(self.model_values)])
+#+end_src
+
+*** Sandbox
+#+begin_src python
+  cfg = (CfgFile(
+      invariants={"foo", "baz"},
+      properties={1},
+      constants={'a': 1, 'b': 2},
+      model_values={"blah blah"},
+  ).merge(
+      CfgFile(
+          invariants={"foo", "bar"},
+          properties={2},
+          constants={'a': 3, 'c': 3}
+      )
+  ))
+  print(cfg.render())
+  cfg.write('/tmp/foo.cfg')
+#+end_src
+
+#+RESULTS:
+#+begin_example
+SPECIFICATION Spec
+INVARIANT bar
+INVARIANT baz
+INVARIANT foo
+PROPERTY 1
+PROPERTY 2
+CONSTANTS \* regular assignments
+  a = 3
+  b = 2
+  c = 3
+
+CONSTANTS \* model values
+  blah blah = blah blah
+#+end_example
+
+
+*** Interim Wrap-Up
+
+The resulting logic is minimally different than what was upstream.
+There's also parsing logic in the original file along with support
+for a defaults file, but for now that will just be deferred.
+
+If that gets pulled in, I'd probably add a new parsing method and
+handle the merging in an extracted argument parser. The merging logic
+currently here is therefore unused.
+
+This implementation currently commingles the [[id:3B8BCBF8-8E95-4D00-A9B3-18235E512D76][serde]] concerns with the
+data both to reduce the weight, and also as a reflection of the fact
+that there is a strong association between the data elements and the
+specific file.
 
