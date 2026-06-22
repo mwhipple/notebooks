@@ -1,0 +1,96 @@
+:PROPERTIES:
+:ID:       12BC5AB3-D75B-43BC-A51E-C8CD80AAE829
+:header-args: :session tla :var venv="/tmp/tla" :python /tmp/tla/bin/python :async :results output
+:END:
+#+title: tla+
+
+TLA+ is a modeling language to aid with formal verification.
+
+https://github.com/tlaplus/tlaplus
+
+These are typically run within the toolbox,
+docs are available here for more manual invocation:
+https://lamport.azurewebsites.net/tla/standalone-tools.html?back-link=tools.html
+
+* Interface Selection
+
+The standard documentation around CLI use is fairly minimal on top of
+invoking [[id:72258C97-F88E-4498-825D-A7447EC008AA][java]] which is likely to get cumbersome. Beyond that
+the core tools are stitched together with some files in fairly simpler
+formats, but the toolbox is typically expected to manage those files.
+
+There seem to be two provided wrappers to support CLI use.
+
+** https://github.com/pmer/tla-bin
+This is a very thin wrapper which uses the [[id:3368C2A8-C34F-45C2-8601-1735BD712D74][shell]] to absorb the Java
+invocation, but this doesn't seem to address the other configuration needs.
+
+** https://github.com/hwayne/tlacli
+Is a [[id:002B2928-C32F-49F3-B93F-CBEEE215A7D7][python]] wrapper created by an author of one of the TLA+ books.
+It has the advantages that it does handle some of the configuration
+needs, and that it's python presumably makes it easier to wire up as a
+[[id:9D4EC4DC-FC1D-430D-B834-CB0916949915][langchain]] tool.
+
+This library is older and currently also pulls in pkg_resources which
+been removed in newer versions of python setuptools. Given that the
+library is fairly small and comes with a prominent disclaimer
+regarding limited use, I'll tentantively plan on extracting the core
+pieces here.
+
+* Installation
+
+Installation of TLA+ itself is currently absent but is provided by the
+tla-bin installation instructions. I'll have to retrofit this when it
+is encountered.
+
+#+begin_src shell :session setup-venv
+  python -m venv ${venv}
+  ${venv}/bin/python -m pip install tlacli "setuptools<82"
+#+end_src
+
+#+RESULTS:
+#+begin_example
+venv='/tmp/tla'
+python -m venv ${venv}
+${venv}/bin/python -m pip install tlacli "setuptools<82"
+Requirement already satisfied: tlacli in /private/tmp/tla/lib/python3.14/site-packages (0.0.1)
+Collecting setuptools<82
+  Using cached setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+Using cached setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 82.0.1
+    Uninstalling setuptools-82.0.1:
+      Successfully uninstalled setuptools-82.0.1
+Successfully installed setuptools-81.0.0
+
+[notice] A new release of pip is available: 26.1.1 -> 26.1.2
+[notice] To update, run: /private/tmp/tla/bin/python -m pip install --upgrade pip
+[?2004hecho 'ob_comint_async_shell_end_64989235-1e2c-414b-a8c8-00ff29ea50f2'[?2004l
+#+end_example
+
+#+begin_src shell
+  . ${venv}/bin/activate
+  tlacli --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+(tla) org_babel_sh_prompt> venv='/tmp/tla'
+(tla) org_babel_sh_prompt> . ${venv}/bin/activate
+(tla) org_babel_sh_prompt> tlacli --help
+/private/tmp/tla/lib/python3.14/site-packages/tlacli/tools/tlc.py:9: UserWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html. The pkg_resources package is slated for removal as early as 2025-11-30. Refrain from using this package or pin to Setuptools<81.
+  from pkg_resources import resource_filename
+usage: tlacli [-h] {check,tlc,translate,pc,pluscal} ...
+
+positional arguments:
+  {check,tlc,translate,pc,pluscal}
+                        Which TLA+ tool to run
+    check (tlc)         Run the TLC model checker on a TLA+ spec.
+    translate (pc, pluscal)
+                        Translate pluscal into TLA+
+
+options:
+  -h, --help            show this help message and exit
+(tla) org_babel_sh_prompt> [?2004hecho 'ob_comint_async_shell_end_0d14cfbc-ca53-41eb-9351-36b4ebc617b8'[?2004l
+#+end_example
