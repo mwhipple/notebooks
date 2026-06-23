@@ -781,3 +781,37 @@ This function can be added to ‘comint-preoutput-filter-functions’.
   Probably introduced at or before Emacs version 21.1.
 
 #+end_example
+
+** ansi-color-apply-on-region
+
+#+begin_src emacs-lisp
+  (describe-function #'ansi-color-apply-on-region)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+ansi-color-apply-on-region is a byte-code-function in ‘ansi-color.el’.
+
+(ansi-color-apply-on-region BEGIN END &optional PRESERVE-SEQUENCES)
+
+Translates SGR control sequences into overlays or extents.
+Delete all other control sequences without processing them.
+
+SGR control sequences are applied by calling the function
+specified by ‘ansi-color-apply-face-function’.  The default
+function sets foreground and background colors to the text
+between BEGIN and END, using overlays.  See function
+‘ansi-color-apply-sequence’ for details.
+
+Every call to this function will set and use the buffer-local
+variable ‘ansi-color-context-region’ to save position and current
+ansi codes.  This information will be used for the next call to
+‘ansi-color-apply-on-region’.  Specifically, it will override
+BEGIN, the start of the region and set the face with which to
+start.  Set ‘ansi-color-context-region’ to nil if you don’t want
+this.
+
+If PRESERVE-SEQUENCES is t, the sequences are hidden instead of
+being deleted.
+
+#+end_example
