@@ -222,25 +222,22 @@ Init == (* Global variables *)
         /\ sender = [self \in 1..2 |-> "alice"]
         /\ receiver = [self \in 1..2 |-> "bob"]
         /\ amount \in [1..2 -> 1..acc[sender[CHOOSE self \in  1..2 : TRUE]]]
-        /\ pc = [self \in ProcSet |-> "CheckFunds"]
+        /\ pc = [self \in ProcSet |-> "CheckAndWithdraw"]
 
-CheckFunds(self) == /\ pc[self] = "CheckFunds"
-                    /\ IF amount[self] <= acc[sender[self]]
-                          THEN /\ pc' = [pc EXCEPT ![self] = "Withdraw"]
-                          ELSE /\ pc' = [pc EXCEPT ![self] = "Done"]
-                    /\ UNCHANGED << people, acc, sender, receiver, amount >>
-
-Withdraw(self) == /\ pc[self] = "Withdraw"
-                  /\ acc' = [acc EXCEPT ![sender[self]] = acc[sender[self]] - amount[self]]
-                  /\ pc' = [pc EXCEPT ![self] = "Deposit"]
-                  /\ UNCHANGED << people, sender, receiver, amount >>
+CheckAndWithdraw(self) == /\ pc[self] = "CheckAndWithdraw"
+                          /\ IF amount[self] <= acc[sender[self]]
+                                THEN /\ acc' = [acc EXCEPT ![sender[self]] = acc[sender[self]] - amount[self]]
+                                     /\ pc' = [pc EXCEPT ![self] = "Deposit"]
+                                ELSE /\ pc' = [pc EXCEPT ![self] = "Done"]
+                                     /\ acc' = acc
+                          /\ UNCHANGED << people, sender, receiver, amount >>
 
 Deposit(self) == /\ pc[self] = "Deposit"
                  /\ acc' = [acc EXCEPT ![receiver[self]] = acc[receiver[self]] + amount[self]]
                  /\ pc' = [pc EXCEPT ![self] = "Done"]
                  /\ UNCHANGED << people, sender, receiver, amount >>
 
-Wire(self) == CheckFunds(self) \/ Withdraw(self) \/ Deposit(self)
+Wire(self) == CheckAndWithdraw(self) \/ Deposit(self)
 
 (* Allow infinite stuttering to prevent deadlock on termination. *)
 Terminating == /\ \A self \in ProcSet: pc[self] = "Done"
@@ -253,7 +250,7 @@ Spec == Init /\ [][Next]_vars
 
 Termination == <>(\A self \in ProcSet: pc[self] = "Done")
 
-\* END TRANSLATION - the hash of the generated TLA code (remove to silence divergence warnings): TLA-5e3b59502346c5f9526dd53bcaa2fdb2
+\* END TRANSLATION - the hash of the generated TLA code (remove to silence divergence warnings): TLA-d8221abe569b4420e0c121ea32301dbc
 ===============================
 #+end_example
 
@@ -640,7 +637,6 @@ CONSTANTS \* model values
   blah blah = blah blah
 #+end_example
 
-
 *** Interim Wrap-Up
 
 The resulting logic is minimally different than what was upstream.
@@ -656,3 +652,42 @@ data both to reduce the weight, and also as a reflection of the fact
 that there is a strong association between the data elements and the
 specific file.
 
+** TLC
+
+*** Environment
+
+The logic does require some environmental parameters so we'll
+introduce a class to close over those.
+
+#+begin_src python :noweb yes
+  from dataclasses import dataclass, field
+  <<tla_imports>>
+
+  @dataclass
+  class TLA:
+        jar_path: str
+
+        <<tla_methods>>
+
+  <<tla_functions>>
+#+end_src
+
+#+RESULTS:
+
+The path to the jar should be extracted somehow or others.
+
+A fair amount of this revolves around constructing the script command,
+so that will be split out.
+
+**** call
+
+Handle some of the subprocess boilerplate.
+
+#+begin_src python :noweb-ref tla_methods
+  def call(self, command):
+      with TemporaryDirectory() as start_dir:
+          result = subprocess.run(f"java -jar {self.jar_path} {command}", text=True, capture_output=True, shell=True)
+          print(result.stderr)
+          print(result.stdout)
+
+#+end_src
