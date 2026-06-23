@@ -1,0 +1,18 @@
+:PROPERTIES:
+:ID:       3B8BCBF8-8E95-4D00-A9B3-18235E512D76
+:END:
+#+title: serde
+
+serde is common shorthand for serialization/deserialization in the
+spirit of similar terms like modem and codec. I personally like
+marshun which I've used in the past...but I don't know of anyone else
+that actually used marshun whereas serde seems to pop up a bit.
+
+While it may often have more specific connotations in certain
+contexts, it can more generally refer to the translation logic that
+connects a model to a wire representation and can be extended to be an
+enabler for goals like hexagonal architecture and MVP style separation
+of concerns. Specifically serde seems to be primarily used from the
+technical perspective ("here's how to get your data to work with our
+infrastructure") whereas I'd also use it from the other perpsective
+("here's how to insulate business logic from infrastructure").
