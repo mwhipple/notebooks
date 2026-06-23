@@ -208,6 +208,31 @@ TESTFN is called with 2 arguments: a car of an alist element and KEY.
 
 #+end_example
 
+* Filesystem
+
+** default-directory
+
+#+begin_src emacs-lisp
+  (describe-variable 'default-directory)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+default-directory is a variable defined in ‘C source code’.
+
+Its value is "/Users/mwhipple/memex/notebooks/"
+Local in buffer emacs-lisp.org; global value is nil
+
+Name of default directory of current buffer.
+It should be an absolute directory name; on GNU and Unix systems,
+these names start with "/" or "~" and end with "/".
+To interactively change the default directory, use the command ‘cd’.
+
+  Automatically becomes permanently buffer-local when set.
+  This variable is safe as a file local variable if its value
+  satisfies the predicate ‘stringp’.
+  Probably introduced at or before Emacs version 1.11.
+
 #+end_example
 
 * generic functions
@@ -339,3 +364,90 @@ These match if the argument is the name of a subclass of CLASS.
   Probably introduced at or before Emacs version 25.1.
 
 #+end_example
+* Describe Things
+** describe-mode
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-mode is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h m, <f1> m and <help> m.
+It can also be invoked from the menu: Help → Describe → Describe
+Buffer Modes
+
+(describe-mode &optional BUFFER)
+
+Display documentation of current major mode and minor modes.
+A brief summary of the minor modes comes first, followed by the
+major mode description.  This is followed by detailed
+descriptions of the minor modes, each on a separate page.
+
+For this to work correctly for a minor mode, the mode’s indicator
+variable (listed in ‘minor-mode-alist’) must also be a function
+whose documentation describes the minor mode.
+
+If called from Lisp with a non-nil BUFFER argument, display
+documentation for the major and minor modes of that buffer.
+
+When ‘describe-mode-outline’ is non-nil, Outline minor mode
+is enabled in the Help buffer.
+
+  Probably introduced at or before Emacs version 29.1.
+
+#+end_example
+
+** describe-package
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-package)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-package is an autoloaded interactive byte-code-function in
+‘package.el’.
+
+It is bound to C-h P, <f1> P and <help> P.
+It can also be invoked from the menu: Help → Describe → Describe
+Package...
+
+(describe-package PACKAGE)
+
+Display the full documentation of PACKAGE (a symbol).
+
+  Probably introduced at or before Emacs version 24.1.
+
+#+end_example
+
+** describe-variable
+
+#+begin_src emacs-lisp
+  (describe-function #'describe-variable)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+describe-variable is an autoloaded interactive byte-code-function in
+‘help-fns.el’.
+
+It is bound to C-h v, <f1> v and <help> v.
+It can also be invoked from the menu: Help → Describe → Describe
+Variable...
+
+(describe-variable VARIABLE &optional BUFFER FRAME)
+
+Display the full documentation of VARIABLE (a symbol).
+Returns the documentation as a string, also.
+If VARIABLE has a buffer-local value in BUFFER or FRAME
+(default to the current buffer and current frame),
+it is displayed along with the global value.
+
+  Probably introduced at or before Emacs version 27.1.
+
+#+end_example
+
