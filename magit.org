@@ -1,0 +1,66 @@
+:PROPERTIES:
+:ID:       DB768A45-AE61-4876-9E00-A7F1A50402D9
+:END:
+#+title: magit
+
+Interface for [[file:git.org][git]] in [[file:emacs.org][emacs]].
+
+* magit-stage
+
+The prefix argument is handy for diffing.
+
+#+begin_src emacs-lisp
+  (describe-function #'magit-stage)
+#+end_src
+
+#+RESULTS:
+: magit-stage is an interactive interpreted-function in
+: ‘magit-apply.el’.
+: 
+: (magit-stage &optional INTENT)
+: 
+: Add the change at point to the staging area.
+: With a prefix argument, INTENT, and an untracked file (or files)
+: at point, stage the file but not its content.
+: 
+
+
+* Issues
+** magit-section-dent-value
+
+On this repo...
+
+#+begin_example
+cl-no-applicable-method: No applicable method: magit-section-ident-value, #s(magit-section status nil nil #<marker at 1 in magit: notebooks> nil nil eieio--unbound eieio--unbound nil ...)
+#+end_example
+
+*** Isolate
+
+Check another repo - same issue
+
+*** Hot Take
+
+Installation issue - try reinstalling
+
+#+begin_src emacs-lisp
+  (package-delete (package-get-descriptor 'magit))
+  (makunbound 'magit-section-paint)
+  (fmakunbound 'magit-section-paint)
+  (package-install 'magit)
+#+end_src
+
+#+RESULTS:
+: Package ‘magit’ installed.
+
+magit-section-paint is already defined as something else than a generic function
+
+#+RESULTS:
+: Package ‘magit’ installed.
+
+Seems likely to be a version conflict. Likely between ~magit-section~
+and ~magit~.
+
+Tried [[file:emacs.org::*package-upgrade-all][package-upgrade-all]].
+
+Restarting resolved it...coward's way out.
+
