@@ -483,6 +483,26 @@ they can be in either order.
 
 #+end_example
 
+** help-buffer
+#+begin_src emacs-lisp
+  (describe-function #'help-buffer)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+help-buffer is an autoloaded byte-code-function in ‘help-mode.el’.
+
+(help-buffer)
+
+Return the name of a buffer for inserting help.
+If ‘help-xref-following’ is non-nil and the current buffer is
+derived from ‘help-mode’, this is the name of the current buffer.
+
+Otherwise, return "*Help*", creating a buffer with that name if
+it does not already exist.
+
+#+end_example
+
 ** save-current-buffer
 
 #+begin_src emacs-lisp
