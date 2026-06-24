@@ -1,0 +1,60 @@
+#+TITLE: AI and The Carousel of Progress
+
+Last week my family and I went to Walt Disney World. Typically
+vacations are a time of reflection for me (with quotidian concerns
+removed) and this was no exception. One attraction that particularly
+resonated with some of my current thoughts was The Carousel of
+Progress (which I've probably seen a handful of times - twice in the
+past week). I've spent quite a bit of time lately contemplating the
+relative return on investment for many of our current technologies,
+and the historical perpsectives of the ride along with Disney's
+optimistic but dated message certainly fed some of those thoughts.
+
+One quick aside is that from what I saw I appreciate that Disney World
+is chock full of "cast members" that could presumably be automated
+away, and hope that that is an intentional choice to preserve the feel
+and offer employment rather than more of a cold, calculated decision
+driven by net costs that can arise from premature adoption of
+automation.
+
+The current adoption of AI raises a couple related questions. One
+which seems to have an obvious but disappointing answer is how much of
+the current wave of automation will be rationalized. Much earlier
+automation was justified by (understandably) arguing that it was
+taking over work which was some combination of monotonous, dangerous,
+and strenuous. What reason will be provided when the jobs being
+supplanted fall outside of those criteria and are potentially those
+activities for which more time would have been granted by prior
+automation? In many/most cases the specific work that AI is doing may
+not be particularly "rewarding", but they may be stepping stones that
+bolster skills that underpin some of the more sophisticated tasks, or
+they may represent work which allow people to keep the lights on while
+honing their craft.
+
+"The complementary question is what pursuits we're ostensibly freeing
+ourselves up for. While the previous question is unsurprisingly not
+touched on on Carousel, this one has a couple nods in the current
+incarnation where there's mention of things like having more time to
+walk our dogs, along with a discussion of not wanting to have to deal
+with things like cooking. Cooking feels like a good example of
+something that some people enjoy doing and there's already an
+established means to leverage such people to not have to do it
+yourself. I think the /AI Slop/ episode of Last Week Tonight also
+featured some exectutive mentioning tasks like making music as
+something AI will spare us from. The last seen of Carousel features a
+couple of the animatronics playing VR video games...is the desired end
+state a life of pure leisure? Prior to the trip but appropriate since
+it's also Disney my perspective is that we may be on the path to
+the life of the humans on WALL-E - being led not to a world of
+enrichment but one in which we feed some type of larger machine
+through consumption with presumably some ulterior Solyent Greenesque
+reason for us to continue to exist.
+
+My main related takeaway from the week is ultimately one of optimisim
+driven by freedom which reflects a confluence of these thoughts along
+with others such as preferring Knowledge Over Products. While Carousel
+certainly didn't provide a lot of deep insight to unravel, it
+helped reinforce ideas around having a more critical eye towards
+"progress" (and this prompted me to read /A Short History of Progress/).
+
+
