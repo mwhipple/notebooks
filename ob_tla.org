@@ -22,8 +22,10 @@ matching the module content.
 Fix the verification of this
 
 A pluscal block will by default produce the translated output.
-If ~:tlc~ is added as a header argument it will instead be translated
-and run.
+~:output~ can be provided with the following options:
+- ~translate-out~ returns the results of invoking the translate
+  command
+- ~tlc~ passes the translated spec through TLC and returns that output.
 
 When ~:tlc~ is used configuration will also be generated based on the
 arguments.
@@ -236,20 +238,22 @@ the output will be the translated content.
 #+begin_src emacs-lisp
   (defun org-babel-execute:pluscal (body params)
     (let* ((default-directory (org-babel-temp-directory))
-  	 (spec-file (cdr (assq :file params))))
+    	 (spec-file (cdr (assq :file params))))
       (with-temp-file spec-file (insert body))
-      (org-babel-eval
-       (format "%s pcal.trans %s"
-  	     (org-babel-tla/cmd-base)
-  	     spec-file)
-       "")
-      (if (assq :tlc params)
-  	(let ((cfg-file (format "%s.cfg" spec-file))
-  	      (cfg-content (tla/render-config params)))
-  	  (with-temp-file cfg-file (insert cfg-content))
-  	  (tla/tlc spec-file cfg-file))
-        (with-temp-buffer (insert-file-contents spec-file)
-  			(buffer-string)))))
+      (let ((out (org-babel-eval
+    		(format "%s pcal.trans %s"
+    			(org-babel-tla/cmd-base)
+    			spec-file)
+    		"")))
+        (message (cdr (assq :output params)))
+        (pcase (cdr (assq :output params))
+    	("translate-out" out)
+  	("tlc" (let ((cfg-file (format "%s.cfg" spec-file))
+    		     (cfg-content (tla/render-config params)))
+    		 (with-temp-file cfg-file (insert cfg-content))
+    		 (tla/tlc spec-file cfg-file)))
+  	(t (with-temp-buffer (insert-file-contents spec-file)
+    			     (buffer-string)))))))
 #+end_src
 
 #+RESULTS:
