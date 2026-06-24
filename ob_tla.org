@@ -4,6 +4,36 @@
 #+title: ob-tla
 
 Support [[id:12BC5AB3-D75B-43BC-A51E-C8CD80AAE829][tla+]] in [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]] (hopefully).
+
+I'll be building this out to support my own needs, where the goal is
+to be able to evaluate TLA+ specs within org-babel files.
+
+I'll be both doing this as I work through and capture info from the
+Practical TLA+ book, and as I build out actual specs.
+
+* Current State
+
+The library itself currently supports ~pluscal~ blocks...as that's
+what I'll typically use.
+
+The blocks should have a ~:file~ argument which is a valid TLA+ name,
+matching the module content.
+
+Fix the verification of this
+
+A pluscal block will by default produce the translated output.
+If ~:tlc~ is added as a header argument it will instead be translated
+and run.
+
+When ~:tlc~ is used configuration will also be generated based on the
+arguments.
+- ~:specification~ must be provided
+  improve the verification
+- ~:invariant~ can be specified one or more times
+
+I have ideas around providing a tidier interface, but for now the
+above does the trick.
+
 * Cribbing/Exploration
 
 I'll start with cribbing from one of the other babel modes...starting
@@ -255,12 +285,13 @@ The params are an alist with keyword keys, and the emacs mustache
 library needs to be configured accordingly.
 
 #+begin_src emacs-lisp
-    (require 'mustache)
-    (defconst tla/config-template "{{#specification}}SPECIFICATION {{specification}}{{/specification}}
-  ")
-    (defun tla/render-config (cfg)
-      (let ((mustache-key-type 'keyword))
-        (mustache-render tla/config-template cfg)))
+      (require 'mustache)
+      (defconst tla/config-template "{{#specification}}SPECIFICATION {{specification}}{{/specification}}
+{{#invariant}}INVARIANT {{invariant}}{{/invariant}}
+    ")
+      (defun tla/render-config (cfg)
+        (let ((mustache-key-type 'keyword))
+          (mustache-render tla/config-template cfg)))
 #+end_src
 
 #+RESULTS:
