@@ -134,3 +134,84 @@ This should be replaced if this notebook is used directly.
 #+begin_src emacs-lisp
   (setq org-babel-tla-jar-path (expand-file-name "~/memex/vendor/tlacli/src/tlacli/tla2tools.jar"))
 #+end_src
+
+** Let's Get the Basics Working
+
+The path to the config file needs to be provided to avoid issues, so
+to start we'll provide a blank one.
+
+The spec file needs to match the module definition, so the temp file
+approach used by C babel won't cut it.
+
+Instead will directly set [[id:C3FDF080-68AF-4F2C-ACB7-0F53F8307EAB][default-directory]] and then write the
+appropriate files.
+
+#+begin_src emacs-lisp
+  (defun org-babel-execute:tla (body params)
+    (let* ((default-directory (org-babel-temp-directory))
+  	 (spec-file (cdr (assq :file params)))
+  	 (cfg-file (format "%s.cfg" spec-file)))
+      (with-temp-file spec-file (insert body))
+      (with-temp-file cfg-file (insert ""))
+      (org-babel-eval
+       (format "%s tlc2.TLC -config %s %s"
+  	     (org-babel-tla/cmd-base)
+  	       cfg-file
+  	       spec-file)
+         "")))
+#+end_src
+
+#+RESULTS:
+: org-babel-execute:tla
+
+#+begin_src tla :file foo.tla
+  ---- MODULE foo ----
+  ====================
+#+end_src
+
+#+RESULTS:
+#+begin_example
+TLC2 Version 2.15 of Day Month 20?? (rev: d5b5a7f)
+Warning: Please run the Java VM which executes TLC with a throughput optimized garbage collector by passing the "-XX:+UseParallelGC" property.
+(Use the -nowarning option to disable this warning.)
+Running breadth-first search Model-Checking with fp 65 and seed 8887393191956676524 with 1 worker on 10 cores with 8192MB heap and 64MB offheap memory [pid: 14303] (Mac OS X 26.3.1 aarch64, Homebrew 21.0.11 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /private/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/babel-YPmWu4/foo.tla
+Semantic processing of module foo
+Starting... (2026-06-23 21:22:18)
+Computing initial states...
+Finished computing initial states: 0 distinct states generated at 2026-06-23 21:22:18.
+Model checking completed. No error has been found.
+  Estimates of the probability that TLC did not check all reachable states
+  because two distinct states had the same fingerprint:
+  calculated (optimistic):  val = 0.0
+0 states generated, 0 distinct states found, 0 states left on queue.
+The depth of the complete state graph search is 1.
+Finished in 00s at (2026-06-23 21:22:18)
+#+end_example
+
+This works :woohoo:
+~:file~ is required and should therefore have some additional
+validation...but overall it seems like this establishes the pattern
+that can be used to do things for reals.
+
+** pluscal
+
+Define the pluscal language which provides expansion but can then also
+be passed through tlc.
+
+#+begin_src emacs-lisp
+  (defun org-babel-execute:pluscal (body params)
+    (let* ((default-directory (org-babel-temp-directory))
+  	 (spec-file (cdr (assq :file params))))
+      (with-temp-file spec-file (insert body))
+      (org-babel-eval
+       (format "%s pcal.trans %s"
+  	     (org-babel-tla/cmd-base)
+  	     spec-file)
+       "")
+      (with-temp-buffer (insert-file-contents spec-file)
+  		      (buffer-string))))
+#+end_src
+
+#+RESULTS:
+: org-babel-execute:pluscal
