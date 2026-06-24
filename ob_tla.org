@@ -27,11 +27,12 @@ A pluscal block will by default produce the translated output.
   command
 - ~tlc~ passes the translated spec through TLC and returns that output.
 
-When ~:tlc~ is used configuration will also be generated based on the
+When ~tlc~ is the output the configuration will also be generated based on the
 arguments.
 - ~:specification~ must be provided
   improve the verification
 - ~:invariant~ can be specified one or more times
+- ~:property~ can be specified one or more times
 
 I have ideas around providing a tidier interface, but for now the
 above does the trick.
@@ -292,6 +293,7 @@ library needs to be configured accordingly.
       (require 'mustache)
       (defconst tla/config-template "{{#specification}}SPECIFICATION {{specification}}{{/specification}}
 {{#invariant}}INVARIANT {{invariant}}{{/invariant}}
+{{#property}}PROPERTY {{property}}{{/property}}
     ")
       (defun tla/render-config (cfg)
         (let ((mustache-key-type 'keyword))
