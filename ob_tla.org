@@ -196,8 +196,12 @@ that can be used to do things for reals.
 
 ** pluscal
 
-Define the pluscal language which provides expansion but can then also
+Define the pluscal language which provides expansion but can also
 be passed through tlc.
+
+If the ~:tlc~ argument is passed the specification will be verified
+and the output will be that produced by TLC - if it is not provided
+the output will be the translated content.
 
 #+begin_src emacs-lisp
   (defun org-babel-execute:pluscal (body params)
@@ -209,9 +213,55 @@ be passed through tlc.
   	     (org-babel-tla/cmd-base)
   	     spec-file)
        "")
-      (with-temp-buffer (insert-file-contents spec-file)
-  		      (buffer-string))))
+      (if (assq :tlc params)
+  	(let ((cfg-file (format "%s.cfg" spec-file))
+  	      (cfg-content (tla/render-config params)))
+  	  (with-temp-file cfg-file (insert cfg-content))
+  	  (tla/tlc spec-file cfg-file))
+        (with-temp-buffer (insert-file-contents spec-file)
+  			(buffer-string)))))
 #+end_src
 
 #+RESULTS:
 : org-babel-execute:pluscal
+
+** tla/tlc
+
+Execution of TLA will be split out so that it can be invoked by either
+pluscal or tla (where the latter just becomes an adapter).
+
+#+begin_src emacs-lisp
+  (defun tla/tlc (spec-file cfg-file)
+      "Inoke TLC for the provided spec-file, cfg-file, and arguments.
+  This should be run in the same directory as those files (using default-directory)."
+      (org-babel-eval
+       (format "%s tlc2.TLC -config %s %s"
+  	     (org-babel-tla/cmd-base)
+  	     cfg-file
+  	     spec-file)
+       ""))
+#+end_src
+
+** Config File Generation
+
+[[https://mustache.github.io][Mustache]] will be used for config file generation. The template should
+be moved elsewhere and reused for things like the python interface,
+but it will start life here and be subsequently extracted.
+
+This looks like a good reference for the format:
+https://docs.tlapl.us/using:tlc:config_file
+
+The params are an alist with keyword keys, and the emacs mustache
+library needs to be configured accordingly.
+
+#+begin_src emacs-lisp
+    (require 'mustache)
+    (defconst tla/config-template "{{#specification}}SPECIFICATION {{specification}}{{/specification}}
+  ")
+    (defun tla/render-config (cfg)
+      (let ((mustache-key-type 'keyword))
+        (mustache-render tla/config-template cfg)))
+#+end_src
+
+#+RESULTS:
+: tla/render-config
