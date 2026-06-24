@@ -69,3 +69,17 @@ fit to capture the formatting.
 So anyway...the plan will be to produce a config file as needed and
 then invoke the jar.
 
+** Settings
+
+*** org-babel-tla-java-command
+
+#+begin_src emacs-lisp
+  (defcustom org-babel-tla-java-command org-babel-java-command
+    "The java command that will be used to invoke the tla jar.
+  Defaults to org-babel-java-command."
+    :group 'org-babel
+    :type 'string)
+#+end_src
+
+#+RESULTS:
+: org-babel-tla-java-command
