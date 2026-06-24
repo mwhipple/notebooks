@@ -211,6 +211,9 @@ TESTFN is called with 2 arguments: a car of an alist element and KEY.
 * Filesystem
 
 ** default-directory
+:PROPERTIES:
+:ID:       C3FDF080-68AF-4F2C-ACB7-0F53F8307EAB
+:END:
 
 #+begin_src emacs-lisp
   (describe-variable 'default-directory)

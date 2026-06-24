@@ -1,0 +1,71 @@
+:PROPERTIES:
+:ID:       95B942E1-D6F6-42CC-9A8F-E49F23482AB9
+:END:
+#+title: ob-tla
+
+Support [[id:12BC5AB3-D75B-43BC-A51E-C8CD80AAE829][tla+]] in [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]] (hopefully).
+* Cribbing/Exploration
+
+I'll start with cribbing from one of the other babel modes...starting
+from a small one I can quickly find.
+
+I'm sure much of this is documented, but I'll start with just diving in.
+
+Standard options are in the Emacs [[file:/Applications/Emacs.app/Contents/Resources/lisp/org][lisp/org]] directory (starting with ~ob-~).
+I guess I'll just go down the list.
+
+** org-babel-execute:tla initial experiment
+
+I'll start with borrowing the pattern for ob-C and seeing how to wire
+it up for use.
+
+I'll start with seeing if this just works based on the function convention...
+
+#+begin_src emacs-lisp
+  (defun org-babel-execute:tla (body params)
+    (message (format "!!!%s %s" body params)))
+#+end_src
+
+#+RESULTS:
+: org-babel-execute:tla
+
+#+begin_src tla :jar bar
+  foo
+#+end_src
+
+#+RESULTS:
+: !!!foo ((:colname-names) (:rowname-names) (:result-params replace) (:result-type . value) (:results . replace) (:exports . code) (:session . none) (:cache . no) (:noweb . no) (:hlines . no) (:tangle . no) (:jar . bar))
+
+** Quick aside on interface
+
+Before jumping too deeply into implementaiton I should think about how
+I'd want the different interfaces to work given how tla+ tends to be
+executed.
+
+Out of the gate I'd gravitate towards two languages, one for tla which
+will typically be used for verification, and one for pluscal which can
+be either in translate or verify mode. The parameters that would
+populate the configuration file can be passed as header args: they may
+be verbose but it seems like the use of inputs like lists and tables
+may provide a particularly nice way to manage that.
+
+** Execution Composition
+
+As discovered when working with [[id:12BC5AB3-D75B-43BC-A51E-C8CD80AAE829][tla+]] generally...there's a bit of a
+gap in terms of CLI use where there's not a particularly great story
+around convenient execution.
+
+The jar can be invoked...but typically also requires a config file to
+be created. Both pieces seem fairly easy, so the only lacking piece is
+really a packaged interface. So far, I'm not sure such an interface is
+worthwhile (unless it were integrated into TLA+ itself which seems
+likely to have some friction), and so just handling those pieces
+individually seems like the way to go. In many cases like this one the
+config file contents will be fed programmatically, so trying to wrap
+that up in some way to produce a fairly minimal format also seems
+somewhat overkill. Something like mustache could probably be a good
+fit to capture the formatting.
+
+So anyway...the plan will be to produce a config file as needed and
+then invoke the jar.
+

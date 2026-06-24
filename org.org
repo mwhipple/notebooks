@@ -263,3 +263,55 @@ Other properties affecting publication.
   You can customize this variable.
 
 #+end_example
+
+* Agenda
+
+** Configuration
+I tweak the agenda to match my preferred flow.
+
+*** org-agenda-todo-ignore-scheduled
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-agenda-todo-ignore-scheduled)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-agenda-todo-ignore-scheduled is a variable defined in ‘org-agenda.el’.
+
+Its value is t
+Original value was nil
+
+Non-nil means, ignore some scheduled TODO items when making TODO list.
+This applies when creating the global todo list.
+Valid values are:
+
+past     Don’t show entries scheduled today or in the past.
+
+future   Don’t show entries scheduled in the future.
+         The idea behind this is that by scheduling it, you don’t want to
+         think about it until the scheduled date.
+
+all      Don’t show any scheduled entries in the global todo list.
+         The idea behind this is that by scheduling it, you have already
+         "taken care" of this item.
+
+t        Same as ‘all’, for backward compatibility.
+
+This variable can also have an integer as a value.  See
+‘org-agenda-todo-ignore-timestamp’ for more details.
+
+See also ‘org-agenda-todo-ignore-with-date’.
+See also the variable ‘org-agenda-tags-todo-honor-ignore-options’ if you want
+to make his option also apply to the tags-todo list.
+
+  You can customize this variable.
+
+#+end_example
+
+#+begin_src emacs-lisp
+  (setq org-agenda-todo-ignore-scheduled t)
+#+end_src
+
+#+RESULTS:
+: t
