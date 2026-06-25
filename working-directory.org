@@ -1,0 +1,35 @@
+:PROPERTIES:
+:ID:       407FF7CB-4616-4213-9948-413D9436AAB8
+:END:
+#+title: working-directory
+
+The working directory establishes a location context within a
+filesystem - relative paths would be resolved...relative to the
+working-directory.
+
+/Ideally/ this is little more than a convenience, where the
+combination of the working directory and the relative paths could be
+replaced by absolute paths, and the working directory is used for
+things like more succinct file references or being able to do what
+amounts to applying some behavior that is packaged using relative
+paths to a conforming file system location.
+
+In other cases some software may assume or require relative paths, and
+then those paths and the working-directory become essential rather
+than convenient. Sometimes this just reflects deficiencies, though it
+may also be in support of security (though it seems as though security
+needs would be better addressed by namespacing in modern systems).
+
+* cwd
+:PROPERTIES:
+:ID:       D5564D89-8B0A-4A0C-BDE7-87D8B0A28D87
+:END:
+
+Display the current working directory (cwd).
+
+** is-a-cwd
+:PROPERTIES:
+:ID:       5BA060A7-6674-4523-BC6F-6D34C230B12B
+:END:
+
+Anchor for implementation.

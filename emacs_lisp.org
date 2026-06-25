@@ -753,7 +753,7 @@ TESTFN is called with 2 arguments: a car of an alist element and KEY.
 
 * Filesystem
 
-** default-directory
+** default-directory ([[id:5BA060A7-6674-4523-BC6F-6D34C230B12B][is-a-cwd]])
 :PROPERTIES:
 :ID:       C3FDF080-68AF-4F2C-ACB7-0F53F8307EAB
 :END:

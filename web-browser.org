@@ -1,0 +1,42 @@
+:PROPERTIES:
+:ID:       41FBEEAE-48A6-4C8E-830F-985AC8B0B7F6
+:END:
+#+title: web-browser
+
+I've started to try to move off of Web Browsers for the most part.
+Somewhat ironically this idea got a boost from reading timbl's "This
+is for Everyone" and specifically the chapter about the HTML5/WHATWG
+schism.
+
+It seems like the vision of the Web as outlined in that book would best
+benefit from it being as open as possible, and Web browsers may
+incidentally introduce siloing...and modern browsers may more
+intentionally introduce moats around those siloes.
+While this is certainly preferably to the even narrower and often
+darker alternatives of apps, it seems ideal that there should be some
+complement to "Anyone can say Anything about Any topic" on the
+consumption side, and the necessity of current browsers imposes a
+/heavy/ tax on that goal.
+
+This is an area where agents could become useful at least as a
+migratory step - though this would still likely be another
+manifestation of the [[id:F974B544-7B68-42E0-8978-DF4D1DECACA1][browser-sledgehammer]].
+* Web Browsers and Engines
+
+Much of the argument above swirls around the idea of the complexity of
+the browser engine and the assertion that if the costs of engine
+development are staggering, then the content is behind some
+combination of a moat or bloat (which is typically hard to justify).
+This includes both rendering engines, and Javascript/ES engines.
+
+While there's a slew of different "browsers" - they tend to use one of
+a small number of engines, and those engines that fall from grace at
+the tech giants also seem to smoothly descend towards obsolesence.
+
+Some lightweight (and text) browsers use alternative engines, but
+much of the modern Web will probably not be supported (where that
+level of graceful degradation seems to be a thing of the past).
+
+Something like NetSurf with an optional QuickJS engine would shed the
+bloat concerns, and then could be supplemented with behavior to fill
+the moat.

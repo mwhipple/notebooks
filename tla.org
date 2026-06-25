@@ -4,13 +4,18 @@
 :END:
 #+title: tla+
 
-TLA+ is a modeling language to aid with formal verification.
+TLA+ is a modeling language to aid with [[id:04CB70C7-0644-4623-AE80-63512F671F9A][formal-verification]].
 
 https://github.com/tlaplus/tlaplus
 
 These are typically run within the toolbox,
 docs are available here for more manual invocation:
 https://lamport.azurewebsites.net/tla/standalone-tools.html?back-link=tools.html
+
+* Babel Support
+
+There is no evident support for TLA+ in [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]]...so I'll look at
+throwing that together in [[id:95B942E1-D6F6-42CC-9A8F-E49F23482AB9][ob-tla]].
 
 * Interface Selection
 

@@ -21,17 +21,13 @@ I use "cabinet" to refer to an org roam space as a nod to zettelkasten.
 #+begin_example
 org-roam-directory is a variable defined in ‘org-roam.el’.
 
-Its value is "/Users/mwhipple/memex/cabinet/"
+Its value is "/Users/mwhipple/memex"
 Original value was 
 "/Users/mwhipple/org-roam/"
-Local in buffer org_roam.org<cabinet>; global value is 
-"/Users/mwhipple/memex"
 
 Default path to Org-roam files.
 All Org files, at any level of nesting, are considered part of the Org-roam.
 
-  This variable’s value is directory-local, set by the file
-  ‘/Users/mwhipple/memex/cabinet/.dir-locals.el’.
   You can customize this variable.
 
 #+end_example

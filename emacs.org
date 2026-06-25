@@ -918,3 +918,28 @@ If PRESERVE-SEQUENCES is t, the sequences are hidden instead of
 being deleted.
 
 #+end_example
+
+
+* Sharing macOS Environment Variables with Emacs
+:PROPERTIES:
+:ID:       4F46C5C5-5999-4BCD-8432-2AE564B64843
+:END:
+
+This information is I think captured in a square, which I'll better
+integrate later.
+
+For emacs I typically want to reuse the same environment variables
+defined for the shell, but that is non-trivial in
+[[id:516B3C9A-4288-4ACF-8DEE-3526DFD21083][macOS]]. exec-path-from-shell is a perfectly good approach but feels
+like it /shouldn't/ be needed - Emacs-plus provides an arguably
+cleaner alternative but is applied at the time of installation and
+therefore may miss some changes (which could be addressed by a
+re-install).
+
+Experiments to handle this through the applications ~plist~ fell flat,
+so what I've ended up doing is injecting an additional script within
+the applicaion bundle to act as the entrypoint, which uses a shell to
+load a shared environment prior to ~exec~ing the main emacs process.
+
+An invokable recipe should be pulled in here later.
+

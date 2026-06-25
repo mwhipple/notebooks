@@ -21,3 +21,41 @@ corresponding MacBook kicking around.
 
 Particularly given my tendency to use Linux systems: I tend to use
 software (FOSS) that is portable rather than anything Mac specific.
+
+* Environment Variables
+
+The information here was largely discovered while working through
+[[id:4F46C5C5-5999-4BCD-8432-2AE564B64843][Sharing macOS Environment Variables with Emacs]].
+
+One of the above quirks which seems to make sense through the above
+described system admin prism but can feel like a nuisance is
+management of environment variables. In particular, this is in terms
+of applications launched directly...anything forked off a shell would
+inherit the expored environment as usual.
+
+In addition to not being obvious, any official documentation is less
+than forthcoming, where a reasonable third-party source I've used is:
+https://www.autodesk.com/support/technical/article/caas/sfdcarticles/sfdcarticles/How-to-set-an-environment-variable.html
+The applications are insulated, so the prospect of being able to do
+things like apply wide changes without per-app coordination seems
+dicey.
+
+** PATH
+
+There seems to be additional mechanisms for controlling the path,
+through ~/etc/paths~ and ~/etc/paths.d~ which /seems/ somewhat fine
+although it also seems out of place given the rest of the structure of
+Mac OS (it feels like some more POSIX-y tool leaking out) all of which
+can be managed by ~path_helper~...which similar to the above has
+virtually no documentation.
+
+Likely due to PATH being a particular security concern, there also
+seem to be additional restrictions placed on this so the above seem to
+not be applied to many apps.
+
+** Diagnosing
+
+The Apple Script editor affords a decent interface to check on the
+results of a GUI-initiated app - ~system attribute "<NAME>"~ can be
+used to echo the environment variables.
+

@@ -6,6 +6,8 @@
 Org Babel is a literate programming environment using org mode in [[id:436EB0B7-811E-4828-BBF7-4126517DD7C6][emacs]].
 
 As evidenced by this repository, I'm fairly keen on it.
+I'm also toying with expanding this into a wider project called [[id:0F78767D-42FF-4027-B3A2-26CA1898F788][obi]].
+
 
 I first started using it several years ago, but largely shelved it in favor of
 lighter touch solutions, but more recently with the rise of using AI for coding
@@ -265,3 +267,28 @@ The rule of thumb is likely to keep things either very dumb and simple
 the engine. The undesriable middle ground is where functionality is
 both not clearly defined as something that is provided, nor is it
 clearly visible.
+
+* Definition of Header Args
+
+Most of the packages define the header args, but for the languages themsleves
+the need/value is unclear (there's likely more info within the core org-babel code).
+
+* Spelunking
+
+As part of building out [[id:95B942E1-D6F6-42CC-9A8F-E49F23482AB9][ob-tla]] I'll start picking through the standard
+babel implementations.
+
+I have a background effort to get up to speed on the [[id:436EB0B7-811E-4828-BBF7-4126517DD7C6][emacs]] source code as a whole,
+but that's a substantially larger effort.
+
+** Languages
+
+*** [[file:/Applications/Emacs.app/Contents/Resources/lisp/org/ob-C.el.gz][ob-C]]
+Support for [[id:B55CCD9A-F769-4369-AB9E-AD1F64A3B9C6][C]]/C++/D - heavy on converting data to code and handling scaffolding
+Not much in the way of interesting process support.
+
+** Utilities
+
+For supporting async interactions I was mostly expecting to want to
+use comint, so I've appropriately been led to
+[[file:/Applications/Emacs.app/Contents/Resources/lisp/org/ob-comint.el.gz][ob-comint]].
