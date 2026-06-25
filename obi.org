@@ -1,0 +1,28 @@
+:PROPERTIES:
+:ID:       0F78767D-42FF-4027-B3A2-26CA1898F788
+:END:
+#+title: obi
+
+obi is what I'm tentatively calling an effort to expand use of [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]].
+The actual name is just slamming together the ~ob~ used for org-babel
+and Star Wars, but it could also theoretically acquire a backronym
+like Org Babel Improved.
+
+** Background
+
+I've recently taken to using org babel very heavily...and that mostly
+comes down to treating those files as a primary interface/shell. This
+therefore seems likely to expand beyond what org-babel may typically
+come with org-babel: while all the building blocks seem to be there,
+there may be some specific extensions and conventions that
+fall out of using it more extensively.
+
+One of the other fairly significant goals is that while I'll be using
+obi with org-babel and emacs for the foreseeable future, I'd also want
+that to be detachable. Therefore everything should remain fully
+transparent so that what is done could be readily extracted to some
+other interface like a boring old shell.
+
+Beyond babel and evident alternatives like Jupyter, I'm also likely to
+want to draw on ideas from other systems that had interfaces similar
+to interactive notebooks such as the Acme editor and Oberon.

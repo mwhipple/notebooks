@@ -315,3 +315,34 @@ to make his option also apply to the tags-todo list.
 
 #+RESULTS:
 : t
+
+*** org-scheduled-past-days
+
+To accomodate some personal quirky use of org agenda, I want items to
+show up that may be fairly ancient.
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-scheduled-past-days)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-scheduled-past-days is a variable defined in ‘org-agenda.el’.
+
+Its value is 999999
+Original value was 10000
+
+Number of days to continue listing scheduled items not marked DONE.
+When an item is scheduled on a date, it shows up in the agenda on
+this day and will be listed until it is marked done or for the
+number of days given here.
+
+  This variable is safe as a file local variable if its value
+  satisfies the predicate ‘integerp’.
+  You can customize this variable.
+
+#+end_example
+
+#+begin_src emacs-lisp
+  (setq org-scheduled-past-days 999999)
+#+end_src
