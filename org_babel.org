@@ -251,7 +251,6 @@ If non-nil, TAB uses the language’s major-mode binding in code blocks.
 #+end_src
 
 * Practices
-
 ** Packaging Up Behaviors
 :PROPERTIES:
 :ID:       DF79A72C-570A-49C8-A566-D494C59F732C
@@ -267,15 +266,58 @@ The rule of thumb is likely to keep things either very dumb and simple
 the engine. The undesriable middle ground is where functionality is
 both not clearly defined as something that is provided, nor is it
 clearly visible.
+** Async Execution
+
+One underlying goal would be to have everything async by default. This
+seems fairly likely to invite splitting out [[id:0F78767D-42FF-4027-B3A2-26CA1898F788][obi]], but I'll see how far
+this can get by default. Much of this should be able to be driven by async.
 
 * Definition of Header Args
 
 Most of the packages define the header args, but for the languages themsleves
 the need/value is unclear (there's likely more info within the core org-babel code).
 
-* Temp File Creation
+* Usage
+** org-babel-execute-src-block
+:PROPERTIES:
+:ID:       D7816316-280D-4B7B-9420-3E33264E24D2
+:END:
 
-** org-babel-temp-file
+This is the main entrypoint...it's large enough that I want to split
+it up which I guess I'll start tackling in [[id:31893E0D-17BB-4DE7-8C4D-9D98E2D23856][obi/execute-src-block]]
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-execute-src-block)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-execute-src-block is an autoloaded interactive
+byte-code-function in ‘ob-core.el’.
+
+(org-babel-execute-src-block &optional ARG INFO PARAMS EXECUTOR-TYPE)
+
+Execute the current source code block and return the result.
+Insert the results of execution into the buffer.  Source code
+execution and the collection and formatting of results can be
+controlled through a variety of header arguments.
+
+With prefix argument ARG, force re-execution even if an existing
+result cached in the buffer would otherwise have been returned.
+
+Optionally supply a value for INFO in the form returned by
+‘org-babel-get-src-block-info’.
+
+Optionally supply a value for PARAMS which will be merged with
+the header arguments specified at the front of the source code
+block.
+
+EXECUTOR-TYPE is the type of the org element responsible for the
+execution of the source block.  If not provided then informed
+guess will be made.
+
+#+end_example
+
 
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
