@@ -317,7 +317,30 @@ execution of the source block.  If not provided then informed
 guess will be made.
 
 #+end_example
+** org-babel-current-src-block-location
 
+This mostly feels like something that should just be contained as
+paramters/variables within stack frames. The defined variable seems
+likely to introduce challenges or complications with concurrency
+(which seems typical of emacs).
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-babel-current-src-block-location)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-current-src-block-location is a variable defined in ‘ob-core.el’.
+
+Its value is 8370
+
+Marker pointing to the source block currently being executed.
+This may also point to a call line or an inline code block.  If
+multiple blocks are being executed (e.g., in chained execution
+through use of the :var header argument) this marker points to
+the outer-most code block.
+
+#+end_example
 
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
