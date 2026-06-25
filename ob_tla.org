@@ -37,6 +37,21 @@ arguments.
 I have ideas around providing a tidier interface, but for now the
 above does the trick.
 
+** Note on output and errors
+
+~translate-out~ was added to aid in debugging since the errors were
+not readily surfaceable otherwise. I'll likely straighten this out as
+I dig more deeply into org-babel, but for now just using that if an
+error is reported surfaces the error.
+
+It would likely also be nice to head off some errors TLA+ may throw -
+though I'm unlikely to do that unless I spend more time than currently
+expected working with TLA+.
+
+** TODO Perform async evaluation
+
+crib from ob-shell and probably leverage async
+
 * Cribbing/Exploration
 
 I'll start with cribbing from one of the other babel modes...starting
@@ -239,7 +254,9 @@ the output will be the translated content.
 #+begin_src emacs-lisp
   (defun org-babel-execute:pluscal (body params)
     (let* ((default-directory (org-babel-temp-directory))
-    	 (spec-file (cdr (assq :file params))))
+    	 (spec-file (or
+  		     (cdr (assq :file params))
+  		     (error ":file parameter must be specified!!"))))
       (with-temp-file spec-file (insert body))
       (let ((out (org-babel-eval
     		(format "%s pcal.trans %s"

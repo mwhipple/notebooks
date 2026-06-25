@@ -5,12 +5,21 @@
 
 A notebook for this project itself.
 
+This project is called a "cabinet" which is a reference to a physical
+zettelkasten setup which is likely to involve a card cabinet, and this
+project uses org-roam to provide that model
+
 * Setup
 
-This requires some local initialization so that it can act relatively
-self-contained.
+This provides documentation for two modes of setup, self-contained and embedded.
 
-** Emacs Setup
+** Self-Contained
+
+A self contained setup is one where the directoy acts as an independent cabinet.
+This makes use of ~.dir-locals~.
+
+This has the advantage of not accidentally getting tangled with any other org-roam
+configurations, but has the disadvantage that it can't become part of a larger subgraph.
 
 *** ~.dir-locals.el~
 
@@ -50,28 +59,12 @@ to populate the appropriate directory at the time of tangling.
 #+RESULTS:
 : /Users/mwhipple/memex/notebooks/org-roam.db
 
-* One-Time
+** Embedded
 
-This captures some of the setup that was needed once, but isn't expected to be needed again.
+An embdded setup is one in which this is loaded a subdirectory of an
+existing cabinet.
 
-** [[file:github.org][GitHub]] Setup
-
-Obey GH instructions.
-
-#+begin_src shell
-echo "#+TITLE: notebooks" >> README.org
-git init
-git add README.org
-git commit -m "first commit"
-git branch -M main
-git remote add origin git@github.com:mwhipple/notebooks.git
-git push -u origin main
-#+end_src
-
-#+RESULTS:
-| Reinitialized | existing | Git      | repository | in           | /Users/mwhipple/ws/notebooks/.git/ |                |
-| [main         | b27dc91] | first    | commit     |              |                                    |                |
-| 1             | file     | changed, | 1          | insertion(+) |                                    |                |
-| branch        | 'main'   | set      | up         | to           | track                              | 'origin/main'. |
-
-
+The model used in this case is that this should be treated as somewhat
+of a public tenant within a wider graph, and that the enclosing
+cabinet should be able to reference the data within this subgraph, but
+edges going in the other direction should be avoided/prevented.

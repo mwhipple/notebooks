@@ -69,6 +69,9 @@ is enabled in the Help buffer.
 #+end_example
 
 *** describe-package
+:PROPERTIES:
+:ID:       3DB5F595-EE3B-4DD7-BC98-E42E8DC69F4D
+:END:
 
 #+begin_src emacs-lisp
   (describe-function #'describe-package)
@@ -89,6 +92,43 @@ Display the full documentation of PACKAGE (a symbol).
 
   Probably introduced at or before Emacs version 24.1.
 
+#+end_example
+
+**** mw/describe-package
+
+describe-package unfortunately jams the information into a fairly
+presumptuous spot and the function it calls just inserts the content
+where it iss invoked, so instead I'll just create a middle ground that
+captures and returns that content.
+
+#+begin_src emacs-lisp
+  (defun mw/describe-package (package)
+    (with-temp-buffer
+      (describe-package-1 package)
+      (buffer-string)))
+#+end_src
+
+#+RESULTS:
+: mw/describe-package
+
+#+begin_src emacs-lisp
+  (mw/describe-package 'async)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+     Status: Installed in ‘async-20260318.1803/’ (unsigned). Delete
+    Version: 20260318.1803
+     Commit: 5faab28916603bb324d9faba057021ce028ca847
+    Summary: Asynchronous processing in Emacs.
+   Requires: emacs-24.4
+    Website: https://github.com/jwiegley/emacs-async
+   Keywords: async 
+     Author: John Wiegley <jwiegley@gmail.com>
+Other versions: 20260318.1803 (melpa), 1.9.9 (melpa-stable), 1.9.9 (gnu).
+
+Adds the ability to call asynchronous functions and process with ease.  See
+the documentation for `async-start' and `async-start-process'.
 #+end_example
 
 *** describe-variable
@@ -169,18 +209,521 @@ To save the mark state as well as point and the current buffer, use
 * [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
 
 #+begin_src emacs-lisp
-  (shortdoc "list")
+  (save-excursion
+    (shortdoc 'list)
+    (buffer-substring-no-properties (point-min) (point-max)))
 #+end_src
 
 #+RESULTS:
+#+begin_example
+Making Lists
+
+(make-list length init)
+  Return a newly created list of length LENGTH, with each element being INIT.
+  (make-list 5 'a)
+    ⇒ (a a a a a)
+
+
+(cons car cdr)
+  Create a new cons, give it CAR and CDR as components, and return it.
+  (cons 1 '(2 3 4))
+    ⇒ (1 2 3 4)
+
+
+(list &rest objects)
+  Return a newly created list with specified arguments as elements.
+  (list 1 2 3)
+    ⇒ (1 2 3)
+
+
+(number-sequence from &optional to inc)
+  Return a sequence of numbers from FROM to TO (both inclusive) as a list.
+  (number-sequence 5 8)
+    ⇒ (5 6 7 8)
+
+
+(ensure-list object)
+  Return OBJECT as a list.
+  (ensure-list "foo")
+    ⇒ ("foo")
+  (ensure-list '(1 2 3))
+    ⇒ (1 2 3)
+
+Operations on Lists
+
+(append &rest sequences)
+  Concatenate all the arguments and make the result a list.
+  (append '("foo" "bar") '("zot"))
+    ⇒ ("foo" "bar" "zot")
+
+
+(copy-tree tree &optional vectors-and-records)
+  Make a copy of TREE.
+  (copy-tree '(1 (2 3) 4))
+    ⇒ (1 (2 3) 4)
+
+
+(flatten-tree tree)
+  Return a "flattened" copy of TREE.
+  (flatten-tree '(1 (2 3) 4))
+    ⇒ (1 2 3 4)
+
+
+(car list)
+  Return the car of LIST.  If LIST is nil, return nil.
+  (car '(one two three))
+    ⇒ one
+  (car '(one . two))
+    ⇒ one
+  (car nil)
+    ⇒ nil
+
+
+(cdr list)
+  Return the cdr of LIST.  If LIST is nil, return nil.
+  (cdr '(one two three))
+    ⇒ (two three)
+  (cdr '(one . two))
+    ⇒ two
+  (cdr nil)
+    ⇒ nil
+
+
+(last list &optional n)
+  Return the last link of LIST.  Its car is the last element.
+  (last '(one two three))
+    ⇒ (three)
+
+
+(butlast list &optional n)
+  Return a copy of LIST with the last N elements removed.
+  (butlast '(one two three))
+    ⇒ (one two)
+
+
+(nbutlast list &optional n)
+  Modify LIST to remove the last N elements.
+  (nbutlast (list 'one 'two 'three))
+    ⇒ (one two)
+
+
+(nth n list)
+  Return the Nth element of LIST.
+  (nth 1 '(one two three))
+    ⇒ two
+
+
+(nthcdr n list)
+  Take cdr N times on LIST, return the result.
+  (nthcdr 1 '(one two three))
+    ⇒ (two three)
+
+
+(take n list)
+  Return the first N elements of LIST.
+  (take 3 '(one two three four))
+    ⇒ (one two three)
+
+
+(ntake n list)
+  Modify LIST to keep only the first N elements.
+  (ntake 3 (list 'one 'two 'three 'four))
+    ⇒ (one two three)
+
+
+(elt sequence n)
+  Return element of SEQUENCE at index N.
+  (elt '(one two three) 1)
+    ⇒ two
+
+
+(car-safe object)
+  Return the car of OBJECT if it is a cons cell, or else nil.
+  (car-safe '(one two three))
+    ⇒ one
+
+
+(cdr-safe object)
+  Return the cdr of OBJECT if it is a cons cell, or else nil.
+  (cdr-safe '(one two three))
+    ⇒ (two three)
+
+
+(push newelt place)
+  Add NEWELT to the list stored in the generalized variable PLACE.
+  (push 'a list)
+    → [it depends]
+
+
+(pop place)
+  Return the first element of PLACE’s value, and remove it from the list.
+  (pop list)
+    → [it depends]
+
+
+(setcar cell newcar)
+  Set the car of CELL to be NEWCAR.  Returns NEWCAR.
+  (setcar list 'c)
+    ⇒ c
+
+
+(setcdr cell newcdr)
+  Set the cdr of CELL to be NEWCDR.  Returns NEWCDR.
+  (setcdr list (list c))
+    ⇒ '(c)
+
+
+(nconc &rest lists)
+  Concatenate any number of lists by altering them.
+  (nconc (list 1) (list 2 3 4))
+    ⇒ (1 2 3 4)
+
+
+(delq elt list)
+  Delete members of LIST which are ‘eq’ to ELT, and return the result.
+  (delq 'a (list 'a 'b 'c 'd))
+    ⇒ (b c d)
+
+
+(delete elt seq)
+  Delete members of SEQ which are ‘equal’ to ELT, and return the result.
+  (delete 2 (list 1 2 3 4))
+    ⇒ (1 3 4)
+  (delete "a" (list "a" "b" "c" "d"))
+    ⇒ ("b" "c" "d")
+
+
+(remq elt list)
+  Return LIST with all occurrences of ELT removed.
+  (remq 'b '(a b c))
+    ⇒ (a c)
+
+
+(remove elt seq)
+  Return a copy of SEQ with all occurrences of ELT removed.
+  (remove 2 '(1 2 3 4))
+    ⇒ (1 3 4)
+  (remove "a" '("a" "b" "c" "d"))
+    ⇒ ("b" "c" "d")
+
+
+(delete-dups list)
+  Destructively remove ‘equal’ duplicates from LIST.
+  (delete-dups (list 1 2 4 3 2 4))
+    ⇒ (1 2 4 3)
+
+Mapping Over Lists
+
+(mapcar function sequence)
+  Apply FUNCTION to each element of SEQUENCE, and make a list of the results.
+  (mapcar #'list '(1 2 3))
+    ⇒ ((1) (2) (3))
+
+
+(mapcan function sequence)
+  Apply FUNCTION to each element of SEQUENCE, and concatenate
+  (mapcan #'list '(1 2 3))
+    ⇒ (1 2 3)
+
+
+(mapc function sequence)
+  Apply FUNCTION to each element of SEQUENCE for side effects only.
+  (mapc #'insert '("1" "2" "3"))
+    ⇒ 123("1" "2" "3")
+
+
+(seq-reduce function sequence initial-value)
+  Reduce the function FUNCTION across SEQUENCE, starting with INITIAL-VALUE.
+  (seq-reduce #'+ '(1 2 3) 0)
+    ⇒ 6
+
+
+(mapconcat function sequence &optional separator)
+  Apply FUNCTION to each element of SEQUENCE, and concat the results as strings.
+  (mapconcat #'identity '("foo" "bar") "|")
+    ⇒ "foo|bar"
+
+Predicates
+
+(listp object)
+  Return t if OBJECT is a list, that is, a cons cell or nil.
+  (listp '(1 2 3))
+    ⇒ t
+  (listp nil)
+    ⇒ t
+  (listp '(1 . 2))
+    ⇒ t
+
+
+(consp object)
+  Return t if OBJECT is a cons cell.
+  (consp '(1 2 3))
+    ⇒ t
+  (consp nil)
+    ⇒ nil
+
+
+(proper-list-p object)
+  Return OBJECT’s length if it is a proper list, nil otherwise.
+  (proper-list-p '(1 2 3))
+    ⇒ 3
+  (proper-list-p nil)
+    ⇒ 0
+  (proper-list-p '(1 . 2))
+    ⇒ nil
+
+
+(null object)
+  Return t if OBJECT is nil, and return nil otherwise.
+  (null nil)
+    ⇒ t
+
+
+(atom object)
+  Return t if OBJECT is not a cons cell.  This includes nil.
+  (atom 'a)
+    ⇒ t
+
+
+(nlistp object)
+  Return t if OBJECT is not a list.  Lists include nil.
+  (nlistp '(1 2 3))
+    ⇒ nil
+  (nlistp t)
+    ⇒ t
+  (nlistp '(1 . 2))
+    ⇒ nil
+
+Finding Elements
+
+(memq elt list)
+  Return non-nil if ELT is an element of LIST.  Comparison done with ‘eq’.
+  (memq 'b '(a b c))
+    ⇒ (b c)
+
+
+(memql elt list)
+  Return non-nil if ELT is an element of LIST.  Comparison done with ‘eql’.
+  (memql 2.0 '(1.0 2.0 3.0))
+    ⇒ (2.0 3.0)
+
+
+(member elt list)
+  Return non-nil if ELT is an element of LIST.  Comparison done with ‘equal’.
+  (member 2 '(1 2 3))
+    ⇒ (2 3)
+  (member "b" '("a" "b" "c"))
+    ⇒ ("b" "c")
+
+
+(member-ignore-case elt list)
+  Like ‘member’, but ignore differences in case and text representation.
+  (member-ignore-case "foo" '("bar" "Foo" "zot"))
+    ⇒ ("Foo" "zot")
+
+Association Lists
+
+(assoc key alist &optional testfn)
+  Return non-nil if KEY is equal to the car of an element of ALIST.
+  (assoc "b" '(("a" . 1) ("b" . 2)))
+    ⇒ ("b" . 2)
+
+
+(rassoc key alist)
+  Return non-nil if KEY is ‘equal’ to the cdr of an element of ALIST.
+  (rassoc "b" '((1 . "a") (2 . "b")))
+    ⇒ (2 . "b")
+
+
+(assq key alist)
+  Return non-nil if KEY is ‘eq’ to the car of an element of ALIST.
+  (assq 'b '((a . 1) (b . 2)))
+    ⇒ (b . 2)
+
+
+(rassq key alist)
+  Return non-nil if KEY is ‘eq’ to the cdr of an element of ALIST.
+  (rassq 'b '((1 . a) (2 . b)))
+    ⇒ (2 . b)
+
+
+(assoc-string key list &optional case-fold)
+  Like ‘assoc’ but specifically for strings (and symbols).
+  (assoc-string "foo" '(("a" 1) (foo 2)))
+    ⇒ (foo 2)
+
+
+(alist-get key alist &optional default remove testfn)
+  Find the first element of ALIST whose ‘car’ equals KEY and return its ‘cdr’.
+  (alist-get 2 '((1 . a) (2 . b)))
+    ⇒ b
+
+
+(assoc-default key alist &optional test default)
+  Find object KEY in a pseudo-alist ALIST.
+  (assoc-default 2 '((1 . a) (2 . b) #'=))
+    ⇒ b
+
+
+(copy-alist alist)
+  Return a copy of ALIST.
+  (copy-alist '((1 . a) (2 . b)))
+    ⇒ ((1 . a) (2 . b))
+
+
+(assoc-delete-all key alist &optional test)
+  Delete from ALIST all elements whose car is KEY.
+  (assoc-delete-all "b" (list '("a" . a) '("b" . b) '("b" . c)))
+    ⇒ (("a" . a))
+
+
+(assq-delete-all key alist)
+  Delete from ALIST all elements whose car is ‘eq’ to KEY.
+  (assq-delete-all 2 (list '(1 . a) '(2 . b) '(2 . c)))
+    ⇒ ((1 . a))
+
+
+(rassq-delete-all value alist)
+  Delete from ALIST all elements whose cdr is ‘eq’ to VALUE.
+  (rassq-delete-all 'b (list '(1 . a) '(2 . b) '(2 . c)))
+    ⇒ ((1 . a) (2 . c))
+
+Property Lists
+
+(plist-get plist prop &optional predicate)
+  Extract a value from a property list.
+  (plist-get '(a 1 b 2 c 3) 'b)
+    ⇒ 2
+
+
+(plist-put plist prop val &optional predicate)
+  Change value in PLIST of PROP to VAL.
+  (setq plist (plist-put plist 'd 4))
+    e.g. ⇒ (a 1 b 2 c 3 d 4)
+
+
+(plist-member plist prop &optional predicate)
+  Return non-nil if PLIST has the property PROP.
+  (plist-member '(a 1 b 2 c 3) 'b)
+    ⇒ (b 2 c 3)
+
+Data About Lists
+
+(length sequence)
+  Return the length of vector, list or string SEQUENCE.
+  (length '(a b c))
+    ⇒ 3
+
+
+(length< sequence length)
+  Return non-nil if SEQUENCE is shorter than LENGTH.
+  (length< '(a b c) 1)
+    ⇒ nil
+
+
+(length> sequence length)
+  Return non-nil if SEQUENCE is longer than LENGTH.
+  (length> '(a b c) 1)
+    ⇒ t
+
+
+(length= sequence length)
+  Return non-nil if SEQUENCE has length equal to LENGTH.
+  (length= '(a b c) 3)
+    ⇒ t
+
+
+(safe-length list)
+  Return the length of a list, but avoid error or infinite loop.
+  (safe-length '(a b c))
+    ⇒ 3
+#+end_example
 
 * [[id:910846DE-0B6A-4CE4-A32E-3DE30642F744][alists]]
 
 #+begin_src emacs-lisp
-  (shortdoc "alist")
+  (save-excursion
+    (shortdoc 'alist)
+    (buffer-substring-no-properties (point-min) (point-max)))
 #+end_src
 
 #+RESULTS:
+#+begin_example
+Alist Basics
+
+(assoc key alist &optional testfn)
+  Return non-nil if KEY is equal to the car of an element of ALIST.
+  (assoc 'foo '((foo . bar) (zot . baz)))
+    ⇒ (foo . bar)
+
+
+(rassoc key alist)
+  Return non-nil if KEY is ‘equal’ to the cdr of an element of ALIST.
+  (rassoc 'bar '((foo . bar) (zot . baz)))
+    ⇒ (foo . bar)
+
+
+(assq key alist)
+  Return non-nil if KEY is ‘eq’ to the car of an element of ALIST.
+  (assq 'foo '((foo . bar) (zot . baz)))
+    ⇒ (foo . bar)
+
+
+(rassq key alist)
+  Return non-nil if KEY is ‘eq’ to the cdr of an element of ALIST.
+  (rassq 'bar '((foo . bar) (zot . baz)))
+    ⇒ (foo . bar)
+
+
+(assoc-string key list &optional case-fold)
+  Like ‘assoc’ but specifically for strings (and symbols).
+  (assoc-string "foo" '(("foo" . "bar") ("zot" "baz")))
+    ⇒ ("foo" . "bar")
+
+Manipulating Alists
+
+(assoc-delete-all key alist &optional test)
+  Delete from ALIST all elements whose car is KEY.
+  (assoc-delete-all "b" (list '("a" . a) '("b" . b) '("b" . c)))
+    ⇒ (("a" . a))
+
+
+(assq-delete-all key alist)
+  Delete from ALIST all elements whose car is ‘eq’ to KEY.
+  (assq-delete-all 2 (list '(1 . a) '(2 . b) '(2 . c)))
+    ⇒ ((1 . a))
+
+
+(rassq-delete-all value alist)
+  Delete from ALIST all elements whose cdr is ‘eq’ to VALUE.
+  (rassq-delete-all 'b (list '(1 . a) '(2 . b) '(2 . c)))
+    ⇒ ((1 . a) (2 . c))
+
+
+(alist-get key alist &optional default remove testfn)
+  Find the first element of ALIST whose ‘car’ equals KEY and return its ‘cdr’.
+  (let ((foo '((bar . zot)))) (setf (alist-get 'bar foo) 'zot) foo)
+    ⇒ ((bar . zot))
+
+Misc
+
+(assoc-default key alist &optional test default)
+  Find object KEY in a pseudo-alist ALIST.
+  (assoc-default "foobar" '(("foo" . baz)) #'string-match)
+    ⇒ baz
+
+
+(copy-alist alist)
+  Return a copy of ALIST.
+  (let* ((old '((foo . bar))) (new (copy-alist old))) (eq old new))
+    ⇒ nil
+
+
+(let-alist alist &rest body)
+  Let-bind dotted symbols to their cdrs in ALIST and execute BODY.
+  (let ((colors '((rose . red) (lily . white)))) (let-alist colors (if (eq \.rose 'red) \.lily)))
+    ⇒ white
+#+end_example
 
 ** assoc
 
