@@ -273,6 +273,26 @@ clearly visible.
 Most of the packages define the header args, but for the languages themsleves
 the need/value is unclear (there's likely more info within the core org-babel code).
 
+* Temp File Creation
+
+** org-babel-temp-file
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-temp-file)
+#+end_src
+
+#+RESULTS:
+: org-babel-temp-file is a byte-code-function in ‘ob-core.el’.
+: 
+: (org-babel-temp-file PREFIX &optional SUFFIX)
+: 
+: Create a temporary file in the ‘org-babel-temporary-directory’.
+: Passes PREFIX and SUFFIX directly to ‘make-temp-file’ with the
+: value of function ‘temporary-file-directory’ temporarily set to the
+: value of ‘org-babel-temporary-directory’.
+: 
+
+
 * Spelunking
 
 As part of building out [[id:95B942E1-D6F6-42CC-9A8F-E49F23482AB9][ob-tla]] I'll start picking through the standard

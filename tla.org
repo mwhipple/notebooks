@@ -697,6 +697,46 @@ Handle some of the subprocess boilerplate.
 
 #+end_src
 
+**** Invoking TLC
+
+For the most part execution itself will just involve composing the
+command and relying on files to be present, but to support
+programmatic access it seems like actually creating the files is the
+right boundary.
+
+***** Imports
+
+#+begin_src python :noweb-ref tla_imports
+  from pathlib import Path
+  import os
+  import subprocess
+  import uuid
+  from tempfile import TemporaryDirectory # For state cleanup
+#+end_src
+
+***** Body
+
+#+begin_src python :noweb-ref tla_methods
+  def tlc(self, spec: str, cfg: CfgFile, cfg_file="tlacli.cfg", **kwargs):
+      os.chdir(Path(spec).parent)
+      cfg.write(cfg_file)
+      self.call(f"-metadir {state_dir} -config {cfg_file} -workers=1 -terse -cleanup {spec}")
+#+end_src
+
+#+RESULTS:
+
+**** Functions
+
+There is existing logic to find the jar, that could be carried forward
+as a factory method.
+
+This overall doesn't seem worthwhile. It's not going to be a
+self-contained package without java, and if we wanted to include that
+we'd be better off building an image which could then likely use
+something like an environment variable.
+
+#+RESULTS:
+
 ** Usage
 
 *** Help
@@ -765,4 +805,81 @@ if applied in certain combinations only:
 	Defaults to a random seed if not specified)
 -aril num: Adjust the seed for random simulation
 	Defaults to 0 if not specified
+#+end_example
+
+*** With Config
+
+There's config generation using mustache in emacs-lisp which will be
+pulled in here: as a result the class will go away and be replaced
+with a general object.
+
+#+begin_src python :dir /tmp/tla
+  tla = TLA(jar_path="~/memex/vendor/tlacli/src/tlacli/tla2tools.jar")
+  cfg_file='test.cfg'
+  CfgFile(specification="Spec", invariants=["NoOverdrafts"], properties=["EventuallyConsistent"]).write(cfg_file)
+  tla.call(f'-config {cfg_file} wire.tla')
+#+end_src
+
+#+RESULTS:
+#+begin_example
+TLC2 Version 2.15 of Day Month 20?? (rev: d5b5a7f)
+Warning: Please run the Java VM which executes TLC with a throughput optimized garbage collector by passing the "-XX:+UseParallelGC" property.
+(Use the -nowarning option to disable this warning.)
+Running breadth-first search Model-Checking with fp 113 and seed 8355106431381112692 with 1 worker on 10 cores with 8192MB heap and 64MB offheap memory [pid: 63366] (Mac OS X 26.3.1 aarch64, Homebrew 21.0.11 x86_64, MSBDiskFPSet, DiskStateQueue).
+Parsing file /private/tmp/tla/wire.tla
+Parsing file /private/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/Integers.tla
+Parsing file /private/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/Naturals.tla
+Semantic processing of module Naturals
+Semantic processing of module Integers
+Semantic processing of module wire
+Starting... (2026-06-22 20:49:17)
+Implied-temporal checking--satisfiability problem has 1 branches.
+Computing initial states...
+Computed 2 initial states...
+Computed 4 initial states...
+Computed 8 initial states...
+Computed 16 initial states...
+Finished computing initial states: 25 distinct states generated at 2026-06-22 20:49:17.
+Progress(5) at 2026-06-22 20:49:17: 332 states generated, 222 distinct states found, 0 states left on queue.
+Checking temporal properties for the complete state space with 222 total distinct states at (2026-06-22 20:49:17)
+Error: Temporal properties were violated.
+
+Error: The following behavior constitutes a counter-example:
+
+State 1: <Initial predicate>
+/\ people = {"alice", "bob"}
+/\ sender = <<"alice", "alice">>
+/\ receiver = <<"bob", "bob">>
+/\ acc = [alice |-> 5, bob |-> 5]
+/\ amount = <<1, 1>>
+/\ pc = <<"CheckAndWithdraw", "CheckAndWithdraw">>
+
+State 2: <CheckAndWithdraw line 50, col 27 to line 56, col 77 of module wire>
+/\ people = {"alice", "bob"}
+/\ sender = <<"alice", "alice">>
+/\ receiver = <<"bob", "bob">>
+/\ acc = [alice |-> 4, bob |-> 5]
+/\ amount = <<1, 1>>
+/\ pc = <<"Deposit", "CheckAndWithdraw">>
+
+State 3: <CheckAndWithdraw line 50, col 27 to line 56, col 77 of module wire>
+/\ people = {"alice", "bob"}
+/\ sender = <<"alice", "alice">>
+/\ receiver = <<"bob", "bob">>
+/\ acc = [alice |-> 3, bob |-> 5]
+/\ amount = <<1, 1>>
+/\ pc = <<"Deposit", "Deposit">>
+
+State 4: <Deposit line 58, col 18 to line 61, col 68 of module wire>
+/\ people = {"alice", "bob"}
+/\ sender = <<"alice", "alice">>
+/\ receiver = <<"bob", "bob">>
+/\ acc = [alice |-> 3, bob |-> 6]
+/\ amount = <<1, 1>>
+/\ pc = <<"Deposit", "Done">>
+
+State 5: Stuttering
+Finished checking temporal properties in 00s at 2026-06-22 20:49:17
+332 states generated, 222 distinct states found, 0 states left on queue.
+Finished in 00s at (2026-06-22 20:49:17)
 #+end_example
