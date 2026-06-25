@@ -1,0 +1,154 @@
+:PROPERTIES:
+:ID:       3FA03B7E-EC84-40E0-AB18-E3AED640DA89
+:END:
+#+title: scrapbook-interface
+
+* Existing Interfaces
+
+There are a few interface models that currently dominate how we
+interact with computer software.
+
+The more primitive option is the command line. These offer
+REPL-style (read-eval-print-loop) interactions, and when combined with
+concepts such as pipes allow for powerful composition of behavior. One
+potential gap, however, is that they are heavily biased towards the
+current interaction: while most shells provide facilities such as
+history they are an extension to rather than a core part of the way in
+which the interface is used.
+
+The more modern alternative is the desktop metaphor. While the goal
+itself seems admirable, the realization of providing affordances
+analogous to a desktop have seemed elusive - the difference between
+the metaphor and reality were identified ~30 years ago by Brooks in
+"No Silver Bullet" (and likely others), but seem to anecdotally
+reinforce his perception at the time that there's really only one
+active item on the desktop at a given time. Compared to a shell, the
+desktop is less readily malleable - and the ability for multiple
+desktop items to interact remain limited let alone the prospect of
+anything like composing something novel.
+
+An additional model to call out are individual processes that provide
+a range of prospective behaviors, such as Web browsers and IDEs. While
+Web browsers are likely positioned to become a unifying interface,
+most of these are likely to just fall victim into the
+generalization/specialization - jack of all trades, master of none
+dichotomy. It seems far more tenable to think we should have some form
+of /space/ in which tools can operate and ideally interoperate, rather
+than pursuing a tool to rule them all.
+
+* Forced Integration
+
+Much of the history of software has been afflicted with forced
+integration. Tool A speaks plain text, Tool B speaks JSON: how do they
+work together? Tool A is in Python, Tool B is in JavaScript, how can
+they share logic? This introduces a bunch of toil on the micro level
+and expands on the macro level to latent value such as what Thomas
+Friedman describes as the "worfklow revolution".
+
+This cost of integration is related to the precision and limitations
+of the tools used. If the integration has some rough
+edges then things could break...or potentially much worse: do the
+wrong thing.
+
+/I/ may not care about those differences. I can certainly
+interpret through some of those differences. I may not want to parse
+less friendly formats, but I could (though I certainly don't have an
+interest in Matrix-style reading binary). More significantly, the
+overhead of adapting can drop dramatically: making such data easily
+readable avoids the very long tail of having it conform to a precise
+set of expectations that has been historically necessary for such
+integrations. Overall the person-in-the-loop flow reduces the baseline
+costs and then allows for incremental refinements. In this model I
+therefore just want somewhere where all of that information can be
+collected and then I can process it and refine the tools as warranted.
+
+Now (of course) we can just re-read that last paragraph and replace
+any mention of "I" and "person" with "An AI agent" (except the agent
+can be expected to go Neo).
+
+* Invasion of Natural Language
+
+One of the most consequential tools to gain popularity in the past few
+years is generative AI (surprise!). Beyond the other impacts, it
+carries a different interaction model. It is often treated as a
+larger-grained component rather than having a more focused purpose
+(and agents may be expected to work out and utilize those more focused
+tasks themselves).
+
+More importantly, the primary means to interact with an LLM is through
+natural language: specialized integrations are therefore
+largely unnecessary. While there may be a lot of value in automating
+certain asepcts such as context management, the interactions
+themselves are relatively unconstrained.
+
+This overall results in a model which is largely in the opposite end
+of the spectrum from forced integration. We end up in a state where
+we're making heavy use of a tool that doesn't have much integration
+cost, and one that as previously mentioned can provide some adaptation
+for some of the other integrations.
+
+* Engineering with AI
+
+The use of AI in engineering can be viewed as working at a higher
+level of abstraction, and ultimately once dust settles that may be
+what is left. Disciplined use of AI does not differ from other
+engineering practices in that it should draw on an empirical
+methodology. Data should be collected on both the system that is
+produced and how the process is used, so that both can be verified and
+improved upon as justified.
+
+This leads to the assertion that such information should be surfaced
+and tracked somewhere, and it may effectively become the new interface
+for the use of AI. If you are developing systems where prompts produce
+your code, then that code is no longer your source, your prompts are -
+and they should be treated accordingly.
+
+This has clear implications on how we think about aspects such as
+maintainability which seem to have plenty of debate in the community,
+but it also enjoins us to revisit ideas around how necessary information
+is conveyed as part of or colocated with code. While more robust
+perspectives such as Bertrand Meyer's Single Model Principle can
+likely just be raised a level, without appropriate adaptation there's
+likely to be a lot of people that learn the hard way that things like
+code are not made more fungible by reducing the cost of production,
+but of reproduction.
+
+* Scrapbook Interface
+
+All of the above has led me to adopt what I'll call the Scrapbook
+Interface. This is a collection of live notebooks (Jupyter is likely
+the most commonly known option, but I'm using Babel in org mode). But
+rather than a "notebook" the model is more akin to a scrapbook where
+different data can just pop in and out of the different books without
+any cohesion or need for something analogous to transcribing.
+
+This draws on a range of existing practices and patterns such as
+laboratory notebooks, literate programming, and text user interfaces
+such as used in Oberon and Acme. The end result is that I have
+repositories of such scrapbooks which I compose and navigate in order
+to have those books either invoke functionality or produce artifacts,
+and any results and supporting information can be tracked in place.
+
+This allows me to quickly cobble together different tools without
+worrying up front about how they will integrate, which can span
+packaging, languages, and formats. This includes AI, where different
+models and agents could be called or constructed...for the time being
+I'm primarily using LangChain and Ollama which can just be dropped
+into Python blocks to wire up agents.
+
+The scrapbooks themselves allow me to readily track and navigate
+work and collect references. I also use Org Roam which allows the
+assorted information to be collected as a graph over time which allows
+for associations to evolve more independently of a fixed structure.
+This approach as a whole provides me a more intentional way to use all
+tools including the new breed of those supporting agentic coding.
+
+Perhaps most significantly, this also lends itself to being
+self-reinforcing due to there being a consistent model for context
+collection. From an AI-centric perspective this can be repositioned
+from the concept of executable /scrapbooks/, to executable
+/context/. This can therefore evolve to the equivalent of an
+~AGENTS.md~ file or skills files that readily enables both agentic and
+personal interactions. Myself and any agents can collaborate on a
+shared set of context to produce artifacts, and it can serve as a
+readily usable interface for both of us.
