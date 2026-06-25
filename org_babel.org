@@ -292,6 +292,23 @@ the need/value is unclear (there's likely more info within the core org-babel co
 : value of ‘org-babel-temporary-directory’.
 : 
 
+** org-babel-temporary-directory
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-babel-temporary-directory)
+#+end_src
+
+#+RESULTS:
+: org-babel-temporary-directory is a variable defined in ‘ob-core.el’.
+: 
+: Its value is
+: "/var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/babel-YPmWu4"
+: 
+: Directory to hold temporary files created to execute code blocks.
+: Used by ‘org-babel-temp-file’.  This directory will be removed on
+: Emacs shutdown.
+: 
+
 
 * Spelunking
 

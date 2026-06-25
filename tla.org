@@ -883,3 +883,8 @@ Finished checking temporal properties in 00s at 2026-06-22 20:49:17
 332 states generated, 222 distinct states found, 0 states left on queue.
 Finished in 00s at (2026-06-22 20:49:17)
 #+end_example
+
+* Resources
+** TODO https://github.com/Apress/practical-tla-plus
+** TODO https://lamport.azurewebsites.net/tla/book-21-07-04.pdf
+** TODO https://www.learntla.com/
