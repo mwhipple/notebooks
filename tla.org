@@ -696,3 +696,73 @@ Handle some of the subprocess boilerplate.
           print(result.stdout)
 
 #+end_src
+
+** Usage
+
+*** Help
+
+#+begin_src python
+  tla = TLA(jar_path="~/memex/vendor/tlacli/src/tlacli/tla2tools.jar")
+  tla.call("-help")
+#+end_src
+
+#+RESULTS:
+#+begin_example
+TLC2 Version 2.15 of Day Month 20?? (rev: d5b5a7f)
+The model checker (TLC) provides the functionalities of model
+checking or simulation of TLA+ specifications. The syntax for this command is:
+
+java tlc2.TLC [GENERAL-SWITCHES] [MODE-SWITCHES] SPEC
+
+where SPEC is the name of the specification's root module
+and the optional GENERAL-SWITCHES are:
+-checkpoint num: interval between check point (in minutes)
+	Defaults 30 if not provided.
+-cleanup: clean up the states directory
+-config file: provide the config file.
+	Defaults to SPEC.cfg if not provided
+-continue: continue running even when invariant is violated
+	Defaults to stop at the first violation if not specified
+-coverage minutes: interval between collection of coverage information 
+	on the spec in minutes. Defaults to no coverage if not specified
+-deadlock: do not check for deadlock.
+	Defaults to check deadlock if not specified
+-difftrace: show only the differences between successive states,
+	when printing trace. Defaults to print full state descriptions
+-debug: debugging information (not for production use)
+-dump file: dump all the states into file
+-fp num: use the num'th irreducible polynomial from the list 
+	stored in the class FP64.
+-gzip: control if gzip is applied to value input/output stream.
+	Defaults to off if not specified
+-metadir path: store metadata in the directory at path
+	Defaults to SPEC-directory/states if not specified
+-recover id: recover from the checkpoint with id
+	Defaults to scratch run if not specified
+-terse: do not expand values in Print statement
+	Defaults to expand value if not specified
+-tool: tool mode (put message codes on console)
+-nowarning: disable all the warnings.
+	Defaults to report warnings if not specified
+-workers num: the number of TLC worker threads. Defaults to 1.
+
+By default, TLC starts in the model checking mode using breadth-first
+approach for the state space exploration. This can be changed using
+the MODE-SWITCHES. In contrast to the GENERAL-SWITCHES these can be used 
+if applied in certain combinations only:
+
+{[-dfid num][ -view]|-simulate[ -depth num][ -aril num][ -seed num]}
+
+-modelcheck: run in model checking mode using breadth-first approach for the
+	state space exploration (default)
+-dfid num: run in model checking mode and use depth-first iterative deepening
+	with initial depth num
+-view: apply VIEW (if provided) when printing out states.
+-simulate: run in simulation mode
+-depth num: specify the depth of random simulation
+	Defaults to 100 if not specified
+-seed num: provide the seed for random simulation
+	Defaults to a random seed if not specified)
+-aril num: Adjust the seed for random simulation
+	Defaults to 0 if not specified
+#+end_example
