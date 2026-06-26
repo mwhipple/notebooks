@@ -27,7 +27,7 @@ Beyond babel and evident alternatives like Jupyter, I'm also likely to
 want to draw on ideas from other systems that had interfaces similar
 to interactive notebooks such as the Acme editor and Oberon.
 
-* obi/execute-src-block
+* TODO obi/execute-src-block
 :PROPERTIES:
 :ID:       31893E0D-17BB-4DE7-8C4D-9D98E2D23856
 :END:

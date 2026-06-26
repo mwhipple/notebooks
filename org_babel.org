@@ -406,6 +406,63 @@ A specialized function shouldn't be needed.
 : The default regexp used is "[ \f\t\n\r\v]" but another one
 : can be specified as the REGEXP argument.
 : 
+** Options
+*** org-babel-get-src-block-info
+:PROPERTIES:
+:ID:       07E2C869-F716-4F4B-9FFA-1EF81ABF7CF8
+:END:
+
+This definition seems reasonably close to [[id:6292A2C7-5E3E-4CF2-89ED-D184351F116B][chunkable-length]] and so will
+be left in place and analyzed here (rather than being decomposed).
+
+The function makes use of the optional datum argument, defaulting to
+the active context and then only executes if the datum is an
+inline-src-block or src-block.
+
+The :language org property is the language for the block which seems
+to be a reasonable part of the org API ostensibly covered elsewhere.
+
+The info structure is then composed of a list of:
+- language
+- body
+- params (merged with levels of defaults)...potentially processed and
+  with file destination resolved
+- switches?
+- name (if present)
+- start as determined by begin or post-affiliated
+- format string for block coderef
+(documented below also but what some of the things mean can be
+expanded above).
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-get-src-block-info)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-get-src-block-info is a byte-code-function in ‘ob-core.el’.
+
+(org-babel-get-src-block-info &optional NO-EVAL DATUM)
+
+Extract information from a source block or inline source block.
+
+When optional argument NO-EVAL is non-nil, Babel does not resolve
+remote variable references; a process which could likely result
+in the execution of other code blocks, and do not evaluate Lisp
+values in parameters.
+
+By default, consider the block at point.  However, when optional
+argument DATUM is provided, extract information from that parsed
+object instead.
+
+Return nil if point is not on a source block (blank lines after a
+source block are considered a part of that source block).
+Otherwise, return a list with the following pattern:
+
+  (language body arguments switches name start coderef)
+
+#+end_example
+
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
 #+end_src
