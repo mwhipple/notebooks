@@ -1,0 +1,55 @@
+#+TITLE: Information Firehose and Mindful Consumption
+
+One product that is frequently featured when my family and I watch
+streaming services is Rocket Money, and we have a running joke around
+one fo the commercials where one of the actors says "Rocket Money" in
+an odd stoccato way with abnormal emphasis that is seemingly also
+supposed to be recall in action but just reads like she's surprised by
+what she's saying. When we first saw the commercials, I was thinking I
+needed to audit my subscriptions, but could easily just do it myself -
+but after prolonged exposure I started to ponder the idea that such
+needs are widespread enough to warrant such commercials. While I'd
+previously viewed some of those issues as something specific to
+myself, this implied that they were more endemic to the modern world.
+
+The main message of Rocket Money is to rein in subscriptions, which
+seems like a counteraction to how readily the combination of
+subscriptions and automatic payments can lead to unrecognized
+waste. This is symptomatic of a wider issue, however, in which various
+forms of consumption are made easier and expanded to the point where
+we become inattentive or numb to what we are actually consuming. This
+is most clearly combatted with minimalism (which I'm inclined
+towards), but more basically it can be addressed through something
+more akin to mindful consumption - and here consumption is not simply
+goods and services but information. This does not extend to conscious
+consumption (of which I'm also a proponent) but can remain instead
+remain fixed on personal benefit rather than wider
+implications. Without such care there are plenty of costs for both the
+consumer themselves (monetary, time, in some cases mental health) and
+the world (resources consumed and waste produced), and the benefit for
+anyone other than the vendors seems nebulous given that without
+attention the consumer themselves cannot appreciate what is being
+consumed and instead seem likely to just fall into a mindless
+equivalent of doom scrolling through existence.
+
+An adopted resolution to the above issue is to simply pay attention to
+what is being consumed. This can be accomplished by the strategic
+introduction of some minor friction. Things like subscriptions are
+readily addressed by actually tracking finances. Things like physical
+goods can be addressed by keeping some semblance of inventory. The
+most precious commodity of time can be addressed similarly, by just
+having taking stock of where it goes and the derived value.
+
+My suggested antidote is the mentioned strategic friction; introducing
+appropriate tasks that enjoin us to pay more attention.  The firehose
+of the modern world can lock us all into inertial system 1 thinking,
+whereas appropriately injected disruption allows us to more
+toughtfully anlayze our actions. That such attention seems lacking is
+caused by the removal of such friction - there is increasing
+automation and ease for the range of associated concerns such as
+finances, acquisition and disposal of goods, and information
+consumption. The optimal balance is likely to be different for
+different people, but there certainly tend to be risks in entering
+cycles and piling on; vendors will happily suggest that the solution
+is yet another straw to add to your camel, but I'm skeptical about
+going deeper into the desert.
