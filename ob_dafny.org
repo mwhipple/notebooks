@@ -1,0 +1,69 @@
+:PROPERTIES:
+:ID:       7559D25A-A451-46F7-864B-C42C86767B6E
+:END:
+#+title: ob-dafny
+
+Provide [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]] support for [[id:8BD69861-CEC7-4D93-804C-7002BEA8BF3B][dafny]].
+
+* Basic execution requirements
+
+Let's see if the dafny CLI can handle stdin...
+
+#+name: input
+#+begin_src dafny
+ method Main() {
+    print "Hello, World!\n";
+ }
+#+end_src
+
+#+RESULTS: input
+: 
+: Dafny program verifier finished with 0 verified, 0 errors
+: Hello, World!
+
+#+begin_src bash :stdin input :results output
+  dafny run <(cat)
+#+end_src
+
+#+RESULTS:
+: *** Error: Command-line argument '../../../../dev/fd/63' is neither a recognized option nor a filename with a supported extension (.dfy, .cs, .dll).
+
+Looks like it expects a file with a particular extension.
+
+** Configuration
+
+*** org-babel-dafny-command
+
+Define the dafny command to execute.
+
+#+begin_src emacs-lisp
+  (defcustom org-babel-dafny-command "dafny"
+    "Path to the dafny command."
+    :group 'org-babel
+    :type 'string)
+#+end_src
+
+#+RESULTS:
+: org-babel-dafny-command
+
+** org-babel-execute:dafny
+
+#+begin_src emacs-lisp
+  (defun org-babel-execute:dafny (body params)
+    (let ((tmp-src-file (org-babel-temp-file "dafny-src" ".dfy")))
+      (with-temp-file tmp-src-file (insert body))
+      (org-babel-eval
+       (format "%s run %s"
+  	     org-babel-dafny-command
+  	     tmp-src-file)
+       "")))
+#+end_src
+
+#+RESULTS:
+: org-babel-execute:dafny
+
+** Status
+
+This works enough to get me going (and could be extended to cover the
+other options), but should be revisited as part of the [[id:0F78767D-42FF-4027-B3A2-26CA1898F788][obi]] effort to
+default to asynchronous execution.

@@ -463,6 +463,15 @@ Otherwise, return a list with the following pattern:
 
 #+end_example
 
+** Temp File Creation
+
+This behavior itself should be generalized, but having the separate
+variable seems to makes sense. It seems like it may be better to
+have this be a function that closes over the variable, but from the
+perspective of the exposed interface that doesn't seem important.
+
+*** org-babel-temp-file
+
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
 #+end_src
@@ -478,7 +487,7 @@ Otherwise, return a list with the following pattern:
 : value of ‘org-babel-temporary-directory’.
 : 
 
-** org-babel-temporary-directory
+*** org-babel-temporary-directory
 
 #+begin_src emacs-lisp
   (describe-variable 'org-babel-temporary-directory)
@@ -495,10 +504,35 @@ Otherwise, return a list with the following pattern:
 : Emacs shutdown.
 : 
 
+** Comint
 
-* Comint
+*** org-babel-comint-async-register
 
-** org-babel-comint-eval-invisibly-and-wait-for-file
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-comint-async-register)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-comint-async-register is a byte-code-function in
+‘ob-comint.el’.
+
+(org-babel-comint-async-register SESSION-BUFFER ORG-BUFFER
+INDICATOR-REGEXP CHUNK-CALLBACK FILE-CALLBACK)
+
+Set local org-babel-comint-async variables in SESSION-BUFFER.
+ORG-BUFFER is added to ‘org-babel-comint-async-buffers’ if not
+present.  ‘org-babel-comint-async-indicator’,
+‘org-babel-comint-async-chunk-callback’, and
+‘org-babel-comint-async-file-callback’ are set to
+INDICATOR-REGEXP, CHUNK-CALLBACK, and FILE-CALLBACK
+respectively.
+
+#+end_example
+
+*** org-babel-comint-eval-invisibly-and-wait-for-file
+
+There seems to be nothing ob specific about this.
 
 #+begin_src emacs-lisp
   (describe-function #'org-babel-comint-eval-invisibly-and-wait-for-file)
