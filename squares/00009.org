@@ -1,0 +1,80 @@
+#+TITLE: The Trouble With Line Coverage
+
+Over the past several years it has seemingly become very standard to
+enforce a threshold for lines of code covered by tests. My experience
+has unfortunately led me to largely dismiss this as little more than a
+combination of the streetlamp effect and empty posturing.
+This particular opinion is informed by being exposed to some poor
+practices. One code base I worked on had very high line coverage...but
+within the tests virtually all of the logically interesting calls were
+replaced with test doubles. Therefore most of the tests didn't provide
+any verification for how the code would actually behave, and most of
+them effectively amounted to tests for the underlying language: while
+the actual intended result was not tested anywhere, there were
+assertions that the code was written a very specific way and the only
+way the test could have failed would be if the language itself were
+broken. Another code base that in my opinion hit a sweet spot in bad
+test practices was one where virtually all of the logic was encoded
+within SQL statements, but relied on tests that stubbed out the database
+with the desired results. In both cases there was the perception that
+the tests were somehow valuable but the systems regularly suffered from
+bugs that could have been avoided with better tests (the SQL-heavy app
+above was written and Go and regularly had issues due to null pointers
+from the DB results) and the rigidity that arises from lack of a
+trustworthy harness (the double-heavy project unsurprisingly required
+significant time to update tests but still had long release cycles and
+frequent regressions and other bugs in QA.
+
+To be clear I am a big proponent of tests (along with other
+confidence-improving mechanisms) and feel that the major issues are that
+organizations pursue simplistic and relatively mechanical approaches to
+an issue that warrants more direct attention.
+resulting issues are evidenced in many cases by heavily reliance on
+either unit tests or end-to-end tests against a deployed environment,
+without streamlined approaches for the intervening layers; this in turn
+can yield overreliance on the end-to-end tests and the perspective that
+other tests are insufficient to provide confidence.
+
+A related concern can arise from the reliance on unit tests combined
+with the powerful tools available to support such tests. Particularly
+when viewed through the lens of /line/ coverage this can lead to
+glossing over rather than reducing cyclomatic complexity. If code is fit
+for purpose and cyclomatically simple then all of the code should be
+able to be readily exercised through some form of blackbox process-level
+tests which also implies a more streamlined observability footprint. An
+extension of this line of thought is that unit tests should only be
+necessary for components with a certain amount of logic, which many/most
+components should not have. This perspective is compatible with some of
+the line coverage trends so long as coverage metrics are not limited to
+unit testing only.
+
+An example that I've had in mind for a few years to demonstrate the
+deficiencies of line coverage and similar relatively mechanical
+metrics is a call of the form: return mySetting.write(value) which
+would store the provided value and return the updated result. Whether
+the implementation is single-threaded in-memory store or an external
+database (DB) the same tests could achieve full line coverage. /However/
+the second case may have a wide range of additional cases such as:
+- errors when interacting with/reaching the database
+- concurrency issues due to overlapping DB operations
+- DB encoding or schema quirks/limitations
+- security concerns related to DB access
+
+That example seems to paint a fairly stark picture of how coverage by
+itself is unsufficient and prospectively a vector for a false sense of
+security (in addition to being easily gamed either accidentally or
+intentionally), but test coverage can certainly be part of a broader
+verification toolkit that also includes tools and practices to help with
+some of the above. The team that I was on that had the best test harness
+and resulting DORA metrics (prior to the metrics being a thing) had a
+comprehensively layered approach and relied on reviews and analysis
+rather than metrics provided by tooling (other than test results). This
+bred a virtuous circle where tests were created in proportion to
+everyone's understanding of the prospective states and therefore acted
+not only as a means to try to comprehensively verify behavior, but also
+to communicate that behavior (and given scale and concurrency
+considerations much of the code was tested many, /many/ times
+over). This is in no way suggesting that coverage and other tools should
+not be applied, but that they should be a complement to and enabler for
+corresponding attention rather than seek to replace it.
+
