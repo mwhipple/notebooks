@@ -43,3 +43,5 @@ concurrent systems. This would be/is my primary choice if I were
 looking to prove out something like safety/liveness properties of a
 design.
 
+* References
+https://github.com/hwayne/lets-prove-leftpad

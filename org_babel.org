@@ -366,6 +366,27 @@ The docs for this function are lacking...check how?
 
 Internally this just translates to a wrapped call to
 org-babel-check-confirm-evaluate
+
+*** org-babel-check-confirm-evaluate
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-check-confirm-evaluate)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-check-confirm-evaluate is a byte-code-function in
+‘ob-core.el’.
+
+(org-babel-check-confirm-evaluate INFO)
+
+Check whether INFO allows code block evaluation.
+
+Returns nil if evaluation is disallowed, t if it is
+unconditionally allowed, and the symbol ‘query’ if the user
+should be asked whether to allow evaluation.
+
+#+end_example
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
 #+end_src
