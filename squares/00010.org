@@ -1,0 +1,81 @@
+#+TITLE: (Re)Interpreting the Test Pyramid
+
+The Test Pyramid is a well-established model to assess the
+health of a test corpus and strategy, with the standard interprettation
+that each each layer should reflect the relative mass of tests.
+Therefore the largest share should be unit tests and each layer above
+should get progressively smaller. As implied within the Trouble with
+Line Coverage I disagree with that aspect of the model and instead
+posit that unit tests should only be applied to componetns with
+sufficient logic and most systems should pursue simplicity that
+therefore avoids the need for unit tests.
+
+While there are alternatives to the Test Pyramid I still find
+it particularly useful but with an alternative perpsective that to me at
+least fits the pyramid shape even better. Rather than each layer
+indicating the volume of tests, the wider canvas on which the pyramid
+exists can be instead viewed as the possible behaviors of all of the
+code involved. A vertical line down the middle of that space indicates
+the happy path - those core behaviors and resulting impacts which a
+system is designed to deliver. The key visual element of the pyramid
+is therefore not the size of each layer, but the legs of the triangle
+that ascend to the top of that verical line. As the pyramid itself is
+ascended, those lines serve to constrain and define the behaviors,
+controlling the possible states.
+
+Within this perspective, each layer fits on top of the guarantees
+provided by the layer beneath. The layers grow smaller /not/ due to the
+mass of tests but due to the smaller number of variations that need to
+be accounted for thanks to the previous layers.
+
+This perspective does /not/ suggest that there will be more tests at
+lower layers than those above: any component that is already
+aligned with that happy path vertical line is ready to be used by
+layers above it. This works in concert with the inherited perspsective
+that the lower layers are less expensive and tests should therefore be
+pushed as low as possible, but it is more nuanced in that tests should
+be introduced at the lowest layer at which they can efficiently
+provide additional guarantees over those paths that could otherwise go
+flying off in unknown directions and instead keeping everything
+pointed towards the desired destination.
+
+For applications such as deployed services, the very tip of
+the conceptual pyramid would be end-to-end or synthetic tests or which
+should remain along the lines of minimal smoke tests which test not only
+the code but a particular configured instance. This tip /should/
+remain small as it is particularly expensive and verification should
+largely target wider behaviors rather than specific
+instance. Somewhere beneath this, however, is the spot at which the
+code can be run as some form of self-contained process with
+input/output that is representative of a deployed service. I
+tend to refer to these as "functional tests" though I realize that
+that phrasing is more general than how I am using it. Not only does
+testing at this layer allow for behavior to be verified in a
+particularly representative form, but it also allows the verification
+suite to be independent of the implementation code (enabling things
+like more safely performing rewrites or large modifications).
+
+When code is kept simple, this layer therefore offers a very efficient
+way to verify the resulting behavior using approaches that are both
+representative of final behavior (and therefore the tests can aid in
+documentation) and stable across a wider range of prospective
+changes. As an immediate side effect, this can encourage such
+simplicity within the code...this somewhat invites the provocative
+assertion that the more naive perpsective on the test pyramid may risk
+normalization of such complexity - don't just expect to write more
+tests, write code that doesn't require as many tests.
+
+There remain plenty of situations for which tests at lower layers
+should be used, though I also primarily advocate more variety of
+functional tests (used in the more general sense here) even before
+reaching for other test types and tools. As mentioned unit tests
+should be focused on logic, and other more specific test types such
+as interaction-based, and contract testing should help define clear
+lines that drive towards converging on the happy path.
+
+Much of this may be repeated elsewhere, but I've honestly lost track of
+the parade of things like test shapes. For the most part I've
+encountered the same recurring issues with automated tests which this
+perpsective addresses, and therefore have not recently been in an
+environment that has the basics covered enough to dig into more recent
+developments.
