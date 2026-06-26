@@ -387,6 +387,25 @@ unconditionally allowed, and the symbol ‘query’ if the user
 should be asked whether to allow evaluation.
 
 #+end_example
+
+** General Utilities
+*** org-babel-chomp
+
+A specialized function shouldn't be needed.
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-chomp)
+#+end_src
+
+#+RESULTS:
+: org-babel-chomp is a byte-code-function in ‘ob-core.el’.
+: 
+: (org-babel-chomp STRING &optional REGEXP)
+: 
+: Strip a trailing space or carriage return from STRING.
+: The default regexp used is "[ \f\t\n\r\v]" but another one
+: can be specified as the REGEXP argument.
+: 
 #+begin_src emacs-lisp
   (describe-function #'org-babel-temp-file)
 #+end_src
