@@ -1,0 +1,29 @@
+:PROPERTIES:
+:ID:       6292A2C7-5E3E-4CF2-89ED-D184351F116B
+:END:
+#+title: chunkable-length
+
+I try to keep all of my construct within a reasonable length. While
+this often gets reduced to hard rules, I adopt an approach that adapts
+based on the cotnext. There's also often a tension between how large
+things are and how many things there are, and also between splitting
+things up just to potentially need to stitch them back together.
+
+My preferred length is not set in stone and varies based on what is
+afforded by the language and systems that I'm using. Languages that
+provide strong namespacing/modularity and composability that allows
+for dense code may lend itself to consistently bite-sized pieces,
+whereas systems that lack one or more of those may warrant larger
+pieces. What the language provides will also inform how I construct
+the system, for those that provide ample means of combination and
+modularit I'm likely to prefer defining pieces and combining them,
+whereas for those that do not I'm more likely to split things out as
+they reach a certain threshold.
+
+All of the above is ultimately driven by cognitive overhead and the
+magic number seven (plus or minus two). If any given piece seems like
+it has too much information for me to squeeze into my pre-frontal
+cortex I'll look at splitting it up into chunks that can. This can
+certainly be subjective, but I generally try to follow the idea that
+if if something can't be easily digested once it will be again, and
+should be broken down to try to help my future self or others.

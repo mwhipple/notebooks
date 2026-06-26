@@ -346,3 +346,40 @@ number of days given here.
 #+begin_src emacs-lisp
   (setq org-scheduled-past-days 999999)
 #+end_src
+
+* API
+
+** org-element-context
+
+#+begin_src emacs-lisp
+  (describe-function #'org-element-context)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-element-context is an autoloaded byte-code-function in
+‘org-element.el’.
+
+(org-element-context &optional ELEMENT)
+
+Return smallest element or object around point.
+
+Return value is a list like (TYPE PROPS) where TYPE is the type
+of the element or object and PROPS a plist of properties
+associated to it.
+
+Possible types are defined in ‘org-element-all-elements’ and
+‘org-element-all-objects’.  Properties depend on element or
+object type, but always include ‘:begin’, ‘:end’, ‘:parent’ and
+‘:post-blank’.
+
+As a special case, if point is right after an object and not at
+the beginning of any other object, return that object.
+
+Optional argument ELEMENT, when non-nil, is the closest element
+containing point, as returned by ‘org-element-at-point’.
+Providing it allows for quicker computation.
+
+This function may modify match data.
+
+#+end_example

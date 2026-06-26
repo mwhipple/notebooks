@@ -26,3 +26,41 @@ other interface like a boring old shell.
 Beyond babel and evident alternatives like Jupyter, I'm also likely to
 want to draw on ideas from other systems that had interfaces similar
 to interactive notebooks such as the Acme editor and Oberon.
+
+* obi/execute-src-block
+:PROPERTIES:
+:ID:       31893E0D-17BB-4DE7-8C4D-9D98E2D23856
+:END:
+
+Splitting up [[id:D7816316-280D-4B7B-9420-3E33264E24D2][org-babel-execute-src-block]]
+
+I'll start by just expecting to break up what is there.
+
+** executor-type
+
+Split out executor selection as it's a bit wordy for a let block.
+
+Return any explicitly provided value, otherwise detect based on the
+next character if it exists.
+
+It seems like this may just be doing too much...maybe I want to split
+out functions?
+Within this function it looks like this is only used to produce a message?
+
+Rather than decomposing this function maybe the first pass will be to
+attempt to gut it...
+
+** Cut to execute
+
+Inferring from past experience that the specialized logic lives in the
+~org:babel-execute:<lang>~ bodies leads me to zero in on that
+logic. That needs "lang" which is extracted from "info". The first few
+lets are therefore used.
+
+** should evaluate
+
+One variable that seems worth trying to get a handle on is whether
+things will be evaluated. This is typically going to amount to whether
+some functionality gets applied and would therefore seem most clearly
+modeled as something equivalent to multiple phases where evaluation is
+an optional phase, but it is currently handled as flags.
