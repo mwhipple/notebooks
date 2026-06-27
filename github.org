@@ -228,6 +228,14 @@ LEARN MORE
 [?2004hecho 'ob_comint_async_shell_end_45928b8b-4fa0-42a6-931d-10a20d158c0d'[?2004l
 #+end_example
 
+** Auth From Environment
+
+A Personal Access Token can be created in the UI: https://github.com/settings/tokens
+And if it is loaded as the ~GH_TOKEN~ environment variable it will be used.
+It looks the ~read:org~ scope is often required.
+(the scopes should have their documentation captured somewhere in here).
+
+
 ** Status
 
 *** Help
