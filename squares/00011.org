@@ -1,0 +1,79 @@
+#+TITLE: Abstraction vs. Generalization
+
+Abstraction is a key enabler for engineering: providing chunking on
+top of underlying information that allows for actionable
+models. Occasionally at least in software, abstractions are also
+viewed negatively. Part of this is certainly due to poor abstractions
+which can stem from overeager pursuit of abstractions, but I think the
+larger challenges are not due to abstraction itself and instead arise
+from the concept of abstractions being viewed too...abstractly, and
+instead are related to generalization.
+
+I was led to this recently by my own conflating of the two terms,
+which I subsequently revised and tried to furnish an illustrative
+example. When designing a typical CRUD-y service there will be a data
+access layer. A basic /abstraction/ for that layer would be to define
+an interface for the specific functions which that layer needs to
+provide. Such an interface can (and arguably should) be as narrow as
+possible, and serves to define /what/ is expected so to insulate the
+other layers from certain aspects of /how/ it will be done. Such an
+abstraction does not introduce any form of generalization - on the
+contrary it may serve as a useful means to constrain behaviors. The
+defined abstraction allows for alternative implementations, but each
+such implementation would provide that specific behavior.
+
+Particularly if the interface is kept as tight as possible, such an
+abstraction can help clearly define the requirements for the
+underlying interactions, and that by itself can help system
+evolvability. This type of definition is a clear articulation of
+current state, it therefore does not impute potential pitfalls such as
+speculation or overengineering. An equivalent implementation should be
+able to be introduced, but there is no suggestion that such an
+implementation would somehow already exist.
+
+Generalization on the other hand, is more about providing
+implementations that are adaptable: being able to cover a wider range
+of needs that may or may not be currently substantiated. Within the
+data access layer poster children for generalization are
+object-relational mappers (ORMs) which can be very useful but can also
+be notoriously complicated. Generalizations by their nature introduce
+complexity, and can therefore also raise associated overheads.
+
+Generalization here specifically refers to extending logic for wider
+use. There are also cases where existing components may be unnecessarily
+specialized; possessing concepts or supporting logic that is not
+essential to the responsibility of the component but reflects
+assumptions or domain details that are ultimately logically
+insignificant. Such spurious specialization can present its own issues
+but is out of scope of this post.
+
+The two concepts overlap in that generalizations are typically a
+different form of abstraction, or abstraction along another axis. The
+more specialized use of abstractions can be viewed along the vertical,
+functional axis - the resulting system is doing some number of
+specific things and the abstractions serve to enable chunking of the
+entire solution. Generalizations can be viewed along a horizontal,
+typically technical axis - rather than enabling decomposing of a
+specific process they seek to allow a variety of possible different
+needs to make use of some class of functionality. Along
+those axes, the vertical route  packages up fairly narrow _how_s
+behind _what_s with the side effect that some of those _how_s may be
+highly similar but isolated in separate vericals, whereas the
+horizontal route seeks to tame what may be a very broad _how_ behind
+different _what_s that allow it to be readily harnessed by a range of
+possible users. One not that is a bit of an aside is that these two
+axes should not be viewed as mutually exclusive: the previously
+suggested benefits in terms of definition associated with vertical
+abstractions can and should still be used when generalizations are in
+place: having contracts that don't convey more than indicating that
+some system will be used can quickly inhbit both understandability and
+evolvability.
+
+This distinction is particularly important in that there is nothing
+inherently costly or tricky about abstraction...but both of those risks
+do apply to generalization. Generalization is something that should not
+be done prematurely (follow The Rule of Three) and has an abundance of
+ways that it can backfire. Simple abstraction can be liberally used as
+a tool to decompose problems and tackle complexity, but
+generalization should be applied judiciously and carefully.
+
