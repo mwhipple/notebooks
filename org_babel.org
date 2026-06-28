@@ -24,7 +24,7 @@ drive the work of the agents.
 
 * Arguments
 
-** ~:post~
+** :post
 
 Post Processing
 
@@ -90,7 +90,13 @@ If there's a way to get CSV/TSV to play better that seems nicer.
 
 A built in jq formatter also seems appealing but not available as an extension point.
 
-** ~:results~
+** :prologue
+:PROPERTIES:
+:ID:       BDA4C8F0-3B66-4819-B2B1-BBC8FE727EBC
+:END:
+Define some content to inject prior to the body.
+
+** :results
 
 *** what is captured
 
@@ -115,7 +121,7 @@ Some languages may require more help to actually return the value
 #+RESULTS:
 | 1 | 2 | 3 |
 
-** ~:var~
+** :var
 
 Set the named variable to the provided value.
 This seems to be supported by synthesizing relevant assignment statements.
