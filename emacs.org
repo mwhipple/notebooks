@@ -919,6 +919,52 @@ being deleted.
 
 #+end_example
 
+* Content Styling
+
+** auto-fill-mode
+:PROPERTIES:
+:ID:       7F81651F-8535-47C3-81CB-642446A3106C
+:END:
+
+#+begin_src emacs-lisp
+  (describe-function #'auto-fill-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+auto-fill-mode is an interactive byte-code-function in ‘simple.el’.
+
+(auto-fill-mode &optional ARG)
+
+Toggle automatic line breaking (Auto Fill mode).
+
+When Auto Fill mode is enabled, inserting a space at a column
+beyond ‘current-fill-column’ automatically breaks the line at a
+previous space.
+
+When ‘auto-fill-mode’ is on, the ‘auto-fill-function’ variable is
+non-nil.
+
+The value of ‘normal-auto-fill-function’ specifies the function to use
+for ‘auto-fill-function’ when turning Auto Fill mode on.
+
+This is a minor mode.  If called interactively, toggle the ‘Auto-Fill
+mode’ mode.  If the prefix argument is positive, enable the mode, and if
+it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is ‘toggle’.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate the variable ‘auto-fill-function’.
+
+The mode’s hook is called both when the mode is enabled and when it is
+disabled.
+
+  Probably introduced at or before Emacs version 19.29.
+
+#+end_example
 
 * Sharing macOS Environment Variables with Emacs
 :PROPERTIES:
