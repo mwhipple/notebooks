@@ -1,0 +1,21 @@
+:PROPERTIES:
+:ID:       05401C30-3767-4E79-8B02-DECF434EB69E
+:END:
+#+title: assignment
+
+Variable assignment is updating the value associated with an
+identifier.
+
+This will specifically be used from the perspective of mutable
+bindings and a typically side-effect producing statement which changes
+such a binding.
+
+This may also be stretched to include assignment style behavior in
+languages that do not provide mutable bindings but may provide similar
+sugar that provides something like producing nested binding
+environments.
+
+* is-an-assignment
+:PROPERTIES:
+:ID:       A9B288C5-5358-4CA7-82CC-F2294AEFB057
+:END:
