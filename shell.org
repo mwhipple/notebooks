@@ -32,6 +32,27 @@ Though this project also reflects trying to move away from that model.
 : This function is called by ‘org-babel-execute-src-block’.
 : 
 
+** options
+
+*** :shebang
+
+**** Changing shell
+
+#+begin_src shell
+  echo ${0}
+#+end_src
+
+#+RESULTS:
+: /bin/zsh
+
+Not particularly legible results, but clearly different.
+
+#+begin_src shell :shebang "/bin/bash"
+  echo ${0}
+#+end_src
+
+#+RESULTS:
+: /var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/babel-YPmWu4/sh-script-MIufLw
 
 * Redirections
 
