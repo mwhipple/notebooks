@@ -205,6 +205,33 @@ To save the mark state as well as point and the current buffer, use
     ‘byte-compile-save-excursion’.  See the manual for details.
 
 #+end_example
+* variables
+
+** setq
+
+#+begin_src emacs-lisp
+  (describe-function #'setq)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+setq is a special-form in ‘src/eval.c’.
+
+(setq [SYM VAL]...)
+
+Set each SYM to the value of its VAL.
+The symbols SYM are variables; they are literal (not evaluated).
+The values VAL are expressions; they are evaluated.
+Thus, (setq x (1+ y)) sets ‘x’ to the value of ‘(1+ y)’.
+The second VAL is not computed until after the first SYM is set, and so on;
+each VAL can use the new value of variables set earlier in the ‘setq’.
+The return value of the ‘setq’ form is the value of the last VAL.
+
+  Probably introduced at or before Emacs version 1.12.
+  This function has a ‘byte-compile’ property ‘byte-compile-setq’.
+    See the manual for details.
+
+#+end_example
 
 * [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
 

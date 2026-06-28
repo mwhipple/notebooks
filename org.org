@@ -278,6 +278,10 @@ Other properties affecting publication.
 #+end_example
 
 * Agenda
+:PROPERTIES:
+:ID:       5A8DAB59-E431-4E8E-9E7C-6A7CC79C1D3C
+:ROAM_ALIASES: org-agenda
+:END:
 
 ** Configuration
 I tweak the agenda to match my preferred flow.
