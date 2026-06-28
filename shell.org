@@ -8,6 +8,66 @@ traditional shell.
 
 Though this project also reflects trying to move away from that model.
 
+* [[id:436EB0B7-811E-4828-BBF7-4126517DD7C6][emacs]]
+
+** sh-shell
+
+#+begin_src emacs-lisp
+  (describe-variable 'sh-shell)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+sh-shell is a variable defined in ‘sh-script.el’.
+
+Its value is ‘bash’
+
+The shell being programmed.  This is set by M-x sh-set-shell.
+
+  This variable is safe as a file local variable if its value
+  satisfies the predicate ‘symbolp’.
+  Probably introduced at or before Emacs version 25.1.
+
+#+end_example
+
+** sh-set-shell
+
+#+begin_src emacs-lisp
+  (describe-function #'sh-set-shell)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+sh-set-shell is an interactive byte-code-function in ‘sh-script.el’.
+
+(sh-set-shell SHELL &optional NO-QUERY-FLAG INSERT-FLAG)
+
+Set this buffer’s shell to SHELL (a string).
+When used interactively, insert the proper starting #!-line,
+and make the visited file executable via ‘executable-set-magic’,
+perhaps querying depending on the value of ‘executable-query’.
+(If given a prefix (i.e., C-u) don’t insert any starting #!
+line.)
+
+When this function is called noninteractively, INSERT-FLAG (the third
+argument) controls whether to insert a #!-line and think about making
+the visited file executable, and NO-QUERY-FLAG (the second argument)
+controls whether to query about making the visited file executable.
+
+Calls the value of ‘sh-set-shell-hook’ if set.
+
+Shell script files can cause this function be called automatically
+when the file is visited by having a ‘sh-shell’ file-local variable
+whose value is the shell name (don’t quote it).
+
+#+end_example
+
+#+begin_src emacs-lisp
+  (sh-set-shell 'bash)
+#+end_src
+
+#+RESULTS:
+
 * Configuration for [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]]
 
 #+BEGIN_SRC emacs-lisp
