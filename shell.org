@@ -17,6 +17,21 @@ Though this project also reflects trying to move away from that model.
 #+RESULTS:
 : ob-shell
 
+** org-babel-execute:shell
+
+#+begin_src emacs-lisp
+  (describe-function #'org-babel-execute:shell)
+#+end_src
+
+#+RESULTS:
+: org-babel-execute:shell is a byte-code-function in ‘ob-shell.el’.
+: 
+: (org-babel-execute:shell BODY PARAMS)
+: 
+: Execute Shell BODY according to PARAMS.
+: This function is called by ‘org-babel-execute-src-block’.
+: 
+
 
 * Redirections
 
