@@ -30,6 +30,7 @@ under certain conditions.  Invoke as `lilypond --warranty' for more
 information.
 
 #+end_example
+
 * Help
 #+begin_src shell
   lilypond --help
@@ -109,5 +110,25 @@ Command to execute lilypond on your system.
 Do not set it directly.  Customize ‘org-babel-lilypond-commands’ instead.
 
   This variable may be risky if used as a file-local variable.
+
+#+end_example
+
+** org-babel-execute:lilypond
+
+#+begin_src emacs-lisp :results value
+  (describe-function #'org-babel-execute:lilypond)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-execute:lilypond is a byte-code-function in
+‘ob-lilypond.el’.
+
+(org-babel-execute:lilypond BODY PARAMS)
+
+Execute LilyPond src block according to arrange mode.
+See ‘org-babel-execute-src-block’ for BODY and PARAMS.
+When in arrange mode, tangle all blocks and process the result.
+Otherwise, execute block according to header settings.
 
 #+end_example
