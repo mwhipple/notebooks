@@ -86,3 +86,28 @@ Top-level directory of LilyPond's data tree:
   '/opt/homebrew/Cellar/lilypond/2.26.0/share/lilypond/2.26.0'
 
 #+end_example
+
+* [[id:04B03591-50E7-41E2-A2A5-0C2893FAD39C][org-babel]]
+
+There's some support built-in
+https://orgmode.org/worg/org-contrib/babel/languages/ob-doc-lilypond.html
+
+** org-babel-lilypond-ly-command
+
+#+begin_src emacs-lisp :results value
+  (describe-variable 'org-babel-lilypond-ly-command)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-lilypond-ly-command is a variable defined in ‘ob-lilypond.el’.
+
+Its value is
+"/Applications/lilypond.app/Contents/Resources/bin/lilypond"
+
+Command to execute lilypond on your system.
+Do not set it directly.  Customize ‘org-babel-lilypond-commands’ instead.
+
+  This variable may be risky if used as a file-local variable.
+
+#+end_example
