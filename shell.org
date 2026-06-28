@@ -92,6 +92,28 @@ whose value is the shell name (don’t quote it).
 : This function is called by ‘org-babel-execute-src-block’.
 : 
 
+
+** org-babel-shell-names
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-babel-shell-names)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-babel-shell-names is a variable defined in ‘ob-shell.el’.
+
+Its value is
+("sh" "bash" "zsh" "fish" "csh" "ash" "dash" "ksh" "mksh" "posh")
+
+List of names of shell supported by babel shell code blocks.
+Call ‘org-babel-shell-initialize’ when modifying this variable
+outside the Customize interface.
+
+  You can customize this variable.
+
+#+end_example
+
 ** options
 
 *** :shebang
