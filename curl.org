@@ -1,0 +1,25 @@
+:PROPERTIES:
+:ID:       1031CF1F-73B0-40ED-9404-07D29AFB4EA6
+:header-args: :results output
+:END:
+#+title: curl
+
+curl provides the ability to interact with a range of network
+protocols from the command line using URIs.
+
+#+begin_src shell
+  curl --version
+#+end_src
+
+#+RESULTS:
+: curl 8.7.1 (x86_64-apple-darwin25.0) libcurl/8.7.1 (SecureTransport) LibreSSL/3.3.6 zlib/1.2.12 nghttp2/1.68.0
+: Release-Date: 2024-03-27
+: Protocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt pop3 pop3s rtsp smb smbs smtp smtps telnet tftp
+: Features: alt-svc AsynchDNS GSS-API HSTS HTTP2 HTTPS-proxy IPv6 Kerberos Largefile libz MultiSSL NTLM SPNEGO SSL threadsafe UnixSockets
+
+#+begin_src shell
+  which curl
+#+end_src
+
+#+RESULTS:
+: /usr/bin/curl
