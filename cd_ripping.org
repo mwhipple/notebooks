@@ -336,3 +336,281 @@ A few examples, protected from the shell:
 Submit bug reports to bug-libcdio@gnu.org
 
 #+end_example
+
+* Searching
+
+[[id:0F384B87-44DD-4D61-8590-02F79024BB99][brew-search]]
+
+#+begin_src shell :results output
+  brew search --desc /
+#+end_src
+
+#+RESULTS:
+#+begin_example
+==> Formulae
+abcde: Better CD Encoder
+apache-flink-cdc: Flink CDC is a streaming data integration tool
+argocd-autopilot: Opinionated way of installing Argo CD and managing GitOps repositories
+argocd-vault-plugin: Argo CD plugin to retrieve secrets from Secret Management tools
+autodiff: Automatic differentiation made easier for C++
+bchunk: Convert CD images from .bin/.cue to .iso/.cdr
+bde: Basic Development Environment: foundational C++ libraries used at Bloomberg
+bedops: Set and statistical operations on genomic data of arbitrary scale
+cake: Cross platform build automation system with a C# DSL
+ccd2iso: Convert CloneCD images to ISO images
+cd-discid: Read CD and get CDDB discid information
+cdargs: Directory bookmarking system - Enhanced cd utilities
+cdlabelgen: CD/DVD inserts and envelopes
+cdrdao: Record CDs in Disk-At-Once mode
+cdrtools: CD/DVD/Blu-ray premastering and recording software
+cdsclient: Tools for querying CDS databases for astronomical data
+checkdmarc: Command-line parser for SPF and DMARC DNS records
+clickhouse-odbc: Official ODBC driver implementation for accessing ClickHouse as a data source
+cloudquery: Data movement tool to sync data from any source to any destination
+cozyhr: Cozy wrapper around Helm and Flux CD for local development
+dagger: Portable devkit for CI/CD pipelines
+datalad: Data distribution geared toward scientific datasets
+datatype99: Algebraic data types for C99
+dbmate: Lightweight, framework-agnostic database migration tool
+ddclient: Update dynamic DNS entries
+dvdrtools: Fork of cdrtools DVD writer support
+dynomite: Generic dynamo implementation for different k-v storage engines
+enzyme: High-performance automatic differentiation of LLVM
+etcd-cpp-apiv3: C++ implementation for etcd's v3 client API, i.e., ETCDCTL_API=3
+fiona: Reads and writes geographic data files
+ford: Automatic documentation generator for modern Fortran programs
+graphene: Thin layer of graphic data types
+gtk-mac-integration: Integrates GTK macOS applications with the Mac desktop
+iat: Converts many CD-ROM image formats to ISO9660
+idsgrep: Grep for Extended Ideographic Description Sequences
+inadyn: Dynamic DNS client with IPv4, IPv6, and SSL/TLS support
+kitchen-sync: Fast efficiently sync database without dumping & reloading
+lcdproc: Display real-time system information on a LCD
+libcddb: CDDB server access library
+libcdio-paranoia: CD paranoia on top of libcdio
+libdap: Framework for scientific data networking
+libdom: Implementation of the W3C DOM
+libiptcdata: Virtual package provided by libiptcdata0
+libmwaw: Library for converting legacy Mac document formats
+libplctag: Portable and simple API for accessing AB PLC data over Ethernet
+logswan: Fast Web log analyzer using probabilistic data structures
+m1ddc: Control external displays (USB-C/DisplayPort Alt Mode) using DDC/CI on M1 Macs
+mkcue: Generate a CUE sheet from a CD
+mongo-c-driver: C driver for MongoDB
+mongo-c-driver@1: C driver for MongoDB
+nali: Tool for querying IP geographic information and CDN provider
+nanoarrow: Helpers for Arrow C Data & Arrow C Stream interfaces
+nco: Command-line operators for netCDF and HDF files
+ncview: Visual browser for netCDF format files
+netcdf: Libraries and data formats for array-oriented scientific data
+netcdf-cxx: C++ libraries and utilities for NetCDF
+netcdf-fortran: Fortran libraries and utilities for NetCDF
+ocl-icd: OpenCL ICD loader
+odbc2parquet: CLI to query an ODBC data source and write the result into a Parquet file
+oksh: Portable OpenBSD ksh, based on the public domain Korn shell (pdksh)
+open-mesh: Generic data structure to represent and manipulate polygonal meshes
+opencl-icd-loader: OpenCL Installable Client Driver (ICD) Loader
+openspec: Spec-driven development (SDD) for AI coding assistants
+openvdb: Sparse volumetric data processing toolkit
+pandoc-plot: Render and include figures in Pandoc documents using many plotting toolkits
+pipelight: Self-hosted, lightweight CI/CD pipelines for small projects via CLI
+pnetcdf: Parallel netCDF library for scientific data using the OpenMPI library
+psqlodbc: Official PostgreSQL ODBC driver
+ratchet: Tool for securing CI/CD workflows with version pinning
+raven: Risk Analysis and Vulnerability Enumeration for CI/CD
+redu: Ncdu for your restic repository
+roapi: Full-fledged APIs for static datasets without writing a single line of code
+sdb: Ondisk/memory hashtable based on CDB
+souffle: Logic Defined Static Analysis
+specify: Toolkit to help you get started with Spec-Driven Development
+speex: Audio codec designed for speech
+sqliteodbc: ODBC driver for SQLite
+streamrip: Scriptable music downloader for Qobuz, Tidal, SoundCloud, and Deezer
+surfer: Waveform viewer, supporting VCD, FST, or GHW format
+tccutil: Utility to modify the macOS Accessibility Database (TCC.db)
+tektoncd-cli: CLI for interacting with TektonCD
+typical: Data interchange with algebraic data types
+udis86: Minimalistic disassembler library for x86
+varlock: Add declarative schema to .env files using @env-spec decorator comments
+vcdimager: (Super) video CD authoring solution
+veryfasttree: Efficient phylogenetic tree inference for massive taxonomic datasets
+vulkan-loader: Vulkan ICD Loader
+xkcd: Fetch latest, random or any particular xkcd comic right in your terminal
+z: Tracks most-used directories to make cd smarter
+z.lua: New cd command that helps you navigate faster by learning your habits
+
+==> Casks
+actual-odbc-pack: (Actual ODBC Driver Pack) Connect to enterprise databases using common desktop applications
+affinity-designer: (Affinity Designer 2) Professional graphic design software
+affinity-designer@1: (Affinity Designer) Professional graphic design software
+audiobook-builder: (Audiobook Builder) Turn audio CDs and files into audiobooks
+burn: (Burn) CD burning application
+cd-to: (cd to) Finder Toolbar app to open the current directory in the Terminal
+codeship-jet: (Codeship Jet) CI/CD as a service
+dcp-o-matic-disk-writer: (DCP-o-matic Disk Writer) Convert video, audio and subtitles into DCP (Digital Cinema Package)
+digital: (Digital) Logic designer and circuit simulator
+drivethrurpg: (DriveThruRPG Library App) Sync DriveThruRPG libraries to compatible devices
+eagle: (Autodesk EAGLE) Electronic design automation software
+ealeksandrov-cd-to: (cd_to) Finder Toolbar app to open the current directory in the Terminal
+ebmac: (EBMac) Electronic dictionary viewer
+freac: (fre:ac) Audio converter and CD ripper
+go-agent: (Go Agent, GoCD Agent) Agent for the Go Continuous Delivery platform
+go-server: (Go Server, GoCD Server) Server for the Go Continuous Delivery platform
+igv-desktop: (Integrative Genomics Viewer (IGV)) Visual exploration of genomic data
+jetbrains-air: (JetBrains Air) Agentic development environment
+kiro: (kiro) Agent-centric IDE with spec-driven development
+klayout: (KLayout) IC design layout viewer and editor
+logisim-evolution: (Logisim Evolution) Digital logic designer and simulator
+lunacy: (Lunacy) Graphic design software
+macdive: (MacDive) Digital dive log
+macdown: (MacDown) Open-source Markdown editor
+macdown-3000: (MacDown 3000) Markdown editor with live preview and syntax highlighting
+macdroid: (MacDroid) Connect to your Android devices
+mdb-accdb-viewer: (MDB/ACCDB Viewer) Open Microsoft Access Databases
+mdrp: (Mac DVDRipper Pro) Utility to rip and copy DVD content
+mic-drop: (Mic Drop) Quickly mute your microphone with a global shortcut or menu bar control
+music-decoy: (Music Decoy) Music app blocker utility
+ncar-ncl: (NCAR Command Language, ncl) Interpreted language for scientific data analysis and visualization
+ovito: (OVITO) Scientific data visualization and analysis software
+ovito-pro: (OVITO Pro) Scientific data visualization and analysis software
+panoply: (Panoply netCDF, HDF and GRIB Data Viewer) Plot geo-referenced data from netCDF, HDF, and GRIB
+qlnetcdf: (QLNetcdf) Quick Look plugin for viewing NetCDF files
+scidavis: (SciDAVis) Application for scientific data analysis and visualization
+spectra-app: (Spectra) OpenSpec document management desktop app
+swiftdefaultappsprefpane: (SwiftDefaultApps) Replacement for RCDefaultApps, written in Swift
+touchdesigner: (Derivative TouchDesigner) Tool for creating dynamic digital art
+visit: (VisIt) Visualisation and data analysis for mesh-based scientific data
+workbench: (Workbench) Seamless, automatic, “dotfile” sync to iCloud
+ytmdesktop-youtube-music: (YouTube Music Desktop App) YouTube music client
+#+end_example
+
+* freac
+
+Try this one based on search results and earlier quick searches.
+
+#+begin_src shell :session brew :async
+  brew trust --formula kde-mac/kde/kf5-attica kde-mac/kde/kf5-breeze-icons kde-mac/kde/kf5-kactivities kde-mac/kde/kf5-kauth kde-mac/kde/kf5-kcodecs kde-mac/kde/kf5-kcompletion kde-mac/kde/kf5-kconfig kde-mac/kde/kf5-kconfigwidgets kde-mac/kde/kf5-kcoreaddons kde-mac/kde/kf5-kcrash kde-mac/kde/kf5-kdbusaddons kde-mac/kde/kf5-kglobalaccel kde-mac/kde/kf5-kguiaddons kde-mac/kde/kf5-kiconthemes kde-mac/kde/kf5-kirigami2 kde-mac/kde/kf5-kitemmodels kde-mac/kde/kf5-kitemviews kde-mac/kde/kf5-kjobwidgets kde-mac/kde/kf5-knotifications kde-mac/kde/kf5-kpackage kde-mac/kde/kf5-kpty kde-mac/kde/kf5-kservice kde-mac/kde/kf5-kwallet kde-mac/kde/kf5-kwidgetsaddons kde-mac/kde/kf5-kwindowsystem kde-mac/kde/kf5-syntax-highlighting kde-mac/kde/phonon
+  brew install freac
+#+end_src
+
+#+RESULTS:
+#+begin_example
+<de-mac/kde/kf5-kwidgetsaddons kde-mac/kde/kf5-kwindowsystem kde-mac/kde/kf5-syntax-highlighting kde-mac/kde/phonon
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-attica
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-breeze-icons
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kactivities
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kauth
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kcodecs
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kcompletion
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kconfig
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kconfigwidgets
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kcoreaddons
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kcrash
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kdbusaddons
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kglobalaccel
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kguiaddons
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kiconthemes
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kirigami2
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kitemmodels
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kitemviews
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kjobwidgets
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-knotifications
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kpackage
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kpty
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kservice
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kwallet
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kwidgetsaddons
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-kwindowsystem
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/kf5-syntax-highlighting
+Trusted formula: https://invent.kde.org/packaging/homebrew-kde.git/phonon
+brew install freac
+Warning: Not upgrading freac, the latest version is already installed
+[?2004hecho 'ob_comint_async_shell_end_8ab1f843-ba48-425f-9c5d-fc15791b3561'[?2004l
+#+end_example
+
+#+begin_src shell :results output
+  brew list freac
+#+end_src
+
+#+RESULTS:
+: /opt/homebrew/Caskroom/freac/.metadata/INSTALL_RECEIPT.json
+: /opt/homebrew/Caskroom/freac/.metadata/config.json
+: /opt/homebrew/Caskroom/freac/.metadata/1.1.7/20260628144058.709/Casks/freac.internal.json
+: /opt/homebrew/Caskroom/freac/1.1.7/Readme
+: /opt/homebrew/Caskroom/freac/1.1.7/Readme.de
+: /opt/homebrew/Caskroom/freac/1.1.7/Copying
+: /opt/homebrew/Caskroom/freac/1.1.7/freac.app
+
+** Help
+
+#+begin_src shell :results output
+  ls -l /opt/homebrew/Caskroom/freac/1.1.7/freac.app/Contents
+#+end_src
+
+#+RESULTS:
+: total 40
+: -rw-r--r--@  1 mwhipple  staff  5244 Mar  5  2023 CodeResources
+: drwxr-xr-x@  4 mwhipple  staff   128 Mar  5  2023 Frameworks
+: -rw-r--r--@  1 mwhipple  staff  7969 Mar  5  2023 Info.plist
+: drwxr-xr-x@  4 mwhipple  staff   128 Mar  5  2023 MacOS
+: -rw-r--r--@  1 mwhipple  staff     8 Mar  5  2023 PkgInfo
+: drwxr-xr-x@ 13 mwhipple  staff   416 Mar  5  2023 Resources
+: drwxr-xr-x@  3 mwhipple  staff    96 Mar  5  2023 _CodeSignature
+
+#+begin_src shell :results output
+  ls -lR /opt/homebrew/Caskroom/freac/1.1.7/freac.app/Contents/MacOS
+#+end_src
+
+#+RESULTS:
+: total 672
+: -rwxr-xr-x@ 1 mwhipple  staff  169248 Mar  5  2023 freac
+: -rwxr-xr-x@ 1 mwhipple  staff  169216 Mar  5  2023 freaccmd
+
+~freac~ runs the GUI, but ~freaccmd~ provides the CLI.
+
+#+begin_src shell :results output
+  /opt/homebrew/Caskroom/freac/1.1.7/freac.app/Contents/MacOS/freaccmd --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+++ WARN: cdio_get_default_device() - No CD/DVD/BD media - returning NULL
+++ WARN: cdio_get_default_device() - No CD/DVD/BD media - returning NULL
+fre:ac - free audio converter v1.1.7 (ARM64) command line interface
+Copyright (C) 2001-2023 Robert Kausch
+
+Usage:	freaccmd [options] [--] [encoder options] [file(s)]
+
+  --encoder=<id>  | -e <id>	Specify the encoder to use (default is LAME)
+  --help=<id>     | -h <id>	Print help for encoder specific options
+
+                    -d <dir>	Specify output directory for encoded files
+                    -o <file>	Specify output file name in single file mode
+  --pattern=<pat> | -p <pat>	Specify output file name pattern (default is "<filename>")
+
+  --superfast			Enable SuperFast mode
+  --threads=<n>			Specify number of threads to use in SuperFast mode
+
+  --split-chapters		Split to individual chapters if chapter tags are present
+
+  --add-cover=<file>		Add front cover image from file (.png or .jpg)
+  --add-cover-back=<file>	Add back cover image from file (.png or .jpg)
+
+  --cuesheet[=<file>]		Create a cue sheet of the conversion results
+  --playlist[=<file>]		Create a playlist containing the conversion results
+
+  --ignore-chapters		Do not write chapter information to tags
+  --ignore-coverart		Do not write cover images to tags
+
+  --list-configs		Print a list of available configurations
+  --config=<cfg>		Specify configuration to use
+
+  --quiet			Do not print any messages
+
+Use -- to separate freaccmd options from encoder options if both have the same name.
+
+Encoder <id> can be one of:
+
+	coreaudio, flac, lame, meh, mac, mpc, vorbis, opus, sndfile, speex, wv,
+	ffmpeg-wma, sndfile-wave
+#+end_example

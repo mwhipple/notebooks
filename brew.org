@@ -599,7 +599,10 @@ vlc
 /opt/homebrew/Cellar/libcdio-paranoia/10.2-2.0.2/share/man/ja/man1/cd-paranoia.1
 /opt/homebrew/Cellar/libcdio-paranoia/10.2-2.0.2/share/man/man1/cd-paranoia.1
 #+end_example
-* Search
+* brew-search
+:PROPERTIES:
+:ID:       0F384B87-44DD-4D61-8590-02F79024BB99
+:END:
 
 #+begin_src shell
   brew search --help
