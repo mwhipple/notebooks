@@ -307,6 +307,10 @@ Custom commands can set this variable in the options section.
 
 #+end_example
 
+#+begin_src emacs-lisp
+  (setq org-agenda-span 'day)
+#+end_src
+
 *** org-agenda-todo-ignore-scheduled
 
 #+begin_src emacs-lisp
