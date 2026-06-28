@@ -23,3 +23,106 @@ protocols from the command line using URIs.
 
 #+RESULTS:
 : /usr/bin/curl
+
+* Help
+
+#+begin_src shell
+  curl --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Usage: curl [options...] <url>
+ -d, --data <data>           HTTP POST data
+ -f, --fail                  Fail fast with no output on HTTP errors
+ -h, --help <category>       Get help for commands
+ -i, --include               Include response headers in output
+ -o, --output <file>         Write to file instead of stdout
+ -O, --remote-name           Write output to file named as remote file
+ -s, --silent                Silent mode
+ -T, --upload-file <file>    Transfer local FILE to destination
+ -u, --user <user:password>  Server user and password
+ -A, --user-agent <name>     Send User-Agent <name> to server
+ -v, --verbose               Make the operation more talkative
+ -V, --version               Show version number and quit
+
+This is not the full help, this menu is stripped into categories.
+Use "--help category" to get an overview of all categories.
+For all options use the manual or "--help all".
+#+end_example
+
+#+begin_src shell
+  curl --help category
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Usage: curl [options...] <url>
+ auth        Different types of authentication methods
+ connection  Low level networking operations
+ curl        The command line tool itself
+ dns         General DNS options
+ file        FILE protocol options
+ ftp         FTP protocol options
+ http        HTTP and HTTPS protocol options
+ imap        IMAP protocol options
+ misc        Options that don't fit into any other category
+ output      Filesystem output
+ pop3        POP3 protocol options
+ post        HTTP Post specific options
+ proxy       All options related to proxies
+ scp         SCP protocol options
+ sftp        SFTP protocol options
+ smtp        SMTP protocol options
+ ssh         SSH protocol options
+ telnet      TELNET protocol options
+ tftp        TFTP protocol options
+ tls         All TLS/SSL related options
+ upload      All options for uploads
+ verbose     Options related to any kind of command line output of curl
+#+end_example
+
+#+begin_src shell
+  curl --help curl
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Usage: curl [options...] <url>
+curl: The command line tool itself
+ -K, --config <file>                  Read config from a file
+     --create-dirs                    Create necessary local directory hierarchy
+ -q, --disable                        Disable .curlrc
+     --disallow-username-in-url       Disallow username in URL
+     --fail-early                     Fail on first transfer error
+     --ftp-create-dirs                Create the remote dirs if not present
+ -g, --globoff                        Disable URL globbing with {} and []
+ -h, --help <category>                Get help for commands
+     --libcurl <file>                Generate libcurl code for this command line
+ -M, --manual                         Display the full manual
+ -n, --netrc                          Must read .netrc for username and password
+     --netrc-file <filename>          Specify FILE for netrc
+     --netrc-optional                 Use either .netrc or URL
+ -:, --next                        Make next URL use its separate set of options
+ -N, --no-buffer                      Disable buffering of the output stream
+     --no-clobber                     Do not overwrite files that already exist
+ -o, --output <file>                  Write to file instead of stdout
+     --output-dir <dir>               Directory to save files in
+ -Z, --parallel                       Perform transfers in parallel
+     --parallel-immediate         Do not wait for multiplexing (with --parallel)
+     --parallel-max <num>             Maximum concurrency for parallel transfers
+     --path-as-is                     Do not squash .. sequences in URL path
+     --proto <protocols>              Enable/disable PROTOCOLS
+     --proto-default <protocol>       Use PROTOCOL for any URL missing a scheme
+     --proto-redir <protocols>        Enable/disable PROTOCOLS on redirect
+     --remove-on-error                Remove output file on errors
+     --retry <num>                    Retry request if transient problems occur
+     --retry-all-errors               Retry all errors (with --retry)
+     --retry-connrefused              Retry on connection refused (with --retry)
+     --retry-delay <seconds>          Wait time between retries
+     --retry-max-time <seconds>       Retry only within this period
+ -S, --show-error                     Show error even when -s is used
+     --url <url>                      URL to work with
+     --variable <[%]name=text/@file>  Set variable
+ -V, --version                        Show version number and quit
+#+end_example
