@@ -27,6 +27,15 @@ Beyond babel and evident alternatives like Jupyter, I'm also likely to
 want to draw on ideas from other systems that had interfaces similar
 to interactive notebooks such as the Acme editor and Oberon.
 
+** Initial Design Ideas
+
+All execution should default to asynchronous evaluation.
+Basic async execution can likely be handled by splitting out the
+overall flow, but a further goal would be consistently exposing what
+is being done which will be hidden if things are being done directly
+in emacs-lisp/system calls, so using something like comint extensively
+to allow discovery of the invoked commands will be pursued.
+
 * TODO obi/execute-src-block
 :PROPERTIES:
 :ID:       31893E0D-17BB-4DE7-8C4D-9D98E2D23856

@@ -1,0 +1,188 @@
+:PROPERTIES:
+:ID:       328F5610-DF7E-4F97-B7A5-216B83696C51
+:END:
+#+title: cd-ripping
+
+What tools to use nowadays?
+
+This feels like an area that isn't likely to get active attention
+other than some integrations to pieces that may still be moving such
+as codecs.
+
+* abcde
+
+This is what I was using fairly recently...but the brew formula has since been deprecated :/
+https://formulae.brew.sh/formula/abcde
+Unfortunately they don't offer an alternative.
+
+At the moment I don't have any deep requirements (FLAC ripping and ideally CD information retrieval),
+so I'll see if other options are more readily usable.
+
+** (un)installation
+
+*** [[id:61678BF7-A363-45C2-A3E2-54A1EB15EF68][brew]]
+
+#+begin_src shell :session brew :async
+  brew uninstall abcde
+#+end_src
+
+#+RESULTS:
+#+begin_example
+brew uninstall abcde
+Uninstalling /opt/homebrew/Cellar/abcde/2.9.3_1.reinstall... (295 files, 3.4MB)
+==> Autoremoving 19 unneeded formulae:
+cdrtools
+doxygen
+eye-d3
+flex
+gdbm
+glyr
+gperf
+libcanberra
+libdiscid
+libevent
+libnghttp2
+mkcue
+ninja
+openldap
+perl
+python-packaging
+python@3.13
+unbound
+vorbis-tools
+Uninstalling /opt/homebrew/Cellar/glyr/1.0.10_3... (18 files, 366.7KB)
+Uninstalling /opt/homebrew/Cellar/vorbis-tools/1.4.3... (20 files, 677.9KB)
+Uninstalling /opt/homebrew/Cellar/python-packaging/26.2... (64 files, 808.5KB)
+Uninstalling /opt/homebrew/Cellar/libcanberra/0.30... (22 files, 387.2KB)
+Uninstalling /opt/homebrew/Cellar/mkcue/1... (7 files, 85.8KB)
+Uninstalling /opt/homebrew/Cellar/python@3.13/3.13.13_1... (3,620 files, 72.3MB)
+Uninstalling /opt/homebrew/Cellar/perl/5.42.2... (2,862 files, 71.8MB)
+Uninstalling /opt/homebrew/Cellar/libdiscid/0.6.5... (12 files, 163.5KB)
+Uninstalling /opt/homebrew/Cellar/gperf/3.3... (12 files, 596.2KB)
+Uninstalling /opt/homebrew/Cellar/ninja/1.13.2... (10 files, 438KB)
+Uninstalling /opt/homebrew/Cellar/cdrtools/3.02a09... (210 files, 6.4MB)
+Uninstalling /opt/homebrew/Cellar/eye-d3/0.9.9... (197 files, 1.7MB)
+Uninstalling /opt/homebrew/Cellar/doxygen/1.17.0... (10 files, 23.4MB)
+Uninstalling /opt/homebrew/Cellar/unbound/1.25.1... (59 files, 6.6MB)
+
+Warning: The following unbound configuration files have not been removed!
+If desired, remove them manually with `rm -rf`:
+  /opt/homebrew/etc/unbound
+  /opt/homebrew/etc/unbound/unbound.conf
+  /opt/homebrew/etc/unbound/unbound.conf.default
+Uninstalling /opt/homebrew/Cellar/openldap/2.6.13... (342 files, 9.1MB)
+
+Warning: The following openldap configuration files have not been removed!
+If desired, remove them manually with `rm -rf`:
+  /opt/homebrew/etc/openldap
+  /opt/homebrew/etc/openldap/ldap.conf
+  /opt/homebrew/etc/openldap/ldap.conf.default
+  /opt/homebrew/etc/openldap/schema
+  /opt/homebrew/etc/openldap/schema/README
+  /opt/homebrew/etc/openldap/schema/README.default
+  /opt/homebrew/etc/openldap/schema/collective.ldif
+  /opt/homebrew/etc/openldap/schema/collective.ldif.default
+  /opt/homebrew/etc/openldap/schema/collective.schema
+  /opt/homebrew/etc/openldap/schema/collective.schema.default
+  /opt/homebrew/etc/openldap/schema/corba.ldif
+  /opt/homebrew/etc/openldap/schema/corba.ldif.default
+  /opt/homebrew/etc/openldap/schema/corba.schema
+  /opt/homebrew/etc/openldap/schema/corba.schema.default
+  /opt/homebrew/etc/openldap/schema/core.ldif
+  /opt/homebrew/etc/openldap/schema/core.ldif.default
+  /opt/homebrew/etc/openldap/schema/core.schema
+  /opt/homebrew/etc/openldap/schema/core.schema.default
+  /opt/homebrew/etc/openldap/schema/cosine.ldif
+  /opt/homebrew/etc/openldap/schema/cosine.ldif.default
+  /opt/homebrew/etc/openldap/schema/cosine.schema
+  /opt/homebrew/etc/openldap/schema/cosine.schema.default
+  /opt/homebrew/etc/openldap/schema/dsee.ldif
+  /opt/homebrew/etc/openldap/schema/dsee.ldif.default
+  /opt/homebrew/etc/openldap/schema/dsee.schema
+  /opt/homebrew/etc/openldap/schema/dsee.schema.default
+  /opt/homebrew/etc/openldap/schema/duaconf.ldif
+  /opt/homebrew/etc/openldap/schema/duaconf.ldif.default
+  /opt/homebrew/etc/openldap/schema/duaconf.schema
+  /opt/homebrew/etc/openldap/schema/duaconf.schema.default
+  /opt/homebrew/etc/openldap/schema/dyngroup.ldif
+  /opt/homebrew/etc/openldap/schema/dyngroup.ldif.default
+  /opt/homebrew/etc/openldap/schema/dyngroup.schema
+  /opt/homebrew/etc/openldap/schema/dyngroup.schema.default
+  /opt/homebrew/etc/openldap/schema/inetorgperson.ldif
+  /opt/homebrew/etc/openldap/schema/inetorgperson.ldif.default
+  /opt/homebrew/etc/openldap/schema/inetorgperson.schema
+  /opt/homebrew/etc/openldap/schema/inetorgperson.schema.default
+  /opt/homebrew/etc/openldap/schema/java.ldif
+  /opt/homebrew/etc/openldap/schema/java.ldif.default
+  /opt/homebrew/etc/openldap/schema/java.schema
+  /opt/homebrew/etc/openldap/schema/java.schema.default
+  /opt/homebrew/etc/openldap/schema/misc.ldif
+  /opt/homebrew/etc/openldap/schema/misc.ldif.default
+  /opt/homebrew/etc/openldap/schema/misc.schema
+  /opt/homebrew/etc/openldap/schema/misc.schema.default
+  /opt/homebrew/etc/openldap/schema/msuser.ldif
+  /opt/homebrew/etc/openldap/schema/msuser.ldif.default
+  /opt/homebrew/etc/openldap/schema/msuser.schema
+  /opt/homebrew/etc/openldap/schema/msuser.schema.default
+  /opt/homebrew/etc/openldap/schema/namedobject.ldif
+  /opt/homebrew/etc/openldap/schema/namedobject.ldif.default
+  /opt/homebrew/etc/openldap/schema/namedobject.schema
+  /opt/homebrew/etc/openldap/schema/namedobject.schema.default
+  /opt/homebrew/etc/openldap/schema/nis.ldif
+  /opt/homebrew/etc/openldap/schema/nis.ldif.default
+  /opt/homebrew/etc/openldap/schema/nis.schema
+  /opt/homebrew/etc/openldap/schema/nis.schema.default
+  /opt/homebrew/etc/openldap/schema/openldap.ldif
+  /opt/homebrew/etc/openldap/schema/openldap.ldif.default
+  /opt/homebrew/etc/openldap/schema/openldap.schema
+  /opt/homebrew/etc/openldap/schema/openldap.schema.default
+  /opt/homebrew/etc/openldap/schema/pmi.ldif
+  /opt/homebrew/etc/openldap/schema/pmi.ldif.default
+  /opt/homebrew/etc/openldap/schema/pmi.schema
+  /opt/homebrew/etc/openldap/schema/pmi.schema.default
+  /opt/homebrew/etc/openldap/slapd.conf
+  /opt/homebrew/etc/openldap/slapd.conf.default
+  /opt/homebrew/etc/openldap/slapd.conf.default.default
+  /opt/homebrew/etc/openldap/slapd.ldif
+  /opt/homebrew/etc/openldap/slapd.ldif.default
+  /opt/homebrew/etc/openldap/slapd.ldif.default.default
+Uninstalling /opt/homebrew/Cellar/flex/2.6.4_2... (46 files, 1.6MB)
+Uninstalling /opt/homebrew/Cellar/gdbm/1.26... (25 files, 1.1MB)
+Uninstalling /opt/homebrew/Cellar/libnghttp2/1.69.0... (14 files, 848.6KB)
+Uninstalling /opt/homebrew/Cellar/libevent/2.1.12_1... (57 files, 2.3MB)
+[?2004hecho 'ob_comint_async_shell_end_d3d5a201-83a7-4b11-8f27-85262bbcb95d'[?2004l
+#+end_example
+
+* cdparanoia
+
+An option I used not that long ago was cdparanoia, it looks like
+there's a [[id:516B3C9A-4288-4ACF-8DEE-3526DFD21083][macOS]] option
+https://formulae.brew.sh/formula/libcdio-paranoia#default.
+
+#+begin_src shell :session brew :async
+  brew install libcdio-paranoia
+#+end_src
+
+#+RESULTS:
+: brew install libcdio-paranoia
+: ✔︎ JSON API packages.arm64_tahoe.jws.json
+: Warning: libcdio-paranoia 10.2-2.0.2 is already installed and up-to-date.
+: To reinstall 10.2-2.0.2, run:
+:   brew reinstall libcdio-paranoia
+: [?2004hecho 'ob_comint_async_shell_end_64dc8c84-433a-4508-9ae8-383129ea03f7'[?2004l
+
+For whatever reason this seems to print to stderr, so we'll make use
+of [[id:4BB51003-3806-4D02-8191-A8B596690E33][redirecting-in-ob-blocks]].
+
+#+begin_src shell :results output :prologue "exec 2>&1"
+  cd-paranoia --version
+#+end_src
+
+#+RESULTS:
+: cdparanoia III release 10.2 libcdio 2.2.0 aarch64-apple-darwin25.0.0
+: (C) 2001 Monty <monty@xiph.org> and Xiphophorus
+: (C) 2004, 2005, 2008 Rocky Bernstein <rocky@gnu.org>
+: (C) 2014 Robert Kausch <robert.kausch@freac.org>
+: 
+: Report bugs to bug-libcdio@gnu.org
+: 
