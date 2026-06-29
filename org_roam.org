@@ -32,7 +32,29 @@ All Org files, at any level of nesting, are considered part of the Org-roam.
 
 #+end_example
 
-* org-roam-node-find
+* Navigation
+
+** Skipping over buffers
+There are like to be many buffers open for org-roam nodes, and so when
+navigating across buffers for cleaning things up I'd prefer skipping
+those.
+
+Tweak [[id:B11A5ECF-B961-4722-885E-B9965938E615][switch-to-prev-buffer-skip]] to add [[id:58A82522-0B48-4714-BE1D-6B53393C716E][org-roam-node-buffer-p]].
+Also skip any bufffers already in windows.
+
+This should likely be rewritten to be a hook or similar so it can be decomposed.
+
+#+begin_src emacs-lisp
+  (setq switch-to-prev-buffer-skip
+        (lambda (window buffer bury-or-kill)
+  	(or (get-buffer-window buffer t)
+  	    (org-roam-node-buffer-p buffer)))))
+#+end_src
+
+#+RESULTS:
+: #[(window buffer bury-or-kill) ((or (get-buffer-window buffer t) (org-roam-node-buffer-p buffer))) nil]
+
+** org-roam-node-find
 
 #+begin_src emacs-lisp
   (describe-function #'org-roam-node-find)
@@ -350,7 +372,7 @@ Original value was
 
 * Extensions
 
-** org-roam-node-p
+** org-roam-node-buffer-p
 :PROPERTIES:
 :ID:       58A82522-0B48-4714-BE1D-6B53393C716E
 :END:
@@ -358,6 +380,10 @@ Original value was
 Provide a predicate to determine whether a given buffer is an org-roam node.
 
 #+begin_src emacs-lisp
-  (defun org-roam-node-p ()
-    (and (derived-mode-p 'org-mode) (org-roam-node-at-point)))
+  (defun org-roam-node-buffer-p (buffer)
+    (with-current-buffer buffer
+      (and (derived-mode-p 'org-mode) (org-roam-node-at-point))))
 #+end_src
+
+#+RESULTS:
+: org-roam-node-buffer-p

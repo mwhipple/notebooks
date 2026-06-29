@@ -1096,6 +1096,32 @@ disabled.
 
 #+end_example
 
+* Modes
+
+** derived-mode-p
+
+#+begin_src emacs-lisp
+  (describe-function #'derived-mode-p)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+derived-mode-p is a byte-code-function in ‘subr.el’.
+
+(derived-mode-p MODES &rest DEPRECATED-ARGS)
+
+Return non-nil if the current major mode is derived from one of MODES.
+MODES should be a list of symbols or a single mode symbol instead of a list.
+This examines the parent modes set by ‘define-derived-mode’ and also
+additional ones set by ‘derived-mode-add-parents’.
+We also still support the deprecated calling convention:
+(derived-mode-p &rest MODES).
+
+  Probably introduced at or before Emacs version 27.1.
+  This function does not change global state, including the match data.
+
+#+end_example
+
 * XWidgets
 
 ** xwidget-webkit-browse-url
