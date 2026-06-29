@@ -415,6 +415,8 @@ The name must match the file.
 
 ** \* ([[id:5C4EB373-6300-460B-A882-A8A2D72259CD][is-a-single-line-comment]])
 
+** (*-- *) ([[id:A0D7C6C3-F0E8-4362-AA6F-54BF6FF5A422][is-a-block-comment]])
+
 ** EXTENDS ([[id:0E93C501-C02F-43A4-8AC8-7337DF071706][is-an-import]])
 
 Integers....
