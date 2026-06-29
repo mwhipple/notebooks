@@ -419,6 +419,13 @@ The name must match the file.
 
 ** EXTENDS ([[id:0E93C501-C02F-43A4-8AC8-7337DF071706][is-an-import]])
 
+** PlusCal algorithm block
+
+As block comment...
+(*--algorithm <name>
+...
+end algorithm;*)
+
 Integers....
 
 
