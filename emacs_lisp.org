@@ -852,6 +852,44 @@ in the environment list of the selected frame.
 
 #+end_example
 
+** setenv
+
+#+begin_src emacs-lisp
+  (describe-function #'setenv)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+setenv is an interactive byte-code-function in ‘env.el’.
+
+(setenv VARIABLE &optional VALUE SUBSTITUTE-ENV-VARS)
+
+Set the value of the environment variable named VARIABLE to VALUE.
+VARIABLE should be a string.  VALUE is optional; if not provided or
+nil, the environment variable VARIABLE will be removed.
+
+Interactively, a prefix argument means to unset the variable, and
+otherwise the current value (if any) of the variable appears at
+the front of the history list when you type in the new value.
+This function always replaces environment variables in the new
+value when called interactively.
+
+SUBSTITUTE-ENV-VARS, if non-nil, means to substitute environment
+variables in VALUE with ‘substitute-env-vars’, which see.
+This is normally used only for interactive calls.
+
+The return value is the new value of VARIABLE, or nil if
+it was removed from the environment.
+
+This function works by modifying ‘process-environment’.
+
+As a special case, setting variable ‘TZ’ calls ‘set-time-zone-rule’ as
+a side-effect.
+
+  Probably introduced at or before Emacs version 19.1.
+
+#+end_example
+
 * Filesystem
 
 ** default-directory ([[id:5BA060A7-6674-4523-BC6F-6D34C230B12B][is-a-cwd]])
