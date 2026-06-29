@@ -403,6 +403,16 @@ pull in the CLI code for local extension.
 
 * Usage
 
+** Module Definition
+
+4 is the magic number on either side.
+The name must match the file.
+
+#+begin_src tla
+---- MODULE <name> ----
+=======================
+#+end_src
+
 ** \* ([[id:5C4EB373-6300-460B-A882-A8A2D72259CD][is-a-single-line-comment]])
 
 ** EXTENDS ([[id:0E93C501-C02F-43A4-8AC8-7337DF071706][is-an-import]])
