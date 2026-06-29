@@ -20,7 +20,7 @@ Though this project also reflects trying to move away from that model.
 #+begin_example
 sh-shell is a variable defined in ‘sh-script.el’.
 
-Its value is ‘bash’
+Its value is ‘zsh’
 
 The shell being programmed.  This is set by M-x sh-set-shell.
 
@@ -116,27 +116,25 @@ outside the Customize interface.
 
 ** options
 
+*** Changing shell
+
+Just name the shell in the block.
+
+#+begin_src bash
+  echo ${0}
+#+end_src
+
+#+RESULTS:
+: bash
+
+#+begin_src sh
+  echo ${0}
+#+end_src
+
+#+RESULTS:
+: sh
+
 *** :shebang
-
-**** Changing shell
-
-Using shebang for this seems to work synchronously, but not async.
-
-#+begin_src shell
-  echo ${0}
-#+end_src
-
-#+RESULTS:
-: /bin/zsh
-
-Not particularly legible results, but clearly different.
-
-#+begin_src shell :shebang "/bin/bash"
-  echo ${0}
-#+end_src
-
-#+RESULTS:
-: /var/folders/y1/qpq5h9vd44dgw77dx8jb00380000gn/T/babel-YPmWu4/sh-script-MIufLw
 
 *** redirecting-in-ob-blocks
 :PROPERTIES:

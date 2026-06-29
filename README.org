@@ -36,7 +36,7 @@ to populate the appropriate directory at the time of tangling.
 #+end_src
 
 #+RESULTS: pwd
-: /Users/mwhipple/memex/notebooks/
+: /Users/mwhipple/memex/cabinet/
 
 #+begin_src emacs-lisp :noweb yes :tangle .dir-locals.el
   ((nil . ((org-roam-directory  . "<<pwd()>>")
