@@ -818,6 +818,40 @@ TESTFN is called with 2 arguments: a car of an alist element and KEY.
 
 #+end_example
 
+* Environment
+
+** getenv
+
+#+begin_src emacs-lisp
+  (describe-function #'getenv)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+getenv is an interactive byte-code-function in ‘env.el’.
+
+(getenv VARIABLE &optional FRAME)
+
+Declared type: (function (string &optional frame) (or null string))
+
+Get the value of environment variable VARIABLE.
+VARIABLE should be a string.  Value is nil if VARIABLE is undefined in
+the environment.  Otherwise, value is a string.
+
+If optional parameter FRAME is non-nil, then it should be a
+frame.  This function will look up VARIABLE in its ‘environment’
+parameter.
+
+Otherwise, this function searches ‘process-environment’ for
+VARIABLE.  If it is not found there, then it continues the search
+in the environment list of the selected frame.
+
+  ‘getenv’ is also a generalized variable.
+  Probably introduced at or before Emacs version 21.1.
+  This function does not change global state, including the match data.
+
+#+end_example
+
 * Filesystem
 
 ** default-directory ([[id:5BA060A7-6674-4523-BC6F-6D34C230B12B][is-a-cwd]])

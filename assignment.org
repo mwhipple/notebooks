@@ -1,5 +1,6 @@
 :PROPERTIES:
 :ID:       05401C30-3767-4E79-8B02-DECF434EB69E
+:ROAM_ALIASES: variable-assignment
 :END:
 #+title: assignment
 
