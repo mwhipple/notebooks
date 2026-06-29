@@ -162,6 +162,8 @@ This is 1, unless narrowing (a buffer restriction) is in effect.
 
 * Buffers
 
+** Summary
+
 #+begin_src emacs-lisp :results value
   (save-excursion
     (shortdoc 'buffer)
@@ -566,6 +568,70 @@ The functions in ‘save-some-buffers-functions’ will be called
 after saving the buffers.
 
   Probably introduced at or before Emacs version 19.20.
+
+#+end_example
+
+** switch-to-prev-buffer-skip
+:PROPERTIES:
+:ID:       B11A5ECF-B961-4722-885E-B9965938E615
+:END:
+
+#+begin_src emacs-lisp
+  (describe-variable 'switch-to-prev-buffer-skip)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+switch-to-prev-buffer-skip is a variable defined in ‘window.el’.
+
+Its value is
+#f(lambda (window buffer bury-or-kill) :dynbind
+    (with-current-buffer buffer (org-roam-node-p)))
+Original value was nil
+
+Buffers ‘switch-to-prev-buffer’ should skip.
+If this variable is nil, ‘switch-to-prev-buffer’ may switch to
+any buffer, including those already shown in other windows.
+
+If this variable is non-nil, ‘switch-to-prev-buffer’ will refrain
+from switching to certain buffers according to the value of this
+variable:
+
+- ‘this’ means do not switch to a buffer shown on the frame that
+  hosts the window ‘switch-to-prev-buffer’ is acting upon.
+
+- ‘visible’ means do not switch to a buffer shown on any visible
+  frame.
+
+- 0 (the number zero) means do not switch to a buffer shown on
+  any visible or iconified frame.
+
+- t means do not switch to a buffer shown on any live frame.
+
+If this option specifies a function, that function is called with
+three arguments - the WINDOW argument of ‘switch-to-prev-buffer’,
+a buffer ‘switch-to-prev-buffer’ intends to switch to and the
+BURY-OR-KILL argument of ‘switch-to-prev-buffer’.  If that
+function returns non-nil, ‘switch-to-prev-buffer’ will not switch
+to that buffer.
+
+Since ‘switch-to-prev-buffer’ is called by ‘bury-buffer’,
+‘replace-buffer-in-windows’ and ‘quit-restore-window’ among
+others, customizing this option may also affect the behavior of
+Emacs when a window is quit or a buffer gets buried or killed.
+
+The value of this option is consulted by ‘switch-to-next-buffer’
+as well.  In that case, if this option specifies a function, it
+will be called with the third argument nil.
+
+Under certain circumstances ‘switch-to-prev-buffer’ may ignore
+this option, for example, when there is only one buffer left.
+
+Also see ‘switch-to-prev-buffer-skip-regexp’.
+
+  This variable was introduced, or its default value was changed, in
+  version 27.1 of Emacs.
+  You can customize this variable.
 
 #+end_example
 
