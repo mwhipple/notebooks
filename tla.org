@@ -400,7 +400,13 @@ Finished in 05s at (2026-06-22 12:32:26)
 There seems to be some built-in DOT rendering somewhere upstream that
 should act as the starting point. This is likely another reason to
 pull in the CLI code for local extension.
-* TODO [#A] New CLI
+
+* Usage
+
+** EXTENDS ([[id:0E93C501-C02F-43A4-8AC8-7337DF071706][is-an-import]])
+
+Integers....
+
 
 Here I'll start to pull apart tlacli for extensibility.
 
