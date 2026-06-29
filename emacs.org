@@ -484,6 +484,45 @@ they can be in either order.
 
 #+end_example
 
+** get-buffer-window
+
+#+begin_src emacs-lisp
+  (describe-function #'get-buffer-window)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+get-buffer-window is a primitive-function in ‘C source code’.
+
+(get-buffer-window &optional BUFFER-OR-NAME ALL-FRAMES)
+
+Declared type:
+  (function (&optional (or buffer string) (or symbol (integer 0 0)))
+	    (or null window))
+
+Return a window currently displaying BUFFER-OR-NAME, or nil if none.
+BUFFER-OR-NAME may be a buffer or a buffer name and defaults to
+the current buffer.
+
+The optional argument ALL-FRAMES specifies the frames to consider:
+
+- t means consider all windows on all existing frames.
+
+- ‘visible’ means consider all windows on all visible frames.
+
+- 0 (the number zero) means consider all windows on all visible
+    and iconified frames.
+
+- A frame means consider all windows on that frame only.
+
+Any other value of ALL-FRAMES means consider all windows on the
+selected frame and no others.
+
+  Probably introduced at or before Emacs version 19.14.
+  This function does not change global state, including the match data.
+
+#+end_example
+
 ** help-buffer
 #+begin_src emacs-lisp
   (describe-function #'help-buffer)
