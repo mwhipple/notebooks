@@ -285,3 +285,30 @@ Flags:
 
 Use "acli confluence auth [command] --help" for more information about a command.
 #+end_example
+
+*** Space
+
+#+begin_src shell
+  acli confluence space --help
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Confluence space commands.
+
+Usage:
+  acli confluence space [command]
+
+Available Commands:
+  archive     Archive a Confluence space by key.
+  create      Create a Confluence space.
+  list        List Confluence spaces.
+  restore     Restore a Confluence space from the trash or archive by key.
+  update      Update details of a Confluence space, such as name, description, status, or settings by key.
+  view        View details of a Confluence space.
+
+Flags:
+  -h, --help   Show help for command
+
+Use "acli confluence space [command] --help" for more information about a command.
+#+end_example
