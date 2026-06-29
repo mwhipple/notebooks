@@ -635,6 +635,32 @@ Also see ‘switch-to-prev-buffer-skip-regexp’.
 
 #+end_example
 
+** switch-to-prev-buffer-skip-regexp
+
+#+begin_src emacs-lisp
+  (describe-variable 'switch-to-prev-buffer-skip-regexp)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+switch-to-prev-buffer-skip-regexp is a variable defined in ‘window.el’.
+
+Its value is nil
+
+Buffers that ‘switch-to-prev-buffer’ and ‘switch-to-next-buffer’ should skip.
+The value can either be a regexp or a list of regexps.  Buffers whose
+names match these regexps are skipped by ‘switch-to-prev-buffer’
+and ‘switch-to-next-buffer’, unless there’s no other buffer to
+switch to.
+
+Also see ‘switch-to-prev-buffer-skip’.
+
+  This variable was introduced, or its default value was changed, in
+  version 29.1 of Emacs.
+  You can customize this variable.
+
+#+end_example
+
 ** with-current-buffer
 :PROPERTIES:
 :ID:       9A9596F0-8138-47F1-8002-91B0474FE107
