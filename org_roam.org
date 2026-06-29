@@ -347,3 +347,17 @@ Original value was
   :unnarrowed t))
 
 #+end_example
+
+* Extensions
+
+** org-roam-node-p
+:PROPERTIES:
+:ID:       58A82522-0B48-4714-BE1D-6B53393C716E
+:END:
+
+Provide a predicate to determine whether a given buffer is an org-roam node.
+
+#+begin_src emacs-lisp
+  (defun org-roam-node-p ()
+    (and (derived-mode-p 'org-mode) (org-roam-node-at-point)))
+#+end_src
