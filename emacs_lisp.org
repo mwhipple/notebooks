@@ -175,6 +175,46 @@ it is displayed along with the global value.
 : If FUNCTION is non-nil, place point on the entry for FUNCTION (if any).
 : If SAME-WINDOW, don’t pop to a new window.
 : 
+* Debugging
+** message
+
+#+begin_src emacs-lisp
+  (describe-function #'message)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+message is a primitive-function in ‘C source code’.
+
+(message FORMAT-STRING &rest ARGS)
+
+Declared type: (function ((or string null) &rest t) (or string null))
+
+Display a message at the bottom of the screen.
+The message also goes into the ‘*Messages*’ buffer, if ‘message-log-max’
+is non-nil.  (In keyboard macros, that’s all it does.)
+Return the message.
+
+In batch mode, the message is printed to the standard error stream,
+followed by a newline.
+
+If the variable ‘inhibit-message’ is non-nil, the message is not
+displayed, only logged in the ‘*Messages*’ buffer.
+
+The first argument is a format control string, and the rest are data
+to be formatted under control of the string.  Percent sign (%), grave
+accent (`) and apostrophe (') are special in the format; see
+‘format-message’ for details.  To display STRING without special
+treatment, use (message "%s" STRING).
+
+If the first argument is nil or the empty string, the function clears
+any existing message; this lets the minibuffer contents show.  See
+also ‘current-message’.
+
+  Probably introduced at or before Emacs version 19.29.
+
+#+end_example
+
 * stateyness
 ** save-excursion
 
