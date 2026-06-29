@@ -48,7 +48,7 @@ This should likely be rewritten to be a hook or similar so it can be decomposed.
   (setq switch-to-prev-buffer-skip
         (lambda (window buffer bury-or-kill)
   	(or (get-buffer-window buffer t)
-  	    (org-roam-node-buffer-p buffer)))))
+  	    (cabinet-buffer-p buffer))))
 #+end_src
 
 #+RESULTS:
@@ -370,20 +370,30 @@ Original value was
 
 #+end_example
 
+* APIish
+
 * Extensions
 
-** org-roam-node-buffer-p
+** cabinet-buffer-p
 :PROPERTIES:
 :ID:       58A82522-0B48-4714-BE1D-6B53393C716E
 :END:
 
-Provide a predicate to determine whether a given buffer is an org-roam node.
+Provide a predicate to determine whether a given buffer is a cabinet
+file.
+
+Originally this was written to try to use richer introspection...but
+checking mode and directory seems simpler and sufficient.
+
+The cabinet directory should likely be updates to just leverage the
+org directory also.
 
 #+begin_src emacs-lisp
-  (defun org-roam-node-buffer-p (buffer)
+  (defun cabinet-buffer-p (buffer)
     (with-current-buffer buffer
-      (and (derived-mode-p 'org-mode) (org-roam-node-at-point))))
+      (and (derived-mode-p 'org-mode)
+           (file-in-directory-p (buffer-file-name) org-roam-directory))))
 #+end_src
 
 #+RESULTS:
-: org-roam-node-buffer-p
+: cabinet-buffer-p
