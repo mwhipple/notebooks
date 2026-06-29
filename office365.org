@@ -4,13 +4,17 @@
 :END:
 #+title: office365
 
-Office 365 is Microsoft's office suite...
+Office 365 is Microsoft's office suite.
+
+Unsurpisingly, Office 365 does not seem to like xwidget webkit.
 
 While I've warmed up to Microsoft over the years I still remain pretty
 unlikely to adopt Office 365 of my own free will...but them's the
 breaks. I've setup a personal free account to work with this notebook.
 
-* O365
+* Library Selection
+
+** O365 (Nope)
 
 Following search threads initially led me to the
 https://github.com/O365/python-o365 library.
@@ -33,7 +37,7 @@ had just worked I wouldn't have been bothered, but since it didn't
 the details are not only contrary to my taste, but also got in the way
 of jumping in to making things work.
 
-* MSGraph SDK
+** MSGraph SDK (Yup)
 
 I subsequently chased down the SDK offered by Microsoft:
 https://github.com/microsoftgraph/msgraph-sdk-python.
@@ -70,15 +74,15 @@ ${host_py} -m venv ${venv}
 ${venv_py} -m pip install msgraph-sdk
 Requirement already satisfied: msgraph-sdk in /private/tmp/o365/lib/python3.14/site-packages (1.58.0)
 Requirement already satisfied: azure-identity>=1.12.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.25.3)
-Requirement already satisfied: microsoft-kiota-serialization-json<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
-Requirement already satisfied: microsoft-kiota-serialization-text<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
-Requirement already satisfied: microsoft-kiota-serialization-form<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
-Requirement already satisfied: microsoft-kiota-serialization-multipart<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.10.3)
+Requirement already satisfied: microsoft-kiota-serialization-json<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.11.6)
+Requirement already satisfied: microsoft-kiota-serialization-text<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.11.6)
+Requirement already satisfied: microsoft-kiota-serialization-form<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.11.6)
+Requirement already satisfied: microsoft-kiota-serialization-multipart<2.0.0,>=1.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.11.6)
 Requirement already satisfied: msgraph_core>=1.3.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph-sdk) (1.4.0)
-Requirement already satisfied: microsoft-kiota-abstractions<1.11.0,>=1.10.3 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.10.3)
-Requirement already satisfied: opentelemetry-api>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.42.1)
-Requirement already satisfied: opentelemetry-sdk>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.42.1)
-Requirement already satisfied: std-uritemplate>=2.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (2.0.10)
+Requirement already satisfied: microsoft-kiota-abstractions<2.0.0,>=1.11.1 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.11.6)
+Requirement already satisfied: std-uritemplate>=2.0.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<2.0.0,>=1.11.1->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (2.0.10)
+Requirement already satisfied: opentelemetry-api>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<2.0.0,>=1.11.1->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.43.0)
+Requirement already satisfied: opentelemetry-sdk>=1.27.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-abstractions<2.0.0,>=1.11.1->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (1.43.0)
 Requirement already satisfied: azure-core>=1.31.0 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (1.41.0)
 Requirement already satisfied: cryptography>=2.5 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (49.0.0)
 Requirement already satisfied: msal>=1.35.1 in /private/tmp/o365/lib/python3.14/site-packages (from azure-identity>=1.12.0->msgraph-sdk) (1.37.0)
@@ -91,17 +95,17 @@ Requirement already satisfied: PyJWT<3,>=1.0.0 in /private/tmp/o365/lib/python3.
 Requirement already satisfied: charset_normalizer<4,>=2 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (3.4.7)
 Requirement already satisfied: idna<4,>=2.5 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (3.18)
 Requirement already satisfied: urllib3<3,>=1.26 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2.7.0)
-Requirement already satisfied: certifi>=2023.5.7 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2026.5.20)
-Requirement already satisfied: microsoft-kiota-authentication-azure<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.10.3)
-Requirement already satisfied: microsoft-kiota-http<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.10.3)
+Requirement already satisfied: certifi>=2023.5.7 in /private/tmp/o365/lib/python3.14/site-packages (from requests>=2.21.0->azure-core>=1.31.0->azure-identity>=1.12.0->msgraph-sdk) (2026.6.17)
+Requirement already satisfied: microsoft-kiota-authentication-azure<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.11.6)
+Requirement already satisfied: microsoft-kiota-http<2.0.0,>=1.10.1 in /private/tmp/o365/lib/python3.14/site-packages (from msgraph_core>=1.3.1->msgraph-sdk) (1.11.6)
 Requirement already satisfied: httpx>=0.23.0 in /private/tmp/o365/lib/python3.14/site-packages (from httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (0.28.1)
 Requirement already satisfied: aiohttp>=3.8.0 in /private/tmp/o365/lib/python3.14/site-packages (from microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (3.14.1)
-Requirement already satisfied: anyio in /private/tmp/o365/lib/python3.14/site-packages (from httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.13.0)
+Requirement already satisfied: anyio in /private/tmp/o365/lib/python3.14/site-packages (from httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.14.1)
 Requirement already satisfied: httpcore==1.* in /private/tmp/o365/lib/python3.14/site-packages (from httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (1.0.9)
 Requirement already satisfied: h11>=0.16 in /private/tmp/o365/lib/python3.14/site-packages (from httpcore==1.*->httpx>=0.23.0->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (0.16.0)
 Requirement already satisfied: h2<5,>=3 in /private/tmp/o365/lib/python3.14/site-packages (from httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.3.0)
 Requirement already satisfied: hyperframe<7,>=6.1 in /private/tmp/o365/lib/python3.14/site-packages (from h2<5,>=3->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (6.1.0)
-Requirement already satisfied: hpack<5,>=4.1 in /private/tmp/o365/lib/python3.14/site-packages (from h2<5,>=3->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.1.0)
+Requirement already satisfied: hpack<5,>=4.1 in /private/tmp/o365/lib/python3.14/site-packages (from h2<5,>=3->httpx[http2]>=0.23.0->msgraph_core>=1.3.1->msgraph-sdk) (4.2.0)
 Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (2.6.2)
 Requirement already satisfied: aiosignal>=1.4.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (1.4.0)
 Requirement already satisfied: attrs>=17.3.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (26.1.0)
@@ -109,12 +113,241 @@ Requirement already satisfied: frozenlist>=1.1.1 in /private/tmp/o365/lib/python
 Requirement already satisfied: multidict<7.0,>=4.5 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (6.7.1)
 Requirement already satisfied: propcache>=0.2.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (0.5.2)
 Requirement already satisfied: yarl<2.0,>=1.17.0 in /private/tmp/o365/lib/python3.14/site-packages (from aiohttp>=3.8.0->microsoft-kiota-authentication-azure<2.0.0,>=1.10.1->msgraph_core>=1.3.1->msgraph-sdk) (1.24.2)
-Requirement already satisfied: opentelemetry-semantic-conventions==0.63b1 in /private/tmp/o365/lib/python3.14/site-packages (from opentelemetry-sdk>=1.27.0->microsoft-kiota-abstractions<1.11.0,>=1.10.3->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (0.63b1)
-
-[notice] A new release of pip is available: 26.1.1 -> 26.1.2
-[notice] To update, run: /private/tmp/o365/bin/python -m pip install --upgrade pip
-[?2004hecho 'ob_comint_async_shell_end_1c0a77fc-fdb5-46c3-876c-1965e7585e0a'[?2004l
+Requirement already satisfied: opentelemetry-semantic-conventions==0.64b0 in /private/tmp/o365/lib/python3.14/site-packages (from opentelemetry-sdk>=1.27.0->microsoft-kiota-abstractions<2.0.0,>=1.11.1->microsoft-kiota-serialization-form<2.0.0,>=1.8.0->msgraph-sdk) (0.64b0)
+[?2004hecho 'ob_comint_async_shell_end_d82eb090-ef13-4bde-837b-a5213db33af7'[?2004l
 #+end_example
+
+** azure
+
+#+begin_src python
+  help('modules azure')
+#+end_src
+
+#+RESULTS:
+: Here is a list of modules whose name or summary contains 'azure'.
+: If there are any, enter a module name to get more help.
+: 
+: kiota_authentication_azure - Authentication provider for Kiota using Azure Identity
+: kiota_authentication_azure._exceptions 
+: kiota_authentication_azure._version 
+: kiota_authentication_azure.azure_identity_access_token_provider 
+: kiota_authentication_azure.azure_identity_authentication_provider 
+: msgraph_core.authentication.azure_identity_authentication_provider
+
+#+begin_src python
+  from msgraph_core.authentication import azure_identity_authentication_provider
+  help(azure_identity_authentication_provider)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Help on module msgraph_core.authentication.azure_identity_authentication_provider in msgraph_core.authentication:
+
+NAME
+    msgraph_core.authentication.azure_identity_authentication_provider
+
+CLASSES
+    kiota_authentication_azure.azure_identity_authentication_provider.AzureIdentityAuthenticationProvider(kiota_abstractions.authentication.base_bearer_token_authentication_provider.BaseBearerTokenAuthenticationProvider)
+        AzureIdentityAuthenticationProvider
+
+    class AzureIdentityAuthenticationProvider(kiota_authentication_azure.azure_identity_authentication_provider.AzureIdentityAuthenticationProvider)
+     |  AzureIdentityAuthenticationProvider(
+     |      credentials: Union['TokenCredential', 'AsyncTokenCredential'],
+     |      options: Optional[dict] = {},
+     |      scopes: list[str] = [],
+     |      allowed_hosts: list[str] = ['https://microsoftgraph.chinacloudapi.cn', 'https://graph.microsoft.de', 'https://graph.microsoft.com', 'https://dod-graph.microsoft.us', 'https://graph.microsoft.us']
+     |  ) -> None
+     |
+     |  Method resolution order:
+     |      AzureIdentityAuthenticationProvider
+     |      kiota_authentication_azure.azure_identity_authentication_provider.AzureIdentityAuthenticationProvider
+     |      kiota_abstractions.authentication.base_bearer_token_authentication_provider.BaseBearerTokenAuthenticationProvider
+     |      kiota_abstractions.authentication.authentication_provider.AuthenticationProvider
+     |      abc.ABC
+     |      builtins.object
+     |
+     |  Methods defined here:
+     |
+     |  __init__(
+     |      self,
+     |      credentials: Union['TokenCredential', 'AsyncTokenCredential'],
+     |      options: Optional[dict] = {},
+     |      scopes: list[str] = [],
+     |      allowed_hosts: list[str] = ['https://microsoftgraph.chinacloudapi.cn', 'https://graph.microsoft.de', 'https://graph.microsoft.com', 'https://dod-graph.microsoft.us', 'https://graph.microsoft.us']
+     |  ) -> None
+     |      [summary]
+     |
+     |      Args:
+     |          credentials (Union["TokenCredential", "AsyncTokenCredential"]): The
+     |              tokenCredential implementation to use for authentication.
+     |          options (Optional[dict]): The options to use for authentication.
+     |          scopes (list[str]): The scopes to use for authentication.
+     |              Defaults to 'https://<national_cloud_domain>/.default'.
+     |          allowed_hosts (Optional[list[str]]): The allowed hosts to use for
+     |              authentication. Defaults to Microsoft National Clouds.
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes defined here:
+     |
+     |  __abstractmethods__ = frozenset()
+     |
+     |  ----------------------------------------------------------------------
+     |  Methods inherited from kiota_abstractions.authentication.base_bearer_token_authentication_provider.BaseBearerTokenAuthenticationProvider:
+     |
+     |  async authenticate_request(
+     |      self,
+     |      request: RequestInformation,
+     |      additional_authentication_context: dict[str, Any] = {}
+     |  ) -> None
+     |      Authenticates the provided RequestInformation instance using the provided
+     |      authorization token
+     |
+     |      Args:
+     |          request (RequestInformation): Request information object
+     |
+     |  ----------------------------------------------------------------------
+     |  Data and other attributes inherited from kiota_abstractions.authentication.base_bearer_token_authentication_provider.BaseBearerTokenAuthenticationProvider:
+     |
+     |  AUTHORIZATION_HEADER = 'Authorization'
+     |
+     |  CLAIMS_KEY = 'claims'
+     |
+     |  ----------------------------------------------------------------------
+     |  Data descriptors inherited from kiota_abstractions.authentication.authentication_provider.AuthenticationProvider:
+     |
+     |  __dict__
+     |      dictionary for instance variables
+     |
+     |  __weakref__
+     |      list of weak references to the object
+
+DATA
+    MS_DEFAULT_SCOPE = 'https://graph.microsoft.com/.default'
+    Optional = typing.Optional
+        Optional[X] is equivalent to X | None.
+
+    TYPE_CHECKING = False
+
+FILE
+    /private/tmp/o365/lib/python3.14/site-packages/msgraph_core/authentication/azure_identity_authentication_provider.py
+#+end_example
+
+** msal
+
+#+begin_src python
+  help('modules msal')
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Here is a list of modules whose name or summary contains 'msal'.
+If there are any, enter a module name to get more help.
+
+msal 
+msal.__main__ - MSAL Python Tester
+msal.application 
+msal.auth_scheme 
+msal.authority 
+msal.broker - This module is an adaptor to the underlying broker.
+msal.cloudshell - This module wraps Cloud Shell's IMDS-like interface inside an OAuth2-like helper
+msal.exceptions 
+msal.individual_cache 
+msal.managed_identity 
+msal.mex 
+msal.oauth2cli 
+msal.oauth2cli.assertion 
+msal.oauth2cli.authcode - A one-stop helper for desktop app to acquire an authorization code.
+msal.oauth2cli.http - This module documents the minimal http behaviors used by this package.
+msal.oauth2cli.oauth2 - This OAuth2 client implementation aims to be spec-compliant, and generic.
+msal.oauth2cli.oidc 
+msal.region 
+msal.sku - This module is from where we receive the client sku name and version.
+msal.telemetry 
+msal.throttled_http_client 
+msal.token_cache 
+msal.wstrust_request 
+msal.wstrust_response 
+msal_extensions - Provides auxiliary functionality to the `msal` package.
+msal_extensions.cache_lock - Provides a mechanism for not competing with other processes interacting with an MSAL cache.
+msal_extensions.filelock - A cross-process lock based on exclusive creation of a given file name
+msal_extensions.libsecret - Implements a Linux specific TokenCache, and provides auxiliary helper types.
+msal_extensions.osx - Implements a macOS specific TokenCache, and provides auxiliary helper types.
+msal_extensions.persistence - A generic persistence layer, optionally encrypted on Windows, OSX, and Linux.
+msal_extensions.token_cache - Generic functions and types for working with a TokenCache that is not platform specific.
+msal_extensions.windows - Implements a Windows Specific TokenCache, and provides auxiliary helper types.
+#+end_example
+
+For whatever reason this doesn't seem to work.
+Feels like something to dig into as part of [[id:0F78767D-42FF-4027-B3A2-26CA1898F788][obi]].
+
+#+begin_src python :results output
+  import msal
+  help(msal)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Help on package msal:
+
+NAME
+    msal
+
+DESCRIPTION
+    #------------------------------------------------------------------------------
+    #
+    # Copyright (c) Microsoft Corporation.
+    # All rights reserved.
+    #
+    # This code is licensed under the MIT License.
+    #
+    # Permission is hereby granted, free of charge, to any person obtaining a copy
+    # of this software and associated documentation files(the "Software"), to deal
+    # in the Software without restriction, including without limitation the rights
+    # to use, copy, modify, merge, publish, distribute, sublicense, and / or sell
+    # copies of the Software, and to permit persons to whom the Software is
+    # furnished to do so, subject to the following conditions :
+    #
+    # The above copyright notice and this permission notice shall be included in
+    # all copies or substantial portions of the Software.
+    #
+    # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.IN NO EVENT SHALL THE
+    # AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    # THE SOFTWARE.
+    #
+    #------------------------------------------------------------------------------
+
+PACKAGE CONTENTS
+    __main__
+    application
+    auth_scheme
+    authority
+    broker
+    cloudshell
+    exceptions
+    individual_cache
+    managed_identity
+    mex
+    oauth2cli (package)
+    region
+    sku
+    telemetry
+    throttled_http_client
+    token_cache
+    wstrust_request
+    wstrust_response
+
+VERSION
+    1.37.0
+
+FILE
+    /private/tmp/o365/lib/python3.14/site-packages/msal/__init__.py
+#+end_example
+
+** msgraph
 
 #+begin_src python
   help('modules msgraph')
@@ -158,12 +391,263 @@ msgraph_core.tasks
 msgraph_core.tasks.large_file_upload 
 msgraph_core.tasks.page_iterator - This module contains the PageIterator class which is used to
 #+end_example
-I'm expecting to use o365.
 
-https://github.com/O365/python-o365
-https://o365.github.io/python-o365/latest/index.html
+#+begin_src python
+  import msgraph
+  help(msgraph)
+#+end_src
 
-I signed up for outlook...but I don't want to pay for Office 365.
+#+RESULTS:
+#+begin_example
+Help on package msgraph:
+
+NAME
+    msgraph - Python client for the Microsoft Graph API
+
+PACKAGE CONTENTS
+    _version
+    graph_request_adapter
+    graph_service_client
+
+SUBMODULES
+    generated
+
+DATA
+    VERSION = '1.58.0'
+
+VERSION
+    1.58.0
+
+FILE
+    /private/tmp/o365/lib/python3.14/site-packages/msgraph/__init__.py
+#+end_example
+
+* Credentials
+
+Credentials will be stored in the environment.
+
+#+begin_src python
+  from azure.identity import EnvironmentCredential
+  help(EnvironmentCredential)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+Help on class EnvironmentCredential in module azure.identity._credentials.environment:
+
+class EnvironmentCredential(builtins.object)
+ |  EnvironmentCredential(**kwargs: Any) -> None
+ |
+ |  A credential configured by environment variables.
+ |
+ |  This credential is capable of authenticating as a service principal using a client secret or a certificate.
+ |  Configuration is attempted in this order, using these environment variables:
+ |
+ |  Service principal with secret:
+ |    - **AZURE_TENANT_ID**: ID of the service principal's tenant. Also called its 'directory' ID.
+ |    - **AZURE_CLIENT_ID**: the service principal's client ID
+ |    - **AZURE_CLIENT_SECRET**: one of the service principal's client secrets
+ |    - **AZURE_AUTHORITY_HOST**: authority of a Microsoft Entra endpoint, for example
+ |      "login.microsoftonline.com", the authority for Azure Public Cloud, which is the default
+ |      when no value is given.
+ |
+ |  Service principal with certificate:
+ |    - **AZURE_TENANT_ID**: ID of the service principal's tenant. Also called its 'directory' ID.
+ |    - **AZURE_CLIENT_ID**: the service principal's client ID
+ |    - **AZURE_CLIENT_CERTIFICATE_PATH**: path to a PEM or PKCS12 certificate file including the private key.
+ |    - **AZURE_CLIENT_CERTIFICATE_PASSWORD**: (optional) password of the certificate file, if any.
+ |    - **AZURE_CLIENT_SEND_CERTIFICATE_CHAIN**: (optional) If True, the credential will send the public certificate
+ |      chain in the x5c header of each token request's JWT. This is required for Subject Name/Issuer (SNI)
+ |      authentication. Defaults to False.
+ |    - **AZURE_AUTHORITY_HOST**: authority of a Microsoft Entra endpoint, for example
+ |      "login.microsoftonline.com", the authority for Azure Public Cloud, which is the default
+ |      when no value is given.
+ |
+ |  .. admonition:: Example:
+ |
+ |      .. literalinclude:: ../samples/credential_creation_code_snippets.py
+ |          :start-after: [START create_environment_credential]
+ |          :end-before: [END create_environment_credential]
+ |          :language: python
+ |          :dedent: 4
+ |          :caption: Create an EnvironmentCredential.
+ |
+ |  Methods defined here:
+ |
+ |  __enter__(self) -> EnvironmentCredential
+ |
+ |  __exit__(self, *args: Any) -> None
+ |
+ |  __init__(self, **kwargs: Any) -> None
+ |      Initialize self.  See help(type(self)) for accurate signature.
+ |
+ |  close(self) -> None
+ |      Close the credential's transport session.
+ |
+ |  get_token(
+ |      self,
+ |      *scopes: str,
+ |      claims: Optional[str] = None,
+ |      tenant_id: Optional[str] = None,
+ |      **kwargs: Any
+ |  ) -> AccessToken
+ |      Request an access token for `scopes`.
+ |
+ |      This method is called automatically by Azure SDK clients.
+ |
+ |      :param str scopes: desired scopes for the access token. This method requires at least one scope.
+ |          For more information about scopes, see
+ |          https://learn.microsoft.com/entra/identity-platform/scopes-oidc.
+ |      :keyword str claims: additional claims required in the token, such as those returned in a resource provider's
+ |          claims challenge following an authorization failure.
+ |      :keyword str tenant_id: optional tenant to include in the token request.
+ |
+ |      :return: An access token with the desired scopes.
+ |      :rtype: ~azure.core.credentials.AccessToken
+ |
+ |      :raises ~azure.identity.CredentialUnavailableError: environment variable configuration is incomplete
+ |
+ |  get_token_info(
+ |      self,
+ |      *scopes: str,
+ |      options: Optional[TokenRequestOptions] = None
+ |  ) -> AccessTokenInfo
+ |      Request an access token for `scopes`.
+ |
+ |      This is an alternative to `get_token` to enable certain scenarios that require additional properties
+ |      on the token. This method is called automatically by Azure SDK clients.
+ |
+ |      :param str scopes: desired scope for the access token. This method requires at least one scope.
+ |          For more information about scopes, see https://learn.microsoft.com/entra/identity-platform/scopes-oidc.
+ |      :keyword options: A dictionary of options for the token request. Unknown options will be ignored. Optional.
+ |      :paramtype options: ~azure.core.credentials.TokenRequestOptions
+ |
+ |      :rtype: ~azure.core.credentials.AccessTokenInfo
+ |      :return: An AccessTokenInfo instance containing information about the token.
+ |
+ |      :raises ~azure.identity.CredentialUnavailableError: environment variable configuration is incomplete.
+ |
+ |  ----------------------------------------------------------------------
+ |  Data descriptors defined here:
+ |
+ |  __dict__
+ |      dictionary for instance variables
+ |
+ |  __weakref__
+ |      list of weak references to the object
+#+end_example
+
+
+** Setting up the Client
+
+Navigate to https://entra.microsoft.com/#home
+App Registrations
+
+
+* Try Example
+
+This is finally working...
+
+I changed the redirect url and maybe that did the trick.
+Also make sure to add the right permissions in the right mode.
+
+#+begin_src python
+  import asyncio
+  import msal
+
+  from azure.identity import AuthorizationCodeCredential
+  from msgraph import GraphServiceClient
+  from azure.identity.aio import ClientSecretCredential
+  from azure.identity import InteractiveBrowserCredential
+  from azure.identity import EnvironmentCredential
+
+  credential = AuthorizationCodeCredential(
+      tenant_id,
+      client_id,
+      client_secret,
+      'https://login.microsoftonline.com/common/oauth2/nativeclient')
+  credential = InteractiveBrowserCredential(
+      client_id=client_id,
+      tenant_id=tenant_id,
+  )
+  credential = ClientSecretCredential(
+      tenant_id,
+      client_id,
+      client_secret
+  )
+  credential = EnvironmentCredential()
+
+  scopes = ['https://graph.microsoft.com/.default']
+  client = GraphServiceClient(credentials=credential, scopes=scopes)
+  print(dir(client))
+  async def get_user():
+      user = await client.users.by_user_id('4c5587fc-957b-41e8-be8b-f54331deb9b5').get()
+
+      if user:
+          print(user.user_principal_name, user.display_name, user.id)
+  async def messages():
+      user = await client.users.by_user_id('4c5587fc-957b-41e8-be8b-f54331deb9b5').calendar.get()
+
+      if user:
+          print(user)
+  async def me():
+      me = await client.me.get()
+      if me:
+          print(me.display_name)
+  asyncio.run(messages())
+#+end_src
+
+#+RESULTS:
+: 46e3a1e3-945a-4ac9-aa9e-3cc7a2eb7678
+
+** List Properties
+
+#+begin_src python
+  print(dir(client))
+#+end_src
+
+#+RESULTS:
+: ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__firstlineno__', '__format__', '__ge__', '__getattribute__', '__getstate__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__static_attributes__', '__str__', '__subclasshook__', '__weakref__', 'admin', 'agreement_acceptances', 'agreements', 'app_catalogs', 'application_templates', 'applications', 'applications_with_app_id', 'applications_with_unique_name', 'audit_logs', 'authentication_method_configurations', 'authentication_methods_policy', 'batch', 'certificate_based_auth_configuration', 'chats', 'communications', 'compliance', 'connections', 'contacts', 'contracts', 'data_policy_operations', 'device_app_management', 'device_management', 'devices', 'devices_with_device_id', 'directory', 'directory_objects', 'directory_role_templates', 'directory_roles', 'directory_roles_with_role_template_id', 'domain_dns_records', 'domains', 'drives', 'education', 'employee_experience', 'external', 'filter_operators', 'functions', 'group_lifecycle_policies', 'group_setting_templates', 'group_settings', 'groups', 'groups_with_unique_name', 'identity', 'identity_governance', 'identity_protection', 'identity_providers', 'information_protection', 'invitations', 'me', 'oauth2_permission_grants', 'organization', 'path_parameters', 'permission_grants', 'places', 'planner', 'policies', 'print', 'privacy', 'reports', 'request_adapter', 'role_management', 'schema_extensions', 'scoped_role_memberships', 'search', 'security', 'service_principals', 'service_principals_with_app_id', 'shares', 'sites', 'solutions', 'storage', 'subscribed_skus', 'subscriptions', 'teams', 'teams_templates', 'teamwork', 'tenant_relationships', 'url_template', 'users', 'users_with_user_principal_name']
+
+  app = msal.ConfidentialClientApplication(
+    client_id, authority=f"https://login.microsoftonline.com/{tenant_id}",
+    client_credential=client_secret)
+  result = app.acquire_token_silent(scopes, account=None)
+
+  if not result:
+    result = app.acquire_token_for_client(scopes)
+  print(result)
+
+
+: {'token_type': 'Bearer', 'expires_in': 3599, 'ext_expires_in': 3599, 'access_token': 'eyJ0eXAiOiJKV1QiLCJub25jZSI6Ill1d090aHBUU0oyTUlkZUsxMXRQZkI3SWNMcUxrdHgzOTBQNFRsc0VlZFUiLCJhbGciOiJSUzI1NiIsIng1dCI6IndoMDZzRWt6TEhKNXNOTmFVeVJZMl82TzhLMCIsImtpZCI6IndoMDZzRWt6TEhKNXNOTmFVeVJZMl82TzhLMCJ9.eyJhdWQiOiJodHRwczovL2dyYXBoLm1pY3Jvc29mdC5jb20iLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mNDA2MzIzMC04MTliLTRmYTMtOGQzMC1jY2VkNDliOTJjMDgvIiwiaWF0IjoxNzgxNTY1MTA5LCJuYmYiOjE3ODE1NjUxMDksImV4cCI6MTc4MTU2OTAwOSwiYWNycyI6WyJwZmRyIl0sImFpbyI6IkFTUUEyLzhjQUFBQUkwS3pERzFTNG94Qnkwd216N1BWZzVOM3V2aXJGRU45M1pDaXJlb2RGd0k9IiwiYXBwX2Rpc3BsYXluYW1lIjoiY2xpIiwiYXBwaWQiOiJjMmJjZTY2Ny02ZDhiLTRhNGEtODU1MS0wYTJjN2RhNDQ1YTYiLCJhcHBpZGFjciI6IjEiLCJpZHAiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC9mNDA2MzIzMC04MTliLTRmYTMtOGQzMC1jY2VkNDliOTJjMDgvIiwiaWR0eXAiOiJhcHAiLCJvaWQiOiI2N2NjYjAxNC00MDRiLTQ2ZDgtODEwNC0zOTZlYmQzMGMzYTYiLCJyaCI6IjEuQVc4Qk1ESUc5SnVCbzAtTk1NenRTYmtzQ0FNQUFBQUFBQUFBd0FBQUFBQUFBQUFBQUFCdkFRLiIsInJvbGVzIjpbIlVzZXIuUmVhZC5BbGwiXSwic3ViIjoiNjdjY2IwMTQtNDA0Yi00NmQ4LTgxMDQtMzk2ZWJkMzBjM2E2IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6Ik5BIiwidGlkIjoiZjQwNjMyMzAtODE5Yi00ZmEzLThkMzAtY2NlZDQ5YjkyYzA4IiwidXRpIjoiOUp1c1kyR21TMEdZaHdWNk1OSTBBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiMDk5N2ExZDAtMGQxZC00YWNiLWI0MDgtZDVjYTczMTIxZTkwIl0sInhtc19hY2QiOjE3ODE1NDMwOTYsInhtc19hY3RfZmN0IjoiMyA5IiwieG1zX2Z0ZCI6ImdINUJ3dG92S2dMMHNNLUFmOVRma0tJYU93SF9MeWV5c1hXYlhGczJ3OEFCZFhObFlYTjBMV1J6YlhNIiwieG1zX2lkcmVsIjoiMjQgNyIsInhtc19wZnRleHAiOjE3ODE2NTU0MDksInhtc19yZCI6IjAuNDJMallCSmllczhrSk1MQkxpUWdKNzlwX3I3djNBNjcxX3c3T1YxMmNwdVFDQWVua0VEVXEzMTVoWGFKenB0VS1wcnp6djA5THlUQ3dTRWt3TXdBQVFlZ3RKQUlCN2VRd0NMSkl0OTNqQXV5SnY4MTNOc2UtZlVFQUEiLCJ4bXNfc3ViX2ZjdCI6IjMgOSIsInhtc190Y2R0IjoxNzgxNTQyODQyLCJ4bXNfdG50X2ZjdCI6IjEwIDMifQ.khDvqP1r1vXVLbDKZ1fE7MASxi4ZjObri-Fc6XjXTyci1mld7vBpbwUfjn-jFh9wiWVTgV6FVILaW35ldZmGnLDSub-GxMy1aawrXFSELyonMy7O6VSYN85BhzFt2N8mYqilIFvLVr9jle9TR-aamyCabOWL2dhMWJahfUWWVmgC6jPeJhxOEpB65kE93R2WH8aC19wx1qrfB4iofwe2DFVa_vxC4OYemyM5KjmGPXTqgd4ZSJbvuirP9G8G3gMtTyMQcyhWh9Cfc57SHHiHyGbarv5quOKNOWMWNoYgloLEHdmdpXi_XEYxlRcK5zk50RSEkObXGaulJFnP-pVQnA', 'token_source': 'identity_provider'}
+: mwhipplebos_hotmail.com#EXT#@mwhippleboshotmail.onmicrosoft.com Matt Whipple 4c5587fc-957b-41e8-be8b-f54331deb9b5
+      user = await client.users.by_user_id('mwhipplebos_hotmail.com#EXT#@mwhippleboshotmail.onmicrosoft.com').get()
+
+  async def get_user():
+      user = await client.users.by_user_id('4c5587fc-957b-41e8-be8b-f54331deb9b5').get()
+      if user:
+          print(user.user_principal_name, user.display_name, user.id)
+  asyncio.run(get_user())
+
+
+  client = GraphServiceClient(credentials=credential, scopes=scopes)
+  # GET /me
+  async def me():
+      me = await client.me.get()
+      if me:
+          print(me.display_name)
+  async def get_user():
+      user = await client.users.by_user_id('4c5587fc-957b-41e8-be8b-f54331deb9b5').get()
+
+      if user:
+          print(user.user_principal_name, user.display_name, user.id)
+  asyncio.run(get_user())
+
+
+#+RESULTS:
+: 05932486-83d0-4b5b-9d23-b3a23a41e8cb
+
+* o365
 
 I'm also having a bunch of errors on the site itself which does not inspire confidence.
 
