@@ -1,0 +1,149 @@
+:PROPERTIES:
+:ID:       C95853E2-E1B1-4E27-B110-7805E29D91C0
+:END:
+#+title: texinfo
+
+#+begin_src emacs-lisp
+  (describe-function #'texinfo-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+texinfo-mode is an autoloaded interactive byte-code-function in
+‘texinfo.el’.
+
+(texinfo-mode)
+
+Major mode for editing Texinfo files.
+
+  It has these extra commands:
+
+Key             Binding
+
+"		texinfo-insert-quote
+
+M-RET		texinfo-insert-@item
+
+C-c C-o		texinfo-insert-block
+C-c C-s		texinfo-show-structure
+C-c .		texinfo-to-environment-bounds
+C-c /		texinfo-insert-@end
+C-c ]		up-list
+C-c {		texinfo-insert-braces
+C-c }		up-list
+
+C-c C-c C-b	texinfo-previous-environment-end
+C-c C-c C-d	texinfo-start-menu-description
+C-c C-c C-e	texinfo-insert-@emph
+C-c C-c C-f	texinfo-next-environment-end
+C-c C-c C-n	texinfo-next-environment-start
+C-c C-c C-p	texinfo-previous-environment-start
+C-c C-c C-s	texinfo-insert-@strong
+C-c C-c c	texinfo-insert-@code
+C-c C-c d	texinfo-insert-@dfn
+C-c C-c e	texinfo-insert-@end
+C-c C-c f	texinfo-insert-@file
+C-c C-c i	texinfo-insert-@item
+C-c C-c k	texinfo-insert-@kbd
+C-c C-c m	texinfo-insert-@email
+C-c C-c n	texinfo-insert-@node
+C-c C-c o	texinfo-insert-@noindent
+C-c C-c q	texinfo-insert-@quotation
+C-c C-c r	texinfo-insert-dwim-@ref
+C-c C-c s	texinfo-insert-@samp
+C-c C-c t	texinfo-insert-@table
+C-c C-c u	texinfo-insert-@uref
+C-c C-c v	texinfo-insert-@var
+C-c C-c x	texinfo-insert-@example
+
+C-c C-u C-a	texinfo-all-menus-update
+C-c C-u C-e	texinfo-every-node-update
+C-c C-u RET	texinfo-make-menu
+C-c C-u C-n	texinfo-update-node
+C-c C-u m	texinfo-master-menu
+
+C-c C-e C-b	texinfo-format-buffer
+C-c C-e C-r	texinfo-format-region
+
+C-c RET C-b	makeinfo-buffer
+C-c RET C-k	kill-compilation
+C-c RET C-l	makeinfo-recenter-compilation-buffer
+C-c RET C-r	makeinfo-region
+
+C-c C-t C-b	texinfo-tex-buffer
+C-c C-t C-d	texinfo-delete-from-print-queue
+C-c C-t TAB	texinfo-texindex
+C-c C-t C-k	tex-kill-job
+C-c C-t C-l	tex-recenter-output-buffer
+C-c C-t C-p	texinfo-tex-print
+C-c C-t C-q	tex-show-print-queue
+C-c C-t C-r	texinfo-tex-region
+C-c C-t C-v	texinfo-tex-view
+C-c C-t C-x	texinfo-quit-job
+
+
+  These are files that are used as input for TeX to make printed manuals
+and also to be turned into Info files with M-x makeinfo-buffer or
+the ‘makeinfo’ program.  These files must be written in a very restricted and
+modified version of TeX input format.
+
+  Editing commands are like ‘text-mode’ except that the syntax table is
+set up so expression commands skip Texinfo bracket groups.  To see
+what the Info version of a region of the Texinfo file will look like,
+use M-x makeinfo-region, which runs ‘makeinfo’ on the current region.
+
+  You can show the structure of a Texinfo file with M-x texinfo-show-structure.
+This command shows the structure of a Texinfo file by listing the
+lines with the @-sign commands for @chapter, @section, and the like.
+These lines are displayed in another window called the *Occur* window.
+In that window, you can position the cursor over one of the lines and
+use M-x occur-mode-goto-occurrence, to jump to the corresponding spot
+in the Texinfo file.
+
+  In addition, Texinfo mode provides commands that insert various
+frequently used @-sign commands into the buffer.  You can use these
+commands to save keystrokes.  And you can insert balanced braces with
+M-x texinfo-insert-braces and later use the command M-x up-list to
+move forward past the closing brace.
+
+Also, Texinfo mode provides functions for automatically creating or
+updating menus and node pointers.  These functions
+
+  ,* insert the ‘Next’, ‘Previous’ and ‘Up’ pointers of a node,
+  ,* insert or update the menu for a section, and
+  ,* create a master menu for a Texinfo source file.
+
+Here are the functions:
+
+    ‘texinfo-update-node’                M-x texinfo-update-node
+    ‘texinfo-every-node-update’          M-x texinfo-every-node-update
+    ‘texinfo-sequential-node-update’
+
+    ‘texinfo-make-menu’                  M-x texinfo-make-menu
+    ‘texinfo-all-menus-update’           M-x texinfo-all-menus-update
+    ‘texinfo-master-menu’
+
+    ‘texinfo-indent-menu-description’ (column &optional region-p)
+
+The ‘texinfo-column-for-description’ variable specifies the column to
+which menu descriptions are indented.
+
+Passed an argument (a prefix argument, if interactive), the
+‘texinfo-update-node’ and ‘texinfo-make-menu’ functions do their jobs
+in the region.
+
+To use the updating commands, you must structure your Texinfo file
+hierarchically, such that each ‘@node’ line, with the exception of the
+Top node, is accompanied by some kind of section line, such as an
+‘@chapter’ or ‘@section’ line.
+
+If the file has a ‘top’ node, it must be called ‘top’ or ‘Top’ and
+be the first node in the file.
+
+Entering Texinfo mode calls the value of ‘text-mode-hook’, and then the
+value of ‘texinfo-mode-hook’.
+
+  Parent mode: ‘text-mode’.
+  Probably introduced at or before Emacs version 19.29.
+
+#+end_example
