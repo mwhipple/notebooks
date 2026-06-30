@@ -454,6 +454,17 @@ number of days given here.
 #+RESULTS:
 : 999999
 
+
+*** Diplay tweaks
+
+**** [[id:597907CE-BFD2-4638-A46C-AD30F240B357][hl-line-mode]]
+
+#+begin_src emacs-lisp :results output
+  (add-hook 'org-agenda-mode-hook #'hl-line-mode)
+#+end_src
+
+#+RESULTS:
+
 * API
 ** org-element-context
 
