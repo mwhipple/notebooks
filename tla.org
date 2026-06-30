@@ -426,7 +426,11 @@ As block comment...
 ...
 end algorithm;*)
 
-** \in
+** Operations
+
+*** >=
+
+*** \in
 
 members of set - will be used for complete coverage when assigned
 
