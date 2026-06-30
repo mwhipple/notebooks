@@ -452,6 +452,14 @@ variables
 
 *** operator: <identifier> == <expression>
 
+** Expressions
+
+*** Quantified Propositions
+
+**** \A <id> \in <set>: <assertion>
+
+Dig out the proper name for this
+
 
 Here I'll start to pull apart tlacli for extensibility.
 
