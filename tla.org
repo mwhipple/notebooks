@@ -432,6 +432,8 @@ end algorithm;*)
 
 *** comparison
 
+*** := assignment                                                   :pluscal:
+
 **** >=
 
 **** =
