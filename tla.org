@@ -467,6 +467,10 @@ variables
   <identifier> <operator> <expression>,
   ...
 
+** Connectives
+
+*** /\ And
+
 ** Data Types
 
 *** {,} ([[id:F90CA648-D9E8-4481-A639-3303AFBABEB4][is-a-set]])
@@ -495,7 +499,7 @@ optionally calculated from the inputs.
 
 **** \A <id> \in <set>: <assertion>
 
-Dig out the proper name for this
+Universal quantifier
 
 **** <>[](<expression>) eventually always
 
