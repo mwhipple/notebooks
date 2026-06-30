@@ -436,6 +436,10 @@ end algorithm;*)
 
 **** =
 
+*** .. range
+
+inclusive
+
 *** \in
 
 members of set - will be used for complete coverage when assigned
