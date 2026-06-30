@@ -739,6 +739,33 @@ Data About Lists
     ⇒ 3
 #+end_example
 
+** list
+
+#+begin_src emacs-lisp
+  (describe-function #'list)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+list is a primitive-function in ‘C source code’.
+
+(list &rest OBJECTS)
+
+Declared type: (function (&rest t) list)
+
+Return a newly created list with specified arguments as elements.
+Allows any number of arguments, including zero.
+
+  Other relevant functions are documented in the list group.
+  Probably introduced at or before Emacs version 1.2.
+  This function does not change global state, including the match
+    data.
+  This function has a ‘byte-compile’ property ‘byte-compile-list’ and
+    a byte-code optimizer ‘byte-optimize-list’.  See the manual for
+    details.
+
+#+end_example
+
 * [[id:910846DE-0B6A-4CE4-A32E-3DE30642F744][alists]]
 
 #+begin_src emacs-lisp
