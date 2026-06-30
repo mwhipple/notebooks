@@ -433,13 +433,11 @@ end algorithm;*)
 
 *** comparison
 
-*** := assignment                                                   :pluscal:
-
 **** <=
-
 **** >=
-
 **** =
+**** /=
+*** := assignment                                                   :pluscal:
 
 *** .. range
 
