@@ -433,16 +433,18 @@ members of set - will be used for complete coverage when assigned
 ** variables ([[id:48C2CB7A-35F2-40A8-A430-F6F69B2C6F02][is-a-variable-definition]])
 
 variables
-  <identifier> <operator> <expression>
+  <identifier> <operator> <expression>,
   ...
 
-Integers....
 ** Data Types
 
 *** {,} ([[id:F90CA648-D9E8-4481-A639-3303AFBABEB4][is-a-set]])
 
 *** "..." ([[id:3E70CDD5-BB1F-49FF-869D-97E6E7E5309E][is-a-string]])
 
+*** function [<param> \in <domain> |-> <result>] ([[id:B2A0D090-5BDE-42A5-B6C3-C0EC260A9498][is-a-function-defintion]])
+
+*** integer literal ([[id:10AE2978-0597-4BFA-A265-49173C8C810A][is-an-integer]])
 
 
 Here I'll start to pull apart tlacli for extensibility.
