@@ -446,6 +446,8 @@ variables
 
 *** integer literal ([[id:10AE2978-0597-4BFA-A265-49173C8C810A][is-an-integer]])
 
+*** operator: <identifier> == <expression>
+
 
 Here I'll start to pull apart tlacli for extensibility.
 
