@@ -450,14 +450,18 @@ members of set - will be used for complete coverage when assigned
 
 ** Block types
 
+*** <labelname>: ...
+
+Define an atomic set of actions within a concurrent process.
+
 *** begin
 define an algorithm implementation
 
 *** define ... end define;
 
-*** <labelname>: ...
-
-Define an atomic set of actions within a concurrent process.
+*** macro name(<parameter>) begin <body> end macro;                 :pluscal:
+There's no thing in the way of hygienic isolation or lexical scoping
+so this is presumably just simple expansion.
 
 *** process <name> \in <set> .. end process;                        :pluscal:
 
