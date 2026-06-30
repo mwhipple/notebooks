@@ -430,7 +430,11 @@ end algorithm;*)
 
 members of set - will be used for complete coverage when assigned
 
-** variables ([[id:48C2CB7A-35F2-40A8-A430-F6F69B2C6F02][is-a-variable-definition]])
+** Block types
+
+*** define ... end define;
+
+*** variables ([[id:48C2CB7A-35F2-40A8-A430-F6F69B2C6F02][is-a-variable-definition]])
 
 variables
   <identifier> <operator> <expression>,
