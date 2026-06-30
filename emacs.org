@@ -1049,6 +1049,55 @@ being deleted.
 
 #+end_example
 
+* Editor Styling
+
+** hl-line-mode
+:PROPERTIES:
+:ID:       597907CE-BFD2-4638-A46C-AD30F240B357
+:END:
+
+#+begin_src emacs-lisp
+  (describe-function #'hl-line-mode)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+hl-line-mode is an autoloaded interactive byte-code-function in
+‘hl-line.el’.
+
+(hl-line-mode &optional ARG)
+
+Toggle highlighting of the current line (Hl-Line mode).
+
+Hl-Line mode is a buffer-local minor mode.  If
+‘hl-line-sticky-flag’ is non-nil, Hl-Line mode highlights the
+line about the buffer’s point in all windows.  Caveat: the
+buffer’s point might be different from the point of a
+non-selected window.  Hl-Line mode uses the function
+‘hl-line-highlight’ on ‘post-command-hook’ in this case.
+
+When ‘hl-line-sticky-flag’ is nil, Hl-Line mode highlights the
+line about point in the selected window only.
+
+This is a minor mode.  If called interactively, toggle the ‘Hl-Line
+mode’ mode.  If the prefix argument is positive, enable the mode, and if
+it is zero or negative, disable the mode.
+
+If called from Lisp, toggle the mode if ARG is ‘toggle’.  Enable the
+mode if ARG is nil, omitted, or is a positive number.  Disable the mode
+if ARG is a negative number.
+
+To check whether the minor mode is enabled in the current buffer,
+evaluate the variable ‘hl-line-mode’.
+
+The mode’s hook is called both when the mode is enabled and when it is
+disabled.
+
+  Probably introduced at or before Emacs version 21.1.
+
+#+end_example
+
+
 * Content Styling
 
 ** auto-fill-mode
