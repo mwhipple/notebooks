@@ -451,6 +451,10 @@ define an algorithm implementation
 
 *** define ... end define;
 
+*** <labelname>: ...
+
+Define an atomic set of actions within a concurrent process.
+
 *** process <name> \in <set> .. end process;
 
 *** variables ([[id:48C2CB7A-35F2-40A8-A430-F6F69B2C6F02][is-a-variable-definition]])
