@@ -7,6 +7,9 @@
 * Basics
 
 ** org-directory
+:PROPERTIES:
+:ID:       141D8A2B-2353-4636-9E02-3C9899EB1174
+:END:
 
 #+begin_src emacs-lisp
   (describe-variable 'org-directory)
@@ -16,7 +19,8 @@
 #+begin_example
 org-directory is a variable defined in ‘org.el’.
 
-Its value is "~/org"
+Its value is "~/memex"
+Original value was "~/org"
 
 Directory with Org files.
 This is just a default location to look for Org files.  There is no need
@@ -322,6 +326,45 @@ Other properties affecting publication.
 
 ** Configuration
 I tweak the agenda to match my preferred flow.
+
+*** org-agenda-files
+
+#+begin_src emacs-lisp
+  (describe-variable 'org-agenda-files)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-agenda-files is a variable defined in ‘org.el’.
+
+Its value is ("/Users/mwhipple/memex")
+Original value was nil
+
+The files to be used for agenda display.
+
+If an entry is a directory, all files in that directory that are matched
+by ‘org-agenda-file-regexp’ will be part of the file list.
+
+If the value of the variable is not a list but a single file name, then
+the list of agenda files is actually stored and maintained in that file,
+one agenda file per line.  In this file paths can be given relative to
+‘org-directory’.  Tilde expansion and environment variable substitution
+are also made.
+
+Entries may be added to this list with ‘M-x org-agenda-file-to-front’
+and removed with ‘M-x org-remove-file’.
+
+  You can customize this variable.
+
+#+end_example
+
+Let's just set this to [[id:141D8A2B-2353-4636-9E02-3C9899EB1174][org-directory]].
+
+#+begin_src emacs-lisp :results output
+  (setq org-agenda-files (list (file-truename org-directory)))
+#+end_src
+
+#+RESULTS:
 
 *** org-agenda-span
 
