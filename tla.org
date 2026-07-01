@@ -431,7 +431,7 @@ end algorithm;*)
 *** + Addition
 *** - Subtraction
 *** comparison
-
+**** <
 **** <=
 **** >=
 **** =
