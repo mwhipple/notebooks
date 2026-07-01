@@ -59,6 +59,29 @@ following situations:
 
 * Weaving
 
+** org-html-publish-to-html
+
+#+begin_src emacs-lisp
+  (describe-function #'org-html-publish-to-html)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+org-html-publish-to-html is an autoloaded byte-code-function in
+‘ox-html.el’.
+
+(org-html-publish-to-html PLIST FILENAME PUB-DIR)
+
+Publish an org file to HTML.
+
+FILENAME is the filename of the Org file to be published.  PLIST
+is the property list for the given project.  PUB-DIR is the
+publishing directory.
+
+Return output file name.
+
+#+end_example
+
 ** org-publish
 
 #+begin_src emacs-lisp
