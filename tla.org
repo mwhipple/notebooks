@@ -491,12 +491,13 @@ variables
 
 *** <<, >> sequences ([[id:5505D043-68CB-4DC5-8476-531E2FB07E96][is-a-list]])
 
-**** <updated> := Append(<list>,<element);
-Sequences?
+**** Append(<list>,<element);
+Returns updated
 
-**** <identifier> := Head(<list>);
+**** Head(<list>);
 
-**** <identifier> := Tail(<list>);
+**** Len(<list>)
+**** Tail(<list>);
 
 *** functions
 
