@@ -503,7 +503,8 @@ Returns updated
 
 **** Len(<list>)
 **** Tail(<list>);
-
+*** booleans
+**** TRUE
 *** functions
 
 Functions in TLA+ unsurprisingly have a very mathematical bent where
