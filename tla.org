@@ -504,6 +504,8 @@ optionally calculated from the inputs.
 
 **** structures: [<key> |-> <value>, ....]
 
+***** <struct>.<member> dot memeber access
+
 **** set of structures: [key: {<set>},...]
 
 *** integer literal ([[id:10AE2978-0597-4BFA-A265-49173C8C810A][is-an-integer]])
