@@ -3,6 +3,44 @@
 :END:
 #+title: emacs
 
+* Startup
+
+** server-start
+
+#+begin_src emacs-lisp
+  (describe-function #'server-start)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+server-start is an autoloaded interactive byte-code-function in
+‘server.el’.
+
+(server-start &optional LEAVE-DEAD INHIBIT-PROMPT)
+
+Allow this Emacs process to be a server for client processes.
+This starts a server communications subprocess through which client
+"editors" can send your editing commands to this Emacs job.
+To use the server, set up the program ‘emacsclient’ in the Emacs
+distribution as your standard "editor".
+
+Optional argument LEAVE-DEAD (interactively, a prefix arg) means just
+kill any existing server communications subprocess.
+
+If a server is already running, restart it.  If clients are
+running, ask the user for confirmation first, unless optional
+argument INHIBIT-PROMPT is non-nil.
+
+To force-start a server, do M-x server-force-delete and then
+M-x server-start.
+
+To check from a Lisp program whether a server is running, use
+the ‘server-process’ variable.
+
+  Probably introduced at or before Emacs version 18.
+
+#+end_example
+
 * Help
 ** man
 
