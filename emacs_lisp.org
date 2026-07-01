@@ -306,6 +306,57 @@ The return value of the ‘setq’ form is the value of the last VAL.
 
 #+end_example
 
+* flow control
+
+** condition-case
+
+#+begin_src emacs-lisp
+  (describe-function #'condition-case)
+#+end_src
+
+#+RESULTS:
+#+begin_example
+condition-case is a special-form in ‘C source code’.
+
+(condition-case VAR BODYFORM &rest HANDLERS)
+
+Regain control when an error is signaled.
+Executes BODYFORM and returns its value if no error happens.
+Each element of HANDLERS looks like (CONDITION-NAME BODY...)
+or (:success BODY...), where the BODY is made of Lisp expressions.
+
+A handler is applicable to an error if CONDITION-NAME is one of the
+error’s condition names.  Handlers may also apply when non-error
+symbols are signaled (e.g., ‘quit’).  A CONDITION-NAME of t applies to
+any symbol, including non-error symbols.  If multiple handlers are
+applicable, only the first one runs.
+
+The car of a handler may be a list of condition names instead of a
+single condition name; then it handles all of them.  If the special
+condition name ‘debug’ is present in this list, it allows another
+condition in the list to run the debugger if ‘debug-on-error’ and the
+other usual mechanisms say it should (otherwise, ‘condition-case’
+suppresses the debugger).
+
+When a handler handles an error, control returns to the ‘condition-case’
+and it executes the handler’s BODY...
+with VAR bound to (ERROR-SYMBOL . SIGNAL-DATA) from the error.
+(If VAR is nil, the handler can’t access that information.)
+Then the value of the last BODY form is returned from the ‘condition-case’
+expression.
+
+The special handler (:success BODY...) is invoked if BODYFORM terminated
+without signaling an error.  BODY is then evaluated with VAR bound to
+the value returned by BODYFORM.
+
+See also the function ‘signal’ for more info.
+
+  Probably introduced at or before Emacs version 17.
+  This function has a ‘byte-compile’ property
+    ‘byte-compile-condition-case’.  See the manual for details.
+
+#+end_example
+
 * [[id:58037216-DD41-4C5F-AE7C-7A621EF9D319][lists]]
 
 #+begin_src emacs-lisp
