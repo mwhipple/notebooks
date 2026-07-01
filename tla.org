@@ -428,6 +428,8 @@ end algorithm;*)
 
 ** Operations
 
+*** skip
+
 *** + Addition
 *** - Subtraction
 *** comparison
