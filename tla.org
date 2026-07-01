@@ -446,6 +446,8 @@ inclusive
 
 members of set - will be used for complete coverage when assigned
 
+*** assert <assertion>
+
 ** Block types
 
 *** <labelname>: ...
