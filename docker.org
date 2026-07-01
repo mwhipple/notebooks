@@ -1,0 +1,37 @@
+:PROPERTIES:
+:ID:       F456E71B-7A87-43EB-8BDB-85856E9E136E
+:END:
+#+title: docker
+
+Docker is a popular containerization tool.
+
+I /may/ be more likely to prefer an alternative - docker for the most
+part is built on top of OSS solutions, largely those provided by the
+Linux kernel. I therefore have some wariness about docker being a
+product that may have conflicting incentives. I've lost track of what
+the current state of that ecosystem is so for now I'll continue to
+default to docker but with the plan to swap if anything seems amiss.
+
+* Installation
+
+** [[id:61678BF7-A363-45C2-A3E2-54A1EB15EF68][brew]]
+
+#+begin_src shell :results output :session brew :async
+  brew install docker
+#+end_src
+
+#+RESULTS:
+: brew install docker
+: Warning: docker 29.6.1 is already installed and up-to-date.
+: To reinstall 29.6.1, run:
+:   brew reinstall docker
+: [?2004hecho 'ob_comint_async_shell_end_9e1087aa-3751-4923-adb4-e2356fbe5445'[?2004l
+
+* Verification
+
+#+begin_src shell :results output
+  docker --version
+#+end_src
+
+#+RESULTS:
+: Docker version 29.6.1, build 8900f1d330
