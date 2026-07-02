@@ -44,9 +44,10 @@ the ‘server-process’ variable.
 * Help
 ** man
 
-man should likely be extracted out of emacs.
+[[id:40282DAC-6B66-47A9-9884-06CCC930D29D][man]] should likely be extracted out of emacs.
 
 That will need some output tweaking to render properly in the notebooks.
+This function provides that cleanup.
 
 #+begin_src emacs-lisp
   (describe-function #'man)
